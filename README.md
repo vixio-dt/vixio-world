@@ -80,6 +80,13 @@ open http://localhost:5173
 
 Currently in Design Phase - defining product vision and UI structure.
 
+## Future Roadmap
+
+- **Phase 1**: Personal tool for pilot short film production
+- **Phase 2**: SaaS launch for global creator community
+- **Phase 3**: Integrations with industry tools (Unreal Engine, Final Draft, Celtx, etc.)
+- **Phase 4**: 3D asset generation and previz capabilities
+
 ---
 
-*A Hong Kong startup project for virtual production filmmaking.*
+*Built for filmmakers, writers, and worldbuilders worldwide.*
