@@ -7,8 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview --host --port ${PORT:-4173}",
-    "start": "npm run preview"
+    "preview": "vite preview --host",
+    "start": "serve dist -l $PORT"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.11",
@@ -25,6 +25,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.0.0",
+    "serve": "^14.2.5",
     "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
