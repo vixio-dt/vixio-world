@@ -1,0 +1,100 @@
+{
+  "stories": [
+    {
+      "id": "story-001",
+      "title": "The Succession Crisis",
+      "logline": "When the king falls ill, Prince Aldric must navigate deadly court politics while a rebel thief uncovers a conspiracy that could either save or destroy the kingdom.",
+      "genre": "Political Fantasy",
+      "tone": "Tense, morally grey",
+      "theme": "The burden of power and the cost of inaction",
+      "status": "outline",
+      "protagonist_ids": ["char-001", "char-003"],
+      "antagonist_ids": ["char-004"],
+      "featured_character_ids": ["char-002"],
+      "setting_ids": ["loc-003", "loc-004", "loc-005"]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "scene-001",
+      "story_id": "story-001",
+      "scene_number": 1,
+      "location_id": "loc-004",
+      "time": "Night, one week before the king's collapse",
+      "purpose": "Establish the world and introduce Aldric's internal conflict",
+      "summary": "Prince Aldric walks the empty halls of the Crimson Palace, unable to sleep. He encounters Lady Morel, who hints at political storms ahead.",
+      "emotional_beat": "Unease, foreboding",
+      "key_dialogue": [
+        "Aldric: 'The crown feels heavier each day, though I've never worn it.'",
+        "Morel: 'Some burdens are carried before they're given, Your Grace.'"
+      ],
+      "action": "Aldric paces. Morel appears from shadows. They speak in hushed tones near a window overlooking the city.",
+      "props_needed": ["Candelabra", "Royal signet ring", "Window with city view"],
+      "character_ids": ["char-001", "char-002"]
+    },
+    {
+      "id": "scene-002",
+      "story_id": "story-001",
+      "scene_number": 2,
+      "location_id": "loc-005",
+      "time": "Same night, the Undercity",
+      "purpose": "Introduce Kira and establish the parallel world beneath the palace",
+      "summary": "Kira receives a mysterious job offer at The Drowning Pool tavernÃ¢â‚¬â€steal something from the Crimson Palace. The pay is too good to refuse.",
+      "emotional_beat": "Intrigue, temptation",
+      "key_dialogue": [
+        "Client: 'One item. Small enough to hide in your palm. Worth enough to disappear forever.'",
+        "Kira: 'Nothing's ever that simple. What aren't you telling me?'"
+      ],
+      "action": "Kira sits alone in shadows. A hooded figure approaches. Coin slides across the table. Kira hesitates, then takes it.",
+      "props_needed": ["Tankard", "Gold coins", "Hooded cloak", "Tavern atmosphere"],
+      "character_ids": ["char-003"]
+    }
+  ],
+  "shots": [
+    {
+      "id": "shot-001",
+      "scene_id": "scene-001",
+      "shot_number": 1,
+      "shot_type": "wide",
+      "camera_movement": "slow dolly",
+      "description": "Establishing shot of the Crimson Palace at night. Towers silhouetted against a cloudy moon. One window glows with candlelight.",
+      "action": "Static exterior. Light flickers in window.",
+      "dialogue": null,
+      "mood": "Ominous, grand, isolated",
+      "lighting_notes": "Moonlight through clouds. Single warm window. Otherwise cold blue tones.",
+      "duration_estimate": 4,
+      "visual_prompt": "Wide establishing shot of a medieval red stone palace at night, gothic architecture with multiple towers, cloudy sky with visible moon, single warm candlelit window glowing, cold blue moonlight, ominous atmosphere, cinematic composition, high detail fantasy art",
+      "character_ids": []
+    },
+    {
+      "id": "shot-002",
+      "scene_id": "scene-001",
+      "shot_number": 2,
+      "shot_type": "medium",
+      "camera_movement": "steadicam follow",
+      "description": "Follow Aldric as he walks through dark palace corridors. Shadows dance from his candle. His face shows exhaustion and worry.",
+      "action": "Aldric walks slowly, one hand trailing along the stone wall. He pauses at a painting of his father.",
+      "dialogue": null,
+      "mood": "Contemplative, burdened",
+      "lighting_notes": "Warm candlelight on face, deep shadows otherwise. Flickering creates movement.",
+      "duration_estimate": 8,
+      "visual_prompt": "Medium shot following a troubled young prince walking through dark medieval palace corridor, holding candle, warm flickering light on face showing exhaustion, deep shadows, stone walls and tapestries visible, cinematic steadicam feel, dark fantasy atmosphere",
+      "character_ids": ["char-001"]
+    },
+    {
+      "id": "shot-003",
+      "scene_id": "scene-001",
+      "shot_number": 3,
+      "shot_type": "close_up",
+      "camera_movement": "static",
+      "description": "Close on Aldric's hand as he unconsciously touches his signet ring, the symbol of his unwanted inheritance.",
+      "action": "Fingers turn the ring. Metal glints in candlelight.",
+      "dialogue": null,
+      "mood": "Symbolic, weighted",
+      "lighting_notes": "Tight lighting on hands and ring. Background dark.",
+      "duration_estimate": 3,
+      "visual_prompt": "Extreme close up of a prince's hand wearing ornate gold signet ring with royal crest, fingers nervously turning the ring, warm candlelight reflecting off metal, dark blurred background, symbolic cinematic shot, photorealistic detail",
+      "character_ids": ["char-001"]
+    }
+  ]
+}

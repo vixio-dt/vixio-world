@@ -1,0 +1,64 @@
+{
+  "items": [
+    {
+      "id": "item-1",
+      "name": "The Arbiter's Seal",
+      "type": "artifact",
+      "description": "An obsidian signet ring that serves as the symbol of the High Arbiter's authority. Said to contain a fragment of the original realm before the Sundering.",
+      "function": "Grants the bearer authority to speak for the Council. Can detect lies when pressed against a document.",
+      "origin": "Crafted from the first obsidian formed during the Sundering",
+      "ownerId": "char-1",
+      "locationId": "loc-1",
+      "significance": "critical",
+      "rules": ["Cannot be removed from bearer without consent", "Glows when in presence of deception", "Will not function for those with ill intent toward the realm"],
+      "visualReferences": ["Dark obsidian with silver veining", "Seven-faceted gem setting"],
+      "scale": "Ring size - approximately 2cm diameter",
+      "materialNotes": "Pure obsidian with natural silver inclusions. Gem is unknown crystalline structure.",
+      "ownershipHistory": [
+        { "ownerId": null, "period": "Year 1-50 AS", "notes": "Held by the Council collectively" },
+        { "ownerId": "char-1", "period": "Year 180 AS - Present", "notes": "Current High Arbiter" }
+      ],
+      "createdAt": "2025-01-15T10:00:00Z",
+      "updatedAt": "2025-01-19T12:00:00Z"
+    },
+    {
+      "id": "item-2",
+      "name": "Veil Walker's Mask",
+      "type": "artifact",
+      "description": "A featureless white mask worn by members of the Veil Walkers. Each mask is unique and bonds to its wearer.",
+      "function": "Conceals the wearer's identity from magical detection. Allows communication with other mask-wearers across distances.",
+      "origin": "Unknown - possibly pre-Sundering",
+      "ownerId": null,
+      "locationId": null,
+      "significance": "major",
+      "rules": ["Bonds permanently to first wearer", "Cannot be removed by force", "Shatters upon wearer's death"],
+      "visualReferences": ["Smooth white porcelain-like surface", "No eye holes or features", "Faint iridescent sheen"],
+      "scale": "Full face coverage, approximately 20cm x 15cm",
+      "materialNotes": "Unknown material. Appears ceramic but is unbreakable. Warm to touch.",
+      "ownershipHistory": [],
+      "createdAt": "2025-01-16T11:00:00Z",
+      "updatedAt": "2025-01-18T09:30:00Z"
+    },
+    {
+      "id": "item-3",
+      "name": "The Merchant's Ledger",
+      "type": "document",
+      "description": "The master ledger of the Merchant Consortium, containing records of all major trade agreements and debts across the realm.",
+      "function": "Legal record of all consortium transactions. Entries are magically binding contracts.",
+      "origin": "Created at the founding of the Consortium",
+      "ownerId": "char-3",
+      "locationId": "loc-2",
+      "significance": "major",
+      "rules": ["Entries cannot be erased or altered", "Only the Grand Merchant can add new entries", "Automatically updates copies held by trade masters"],
+      "visualReferences": ["Large leather-bound tome", "Gold-leafed pages", "Compass rose embossed on cover"],
+      "scale": "60cm x 40cm x 15cm when closed",
+      "materialNotes": "Dragon leather binding, vellum pages treated with preservation magic",
+      "ownershipHistory": [
+        { "ownerId": null, "period": "Year 50-100 AS", "notes": "Held by founding merchants" },
+        { "ownerId": "char-3", "period": "Year 175 AS - Present", "notes": "Current Grand Merchant" }
+      ],
+      "createdAt": "2025-01-17T08:00:00Z",
+      "updatedAt": "2025-01-20T11:00:00Z"
+    }
+  ]
+}

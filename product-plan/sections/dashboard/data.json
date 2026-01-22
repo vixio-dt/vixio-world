@@ -1,0 +1,92 @@
+{
+  "world": {
+    "id": "world-001",
+    "name": "The Fractured Realms",
+    "genre": "Dark Fantasy",
+    "tone": "Gritty",
+    "themes": ["Power", "Redemption", "Sacrifice"],
+    "logline": "In a world shattered by an ancient cataclysm, rival factions war over fragments of divine power while an unlikely hero discovers she holds the key to either salvation or final destruction."
+  },
+  "stats": {
+    "characters": 24,
+    "locations": 18,
+    "organizations": 12,
+    "events": 45,
+    "items": 67,
+    "rules": 31,
+    "stories": 3,
+    "scenes": 47,
+    "shots": 156
+  },
+  "warnings": [
+    {
+      "id": "warn-001",
+      "type": "conflict",
+      "severity": "warning",
+      "message": "Character \"Kira\" is marked as present in both \"The Crimson Palace\" and \"Smuggler's Bay\" during the same timeline period",
+      "element_type": "character",
+      "element_id": "char-003",
+      "element_name": "Kira"
+    },
+    {
+      "id": "warn-002",
+      "type": "gap",
+      "severity": "note",
+      "message": "Timeline has a 50-year gap between \"The Sundering\" and \"Rise of the Dominion\"",
+      "element_type": "event",
+      "element_id": "event-034",
+      "element_name": "Timeline Gap"
+    },
+    {
+      "id": "warn-003",
+      "type": "incomplete",
+      "severity": "note",
+      "message": "Rule \"MAGIC-003: Teleportation Prohibition\" has no examples defined",
+      "element_type": "rule",
+      "element_id": "rule-003",
+      "element_name": "MAGIC-003"
+    }
+  ],
+  "recentActivity": [
+    {
+      "id": "activity-001",
+      "action": "created",
+      "element_type": "character",
+      "element_id": "char-024",
+      "element_name": "Commander Vex",
+      "timestamp": "2026-01-21T08:30:00Z"
+    },
+    {
+      "id": "activity-002",
+      "action": "updated",
+      "element_type": "location",
+      "element_id": "loc-007",
+      "element_name": "The Crimson Palace",
+      "timestamp": "2026-01-21T05:15:00Z"
+    },
+    {
+      "id": "activity-003",
+      "action": "created",
+      "element_type": "story",
+      "element_id": "story-003",
+      "element_name": "The Succession Crisis",
+      "timestamp": "2026-01-20T14:00:00Z"
+    },
+    {
+      "id": "activity-004",
+      "action": "created",
+      "element_type": "rule",
+      "element_id": "rule-031",
+      "element_name": "SOCIAL-012: Noble Obligations",
+      "timestamp": "2026-01-19T09:45:00Z"
+    },
+    {
+      "id": "activity-005",
+      "action": "updated",
+      "element_type": "character",
+      "element_id": "char-001",
+      "element_name": "Prince Aldric",
+      "timestamp": "2026-01-18T16:20:00Z"
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "characters": [
+    {
+      "id": "char-001",
+      "name": "Prince Aldric Valen",
+      "aliases": ["The Reluctant Heir", "Aldric the Just"],
+      "role": "protagonist",
+      "species": "Human",
+      "appearance": "Tall and lean with sharp features. Dark hair kept short, grey eyes that seem perpetually troubled. A thin scar runs along his left jawline from a childhood accident. Favors practical clothing over royal finery, often seen in dark riding leathers.",
+      "personality": "Thoughtful and measured, often to the point of indecision. Deeply empathetic but struggles to act on his convictions. Carries a heavy sense of duty that wars with his desire for a simpler life.",
+      "background": "Second son of King Aldric IV, never expected to rule until his elder brother Cassian was killed in the Border Wars. Educated in both politics and combat, though he excels at neither. Known among the common folk for his charity work in the Undercity.",
+      "motivations": "Wants to reform the kingdom's corrupt noble system but fears the chaos that change might bring. Secretly wishes he could abdicate, but knows his younger sister would be married off to a foreign prince if he did.",
+      "arc_potential": "Must learn to make difficult decisions and accept that leadership means sometimes hurting some to save many. Will be forced to choose between his ideals and political reality.",
+      "visual_references": "Think young Aragorn meets Prince Rhaegar. Noble bearing but without arrogance. Eyes that have seen too much.",
+      "voice_notes": "Educated accent, speaks carefully and precisely. Tendency to pause before important statements. Voice deepens when emotional.",
+      "movement_notes": "Controlled, deliberate movements. Trained swordsman but fights defensively. Habit of clasping hands behind back when thinking.",
+      "quote": "The crown is not a giftÃ¢â‚¬â€it's a debt you can never repay."
+    },
+    {
+      "id": "char-002",
+      "name": "Lady Morel Ashford",
+      "aliases": ["The Spider", "Morel the Wise"],
+      "role": "supporting",
+      "species": "Human",
+      "appearance": "A woman in her late fifties with silver-streaked auburn hair always worn in an elaborate updo. Sharp green eyes that miss nothing. Elegant but not ostentatious, preferring dark colors that help her blend into shadows at court.",
+      "personality": "Calculating and patient, with a dry wit that cuts like a blade. Genuinely cares about the realm but willing to do terrible things to protect it. Masterful at appearing harmless while being the most dangerous person in any room.",
+      "background": "Born to a minor noble house, rose to power through three strategic marriages (all husbands died of natural causes, she insists). Has served as royal advisor to two kings. Knows every secret in the palace.",
+      "motivations": "Believes stability is more important than justice. Wants to ensure a smooth succession to prevent civil war. Has her own candidate for the throne if Aldric proves unsuitable.",
+      "arc_potential": "Her secrets will eventually catch up to her. Must decide if she'll sacrifice Aldric for the greater good or finally let someone else make the hard choices.",
+      "visual_references": "Olenna Tyrell meets Cersei's cunning. Regal but not soft. Someone you'd underestimate at your peril.",
+      "voice_notes": "Cultured accent with occasional sharp edges. Speaks softly, forcing others to lean in. Uses silence as a weapon.",
+      "movement_notes": "Economical movements, never wastes energy. Always positions herself to see the entire room. Habit of adjusting rings when plotting.",
+      "quote": "Power isn't about sitting on a throne. It's about knowing which throats to cut."
+    },
+    {
+      "id": "char-003",
+      "name": "Kira Shadowmend",
+      "aliases": ["The Ghost of the Undercity", "Kira No-Name"],
+      "role": "protagonist",
+      "species": "Human",
+      "appearance": "Small and wiry with an unremarkable faceÃ¢â‚¬â€easily forgettable, which she cultivates. Dark hair usually hidden under a hood. Multiple small scars on her hands from years of lockpicking. Mismatched eyes: one brown, one grey.",
+      "personality": "Quick-witted and cynical, uses humor to deflect emotional connection. Fiercely loyal to her chosen few but trusts no one else. Has a strong moral code despite being a thiefÃ¢â‚¬â€won't steal from those who can't afford it.",
+      "background": "Orphaned during the Merchant Quarter fire, raised by the Thieves Guild in the Undercity. Rose to become one of their best operatives before a job went wrong and she was blamed for a betrayal she didn't commit. Now works alone.",
+      "motivations": "Wants to clear her name and find out who set her up. Secretly dreams of escaping the criminal life but doesn't know any other way to survive. Develops an unexpected sense of duty to the rebellion.",
+      "arc_potential": "Must learn to trust others and accept that she deserves more than survival. Her skills make her invaluable to the rebellion, forcing her to choose between self-preservation and a cause.",
+      "visual_references": "Arya Stark meets Catwoman. Small but dangerous. Eyes that constantly scan for exits.",
+      "voice_notes": "Street accent she can drop when needed. Quick, clipped speech when nervous. Sarcastic default tone.",
+      "movement_notes": "Always in motion, even when standing still. Light on her feet, instinctively silent. Never sits with her back to a door.",
+      "quote": "Everyone's got a price. Mine just isn't money."
+    },
+    {
+      "id": "char-004",
+      "name": "Commander Vex",
+      "aliases": ["The Iron Hand", "Vex the Unbroken"],
+      "role": "antagonist",
+      "species": "Human",
+      "appearance": "Broad-shouldered and battle-scarred, with a shaved head and a thick beard going grey. Missing his left eye, covered by an ornate metal patch with the royal crest. Arms covered in military tattoos documenting his campaigns.",
+      "personality": "Utterly devoted to the crown and the old ways. Sees any change as weakness. Respects strength and despises what he views as Aldric's indecision. Not cruel by nature but will do cruel things if ordered.",
+      "background": "Rose from common soldier to Commander of the Royal Guard through merit and blood. Served King Aldric IV for thirty years. Watched the prince he trained die in battle and has never forgiven himself.",
+      "motivations": "Believes the kingdom needs a strong ruler, not a philosopher. Secretly in contact with Duke Harren, who promises to restore 'proper' order. Convinces himself he's being loyal to the crown, not to Aldric.",
+      "arc_potential": "Must confront whether his loyalty is to an ideal or to power. The rebellion will force him to choose sides, and he may find his convictions tested by seeing the consequences of 'strong' rule.",
+      "visual_references": "Stannis Baratheon's rigid honor meets Tywin's pragmatism. A career soldier who's never questioned orders.",
+      "voice_notes": "Gravel voice from years of battlefield commands. Speaks in short, declarative sentences. Rarely raises voiceÃ¢â‚¬â€doesn't need to.",
+      "movement_notes": "Military bearing at all times. Always armed, even at court. Instinctively assesses threats in any room.",
+      "quote": "Mercy is a luxury bought with other men's blood."
+    }
+  ],
+  "relationships": [
+    {
+      "character_a_id": "char-001",
+      "character_b_id": "char-002",
+      "type": "mentor",
+      "description": "Morel has advised Aldric since childhood, though he's becoming increasingly suspicious of her methods."
+    },
+    {
+      "character_a_id": "char-001",
+      "character_b_id": "char-004",
+      "type": "rival",
+      "description": "Vex trained Aldric in combat but views him as weak. Aldric respects Vex's service but fears his influence."
+    },
+    {
+      "character_a_id": "char-002",
+      "character_b_id": "char-004",
+      "type": "ally",
+      "description": "Uneasy alliance. Both want stability but disagree on methods. Each watching the other for signs of betrayal."
+    },
+    {
+      "character_a_id": "char-003",
+      "character_b_id": "char-001",
+      "type": "acquaintance",
+      "description": "Kira once pickpocketed Aldric in the Undercity. He caught her but let her go. Neither has forgotten."
+    }
+  ]
+}

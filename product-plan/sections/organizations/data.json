@@ -1,0 +1,76 @@
+{
+  "organizations": [
+    {
+      "id": "org-1",
+      "name": "The Obsidian Council",
+      "type": "government",
+      "purpose": "Ruling body of the Fractured Realms, maintaining order across the seven provinces",
+      "structure": "Council of seven elected representatives, one from each province",
+      "leadership": {
+        "title": "High Arbiter",
+        "holder": "char-1"
+      },
+      "members": ["char-1", "char-2"],
+      "memberCount": 47,
+      "territory": ["loc-1"],
+      "resources": ["Political influence", "Military forces", "Tax revenue"],
+      "beliefs": "Unity through structured governance",
+      "symbols": "Black obsidian obelisk with seven facets",
+      "allies": ["org-3"],
+      "enemies": ["org-2"],
+      "history": "Founded 200 years ago after the Great Sundering to prevent further realm fractures.",
+      "founded": "Year 1 AS (After Sundering)",
+      "status": "active",
+      "createdAt": "2025-01-15T10:00:00Z",
+      "updatedAt": "2025-01-20T14:30:00Z"
+    },
+    {
+      "id": "org-2",
+      "name": "The Veil Walkers",
+      "type": "secret_society",
+      "purpose": "Preserving forbidden knowledge and manipulating events from the shadows",
+      "structure": "Cell-based hierarchy with anonymous leadership",
+      "leadership": {
+        "title": "The Unseen",
+        "holder": null
+      },
+      "members": [],
+      "memberCount": 12,
+      "territory": [],
+      "resources": ["Ancient artifacts", "Forbidden texts", "Network of informants"],
+      "beliefs": "True power lies in secrets; knowledge is the ultimate currency",
+      "symbols": "A half-closed eye wreathed in mist",
+      "allies": [],
+      "enemies": ["org-1"],
+      "history": "Origins unknown. First documented appearance during the Sundering itself.",
+      "founded": "Unknown",
+      "status": "active",
+      "createdAt": "2025-01-15T11:00:00Z",
+      "updatedAt": "2025-01-18T09:15:00Z"
+    },
+    {
+      "id": "org-3",
+      "name": "The Merchant Consortium",
+      "type": "corporation",
+      "purpose": "Controlling trade routes and commerce across all provinces",
+      "structure": "Board of Directors with regional trade masters",
+      "leadership": {
+        "title": "Grand Merchant",
+        "holder": "char-3"
+      },
+      "members": ["char-3"],
+      "memberCount": 234,
+      "territory": ["loc-2"],
+      "resources": ["Trade routes", "Warehouses", "Shipping fleet", "Banking network"],
+      "beliefs": "Prosperity through fair trade benefits all",
+      "symbols": "Golden scales balanced on a compass rose",
+      "allies": ["org-1"],
+      "enemies": [],
+      "history": "Grew from a small trading post to the dominant economic force over 150 years.",
+      "founded": "Year 50 AS",
+      "status": "active",
+      "createdAt": "2025-01-16T08:00:00Z",
+      "updatedAt": "2025-01-19T16:45:00Z"
+    }
+  ]
+}

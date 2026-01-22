@@ -1,0 +1,39 @@
+{
+  "heading": "Space Grotesk",
+  "body": "Inter",
+  "mono": "JetBrains Mono",
+  "google_fonts_import": "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap');",
+  "usage": {
+    "heading": {
+      "font": "Space Grotesk",
+      "weights": ["500", "600", "700"],
+      "usage": "Page titles, section headers, card titles, nav items"
+    },
+    "body": {
+      "font": "Inter",
+      "weights": ["400", "500", "600", "700"],
+      "usage": "Body text, form labels, buttons, descriptions, UI text"
+    },
+    "mono": {
+      "font": "JetBrains Mono",
+      "weights": ["400", "500"],
+      "usage": "Code blocks, rule statements, technical specs, IDs"
+    }
+  },
+  "scale": {
+    "xs": "0.75rem",
+    "sm": "0.875rem",
+    "base": "1rem",
+    "lg": "1.125rem",
+    "xl": "1.25rem",
+    "2xl": "1.5rem",
+    "3xl": "1.875rem",
+    "4xl": "2.25rem"
+  },
+  "line_heights": {
+    "tight": "1.25",
+    "snug": "1.375",
+    "normal": "1.5",
+    "relaxed": "1.625"
+  }
+}

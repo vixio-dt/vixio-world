@@ -1,0 +1,123 @@
+{
+  "rules": [
+    {
+      "id": "rule-001",
+      "code": "MAGIC-001",
+      "name": "No Resurrection",
+      "category": "magic",
+      "statement": "The dead cannot be brought back to life through any means. Once a soul departs, it travels beyond reach. This is an absolute law of the world, established after the Sundering when the gods sealed the boundary between life and death.",
+      "scope": "Universal. Applies to all beings, all magic systems, all locations.",
+      "exceptions": [],
+      "consequences": "Anyone attempting resurrection will fail. Necromancy can animate corpses but cannot restore true life or the original soul.",
+      "examples": [
+        "A powerful mage exhausts their life force trying to resurrect a loved oneÃ¢â‚¬â€they die, but their target remains dead",
+        "Necromancers create undead servants, but these are hollow shells, not the original person"
+      ]
+    },
+    {
+      "id": "rule-002",
+      "code": "MAGIC-002",
+      "name": "Magic Requires Sacrifice",
+      "category": "magic",
+      "statement": "All magic requires a cost. Minor spells cost stamina. Greater magic requires blood, life force, or precious materials. The most powerful magic demands permanent sacrifice.",
+      "scope": "Applies to all magic users in all locations.",
+      "exceptions": [
+        "Divine blessing can reduce cost but never eliminate it",
+        "Ley line nexuses can amplify power, reducing relative cost"
+      ],
+      "consequences": "Using magic beyond one's limits causes physical harm, aging, madness, or death.",
+      "examples": [
+        "A hedge witch casts a healing spell and feels exhausted for hours",
+        "A battle mage hurling fireballs will collapse after too many",
+        "An archmage who attempts world-altering magic ages decades in moments"
+      ]
+    },
+    {
+      "id": "rule-003",
+      "code": "MAGIC-003",
+      "name": "No Teleportation",
+      "category": "magic",
+      "statement": "Instantaneous travel between locations is impossible. All movement requires physical traversal through space. There are no teleportation spells, portal magic is limited to fixed Anchor Points established before the Sundering.",
+      "scope": "Applies to all entities in all locations.",
+      "exceptions": [
+        "The Anchor Points: Fixed portal locations from before the Sundering, rare and heavily guarded",
+        "Divine intervention (extremely rare, plot-level events only)"
+      ],
+      "consequences": "Stories involving instant travel need to use established Anchor Points or acknowledge rule violation for plot purposes.",
+      "examples": [
+        "A chase scene must account for actual distance and travel time",
+        "Strategic planning must consider how long armies take to move",
+        "Information travels only as fast as messengers"
+      ]
+    },
+    {
+      "id": "rule-004",
+      "code": "SOCIAL-001",
+      "name": "Noble Obligation",
+      "category": "social",
+      "statement": "Nobles are bound by sacred oaths to protect their subjects. Breaking these oaths results in loss of status, lands, and sometimes life. The common folk accept noble rule in exchange for this protection.",
+      "scope": "Applies to all noble houses in the Central Kingdoms.",
+      "exceptions": [
+        "In times of war, obligations may be suspended by royal decree",
+        "The Borderlands have different, looser codes"
+      ],
+      "consequences": "A noble who abandons their people may face peasant revolt, stripping of titles, or trial by the Crown.",
+      "examples": [
+        "Lord Ashworth fled during a dragon attack and was stripped of his lands",
+        "Lady Vex defended her village against bandits despite being outnumbered, earning legendary status"
+      ]
+    },
+    {
+      "id": "rule-005",
+      "code": "SOCIAL-002",
+      "name": "Guest Right",
+      "category": "social",
+      "statement": "Once a host offers food and shelter, the guest is protected. Harming a guest under your roof is one of the gravest crimes. Similarly, guests must not harm their hosts.",
+      "scope": "Applies throughout the Central Kingdoms and most civilized lands.",
+      "exceptions": [
+        "Does not apply if the guest has committed crimes against the host's family",
+        "Smuggler's Bay ignores this custom"
+      ],
+      "consequences": "Violators become oathbreakers, shunned by all honorable people. Their word can never be trusted again.",
+      "examples": [
+        "Even bitter enemies will not attack each other during shared hospitality",
+        "A lord who murdered guests at his wedding became known as the Betrayer, his line cursed"
+      ]
+    },
+    {
+      "id": "rule-006",
+      "code": "POL-001",
+      "name": "Succession Law",
+      "category": "political",
+      "statement": "The throne passes to the eldest legitimate child regardless of gender. Bastards cannot inherit unless legitimized by royal decree. In absence of heirs, succession goes to nearest blood relative.",
+      "scope": "Applies to the Royal House of Valen. Other noble houses may have different rules.",
+      "exceptions": [
+        "The Crown Council can bypass succession in cases of madness or incapacity",
+        "War can override lawÃ¢â‚¬â€whoever holds power keeps it"
+      ],
+      "consequences": "Disputed succession leads to civil war. The War of Three Crowns was caused by such a dispute.",
+      "examples": [
+        "Princess Elara inherited despite having younger brothers",
+        "The bastard prince was legitimized to secure the succession after the plague"
+      ]
+    },
+    {
+      "id": "rule-007",
+      "code": "PHYS-001",
+      "name": "Ley Line Instability",
+      "category": "physics",
+      "statement": "Magical ley lines shift unpredictably, especially near the Shattered Zones. Areas of high magic concentration can experience reality warps, time dilation, or spontaneous magical effects.",
+      "scope": "Most pronounced in the Borderlands and near Sundering scars. The heartlands are relatively stable.",
+      "exceptions": [
+        "The Capital is anchored by ancient stabilizers",
+        "Dwarven strongholds are naturally resistant"
+      ],
+      "consequences": "Travel through unstable zones is dangerous. Prolonged exposure can cause magical mutation or madness.",
+      "examples": [
+        "The Twisted Forest grew overnight when a ley line erupted",
+        "Time moves slower in the Valley of Echoes",
+        "The village of Mirren exists in perpetual twilight"
+      ]
+    }
+  ]
+}

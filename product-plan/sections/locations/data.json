@@ -1,0 +1,132 @@
+{
+  "locations": [
+    {
+      "id": "loc-001",
+      "parent_location_id": null,
+      "name": "The Fractured Realms",
+      "type": "world",
+      "description": "A world shattered by the Sundering, where fragments of divine power lie scattered across broken continents. Magic flows unpredictably through ley lines that shift with the moons.",
+      "atmosphere": "Epic, mysterious, dangerous",
+      "climate": "Varies wildly by region due to magical instability",
+      "key_features": ["Floating islands", "Magical storms", "Ancient ruins", "Unstable ley lines"],
+      "history": "Once a unified world ruled by the Divine Compact, shattered 500 years ago when the gods withdrew their power.",
+      "cultural_significance": "The Sundering shapes all cultureÃ¢â‚¬â€religions seek to restore or prevent the gods' return.",
+      "visual_references": "High fantasy meets post-apocalyptic. Think Lord of the Rings if Mordor won, then lost again.",
+      "lighting_notes": "Often overcast, dramatic god-rays through cloud breaks",
+      "sound_notes": "Distant thunder, wind through ruins, occasional magical hum",
+      "asset_requirements": []
+    },
+    {
+      "id": "loc-002",
+      "parent_location_id": "loc-001",
+      "name": "The Central Kingdoms",
+      "type": "continent",
+      "description": "The most stable landmass, home to the human-dominated kingdoms that emerged after the Sundering. Rolling hills, ancient forests, and fertile valleys dotted with castle-cities.",
+      "atmosphere": "Medieval European, political intrigue",
+      "climate": "Temperate with distinct seasons",
+      "key_features": ["River Valen", "The King's Road", "The Great Forest", "Mountain border defenses"],
+      "history": "United under the Valen dynasty 300 years ago, now fracturing as the current king weakens.",
+      "cultural_significance": "Center of human civilization and political power",
+      "visual_references": "Medieval Europe, Game of Thrones aesthetics",
+      "lighting_notes": "Golden afternoon light in the heartlands, grey and moody at borders",
+      "sound_notes": "Church bells, market bustle, horse hooves on cobblestone",
+      "asset_requirements": ["Medieval architecture pack", "Forest assets", "River environments"]
+    },
+    {
+      "id": "loc-003",
+      "parent_location_id": "loc-002",
+      "name": "Valenheart",
+      "type": "city",
+      "description": "Capital city of the Central Kingdoms, built where the River Valen meets the sea. A city of three levels: the noble heights, the merchant quarters, and the infamous Undercity.",
+      "atmosphere": "Grand but decaying, political tension simmering",
+      "climate": "Coastal temperate, frequent fog",
+      "key_features": ["The Crimson Palace", "Harbor district", "The Great Sept", "Underground tunnel network"],
+      "history": "Founded by King Valen I after the Sundering, built atop ancient ruins that became the Undercity.",
+      "cultural_significance": "Heart of human civilization, seat of royal power",
+      "visual_references": "King's Landing meets Venice. Grand but showing age. Canals in lower city.",
+      "lighting_notes": "Fog diffuses light, dramatic shadows in narrow streets",
+      "sound_notes": "Seagulls, harbor activity, distant bells, street vendors",
+      "asset_requirements": ["Medieval city buildings", "Canal/water features", "Market stalls", "Palace architecture"]
+    },
+    {
+      "id": "loc-004",
+      "parent_location_id": "loc-003",
+      "name": "The Crimson Palace",
+      "type": "building",
+      "description": "Seat of royal power, a sprawling complex of red stone towers and interconnected halls. Beautiful but fortress-like, with hidden passages and secret rooms accumulated over centuries.",
+      "atmosphere": "Opulent but oppressive, secrets in every shadow",
+      "climate": "Climate controlled by magical heating/cooling",
+      "key_features": ["Throne Room", "Royal Chambers", "Council Hall", "The Red Gallery", "Secret passages"],
+      "history": "Built by King Valen I, expanded by each successor. Some wings haven't been entered in generations.",
+      "cultural_significance": "Symbol of royal authority, where the fate of the kingdom is decided",
+      "visual_references": "Red Keep meets Versailles. Imposing exterior, lavish interior.",
+      "lighting_notes": "Dramatic torchlight, stained glass colors, dark corners",
+      "sound_notes": "Echoing footsteps, whispered conversations, rustling tapestries",
+      "asset_requirements": ["Throne room set", "Royal furniture", "Tapestries", "Candelabras", "Armor displays"]
+    },
+    {
+      "id": "loc-005",
+      "parent_location_id": "loc-003",
+      "name": "The Undercity",
+      "type": "district",
+      "description": "The sprawling underground network beneath Valenheart, built on ancient ruins. Home to the city's poorest, its criminals, and its secrets. A maze of tunnels, caverns, and forgotten temples.",
+      "atmosphere": "Dangerous, lawless, but with its own twisted honor",
+      "climate": "Cool and damp year-round, no natural light",
+      "key_features": ["The Thieves Market", "The Drowning Pool tavern", "Guild headquarters", "Ancient temple ruins"],
+      "history": "Originally the ruins of a pre-Sundering city. Colonized by those fleeing persecution above.",
+      "cultural_significance": "Counter-culture to the surface, where different rules apply",
+      "visual_references": "Dishonored's Dunwall slums meets Skyrim's Ratway. Firelight and shadows.",
+      "lighting_notes": "Torches, magical lights, bioluminescent fungi",
+      "sound_notes": "Dripping water, distant echoes, muffled music from taverns",
+      "asset_requirements": ["Underground tunnel pieces", "Makeshift buildings", "Tavern interior", "Ancient stone carvings"]
+    },
+    {
+      "id": "loc-006",
+      "parent_location_id": "loc-002",
+      "name": "Smuggler's Bay",
+      "type": "city",
+      "description": "A lawless port city on the kingdom's edge, technically under royal authority but effectively ruled by merchant princes and pirate captains. Where anything can be bought for the right price.",
+      "atmosphere": "Chaotic, colorful, dangerous freedom",
+      "climate": "Warm and humid, frequent storms",
+      "key_features": ["The Floating Market", "Captain's Row", "The Lighthouse", "Shipwreck Reef"],
+      "history": "Founded as a naval outpost, corrupted by proximity to trade routes and distance from authority.",
+      "cultural_significance": "Gateway to the wider world, mixing pot of cultures",
+      "visual_references": "Tortuga meets Waterdeep's docks. Colorful but grimy. Ships everywhere.",
+      "lighting_notes": "Harsh tropical sun, dramatic storm lighting, lantern-lit nights",
+      "sound_notes": "Seagulls, waves, creaking ships, drunken singing, market haggling",
+      "asset_requirements": ["Pirate ships", "Dock infrastructure", "Tropical vegetation", "Market stalls", "Tavern interiors"]
+    }
+  ],
+  "character_locations": [
+    {
+      "character_id": "char-001",
+      "location_id": "loc-004",
+      "type": "resident"
+    },
+    {
+      "character_id": "char-001",
+      "location_id": "loc-005",
+      "type": "frequents"
+    },
+    {
+      "character_id": "char-002",
+      "location_id": "loc-004",
+      "type": "resident"
+    },
+    {
+      "character_id": "char-003",
+      "location_id": "loc-005",
+      "type": "resident"
+    },
+    {
+      "character_id": "char-003",
+      "location_id": "loc-006",
+      "type": "frequents"
+    },
+    {
+      "character_id": "char-004",
+      "location_id": "loc-004",
+      "type": "workplace"
+    }
+  ]
+}

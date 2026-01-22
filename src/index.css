@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+/* Typography - Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+/* Vixio Worldbuilder Design Tokens */
+:root {
+  /* Primary - Sky */
+  --color-primary: theme(colors.sky.500);
+  --color-primary-hover: theme(colors.sky.600);
+  --color-primary-light: theme(colors.sky.100);
+  
+  /* Secondary - Cream/Amber */
+  --color-secondary: theme(colors.amber.100);
+  --color-secondary-hover: theme(colors.amber.200);
+  
+  /* Accent - Teal */
+  --color-accent: theme(colors.teal.500);
+}
+
+/* Font families */
+.font-display {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+}
+
+.font-body {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Base styles */
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+}
+
+code, pre {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: theme(colors.slate.300);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: theme(colors.slate.400);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: theme(colors.slate.600);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: theme(colors.slate.500);
+}
+
+/* Focus visible styling */
+:focus-visible {
+  outline: 2px solid theme(colors.sky.500);
+  outline-offset: 2px;
+}
+
+/* Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out;
+}
+
+@keyframes slide-in-from-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-from-left {
+  animation: slide-in-from-left 0.2s ease-out;
+}
+
+/* Dark mode detection */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    color-scheme: dark;
+  }
+}
