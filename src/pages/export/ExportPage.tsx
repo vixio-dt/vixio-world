@@ -17,26 +17,23 @@ export function ExportPage() {
           icon={FileJson}
           title="JSON Export"
           description="Full world data in JSON format"
-          format="json"
         />
         <ExportCard
           icon={FileText}
           title="Markdown Export"
           description="Human-readable documentation"
-          format="md"
         />
         <ExportCard
           icon={File}
           title="Production Brief"
           description="MetaHuman specs, environment briefs"
-          format="brief"
         />
       </div>
     </div>
   )
 }
 
-function ExportCard({ icon: Icon, title, description, format }: { icon: any; title: string; description: string; format: string }) {
+function ExportCard({ icon: Icon, title, description }: { icon: any; title: string; description: string }) {
   return (
     <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 hover:border-sky-500 dark:hover:border-sky-500 transition-colors cursor-pointer">
       <div className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-700 flex items-center justify-center mb-4">

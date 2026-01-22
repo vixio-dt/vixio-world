@@ -1,6 +1,6 @@
 import { useAuth } from '@/contexts/AuthContext'
 import { cn } from '@/lib/utils'
-import { User, LogOut, Settings } from 'lucide-react'
+import { LogOut, Settings } from 'lucide-react'
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 
 interface UserMenuProps {

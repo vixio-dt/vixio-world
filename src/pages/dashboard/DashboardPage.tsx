@@ -7,7 +7,6 @@ import {
   Clock,
   Package,
   Scale,
-  BookOpen,
   AlertTriangle,
   Plus,
   ChevronRight,

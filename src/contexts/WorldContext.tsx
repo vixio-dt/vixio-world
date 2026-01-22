@@ -55,7 +55,7 @@ export function WorldProvider({ children }: { children: ReactNode }) {
 
     const { data, error } = await supabase
       .from('worlds')
-      .insert({ user_id: user.id, name, genre, tone })
+      .insert({ user_id: user.id, name, genre: genre ?? null, tone: tone ?? null } as any)
       .select()
       .single()
 
