@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useWorld } from '@/contexts/WorldContext'
-import { MessageSquare, Send, Sparkles, Bot, User } from 'lucide-react'
+import { Send, Sparkles, Bot, User } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface Message {

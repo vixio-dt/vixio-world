@@ -44,7 +44,7 @@ export function useSupabaseCRUD<T extends { id: string }>({
       }
 
       if (filter) {
-        query = query.eq(filter.column, filter.value)
+        query = query.eq(filter.column, filter.value as string)
       }
 
       if (orderBy) {
@@ -92,9 +92,10 @@ export function useSupabaseCRUD<T extends { id: string }>({
 
   const update = async (id: string, updates: Partial<T>): Promise<T | null> => {
     try {
-      const { data, error } = await supabase
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { data, error } = await (supabase as any)
         .from(table)
-        .update(updates as any)
+        .update(updates)
         .eq('id', id)
         .select()
         .single()

@@ -56,7 +56,7 @@ export function StoryDetail({ story, onEdit, onDelete }: StoryDetailProps) {
         setScenes(data || [])
         // Fetch shots for all scenes
         if (data && data.length > 0) {
-          const sceneIds = data.map(s => s.id)
+          const sceneIds = (data as Scene[]).map(s => s.id)
           const { data: shotsData } = await supabase
             .from('shots')
             .select('*')
@@ -64,7 +64,7 @@ export function StoryDetail({ story, onEdit, onDelete }: StoryDetailProps) {
             .order('shot_number', { ascending: true })
           if (shotsData) {
             const map: Record<string, Shot[]> = {}
-            shotsData.forEach(shot => {
+            ;(shotsData as Shot[]).forEach(shot => {
               if (!map[shot.scene_id]) map[shot.scene_id] = []
               map[shot.scene_id].push(shot)
             })
@@ -107,28 +107,30 @@ export function StoryDetail({ story, onEdit, onDelete }: StoryDetailProps) {
     setShowSceneForm(true)
   }
 
-  const handleSaveScene = async (data: Partial<Scene>): Promise<boolean> => {
+  const handleSaveScene = async (sceneData: Partial<Scene>): Promise<boolean> => {
     setFormLoading(true)
     try {
       if (editingScene) {
-        const { data: updated, error } = await supabase
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const { data: updated, error } = await (supabase as any)
           .from('scenes')
-          .update(data)
+          .update(sceneData)
           .eq('id', editingScene.id)
           .select()
           .single()
         if (error) throw error
-        setScenes(prev => prev.map(s => s.id === editingScene.id ? updated : s))
+        setScenes(prev => prev.map(s => s.id === editingScene.id ? (updated as Scene) : s))
         toast.success('Scene updated')
         return true
       } else {
-        const { data: created, error } = await supabase
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const { data: created, error } = await (supabase as any)
           .from('scenes')
-          .insert({ ...data, story_id: story.id })
+          .insert({ ...sceneData, story_id: story.id })
           .select()
           .single()
         if (error) throw error
-        setScenes(prev => [...prev, created].sort((a, b) => a.scene_number - b.scene_number))
+        setScenes(prev => [...prev, created as Scene].sort((a, b) => a.scene_number - b.scene_number))
         toast.success('Scene created')
         return true
       }
@@ -163,34 +165,36 @@ export function StoryDetail({ story, onEdit, onDelete }: StoryDetailProps) {
     setShowShotForm(true)
   }
 
-  const handleSaveShot = async (data: Partial<Shot>): Promise<boolean> => {
+  const handleSaveShot = async (shotData: Partial<Shot>): Promise<boolean> => {
     if (!currentSceneId) return false
     setFormLoading(true)
     try {
       if (editingShot) {
-        const { data: updated, error } = await supabase
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const { data: updated, error } = await (supabase as any)
           .from('shots')
-          .update(data)
+          .update(shotData)
           .eq('id', editingShot.id)
           .select()
           .single()
         if (error) throw error
         setShotsMap(prev => ({
           ...prev,
-          [currentSceneId]: (prev[currentSceneId] || []).map(s => s.id === editingShot.id ? updated : s),
+          [currentSceneId]: (prev[currentSceneId] || []).map(s => s.id === editingShot.id ? (updated as Shot) : s),
         }))
         toast.success('Shot updated')
         return true
       } else {
-        const { data: created, error } = await supabase
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const { data: created, error } = await (supabase as any)
           .from('shots')
-          .insert({ ...data, scene_id: currentSceneId })
+          .insert({ ...shotData, scene_id: currentSceneId })
           .select()
           .single()
         if (error) throw error
         setShotsMap(prev => ({
           ...prev,
-          [currentSceneId]: [...(prev[currentSceneId] || []), created].sort((a, b) => a.shot_number - b.shot_number),
+          [currentSceneId]: [...(prev[currentSceneId] || []), created as Shot].sort((a, b) => a.shot_number - b.shot_number),
         }))
         toast.success('Shot created')
         return true

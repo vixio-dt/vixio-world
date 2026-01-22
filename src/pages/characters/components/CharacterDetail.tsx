@@ -25,7 +25,6 @@ interface CharacterDetailProps {
   character: Character
   onEdit: () => void
   onDelete: () => Promise<boolean>
-  loading?: boolean
 }
 
 const roleColors: Record<string, 'sky' | 'rose' | 'violet' | 'slate'> = {
@@ -39,7 +38,6 @@ export function CharacterDetail({
   character,
   onEdit,
   onDelete,
-  loading = false,
 }: CharacterDetailProps) {
   const navigate = useNavigate()
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)

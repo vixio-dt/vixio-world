@@ -66,7 +66,7 @@ export function useCounts() {
       const { data: storyIds } = await supabase
         .from('stories')
         .select('id')
-        .eq('world_id', worldId)
+        .eq('world_id', worldId) as { data: { id: string }[] | null }
 
       let scenesCount = 0
       let shotsCount = 0
@@ -83,7 +83,7 @@ export function useCounts() {
         const { data: sceneIds } = await supabase
           .from('scenes')
           .select('id')
-          .in('story_id', ids)
+          .in('story_id', ids) as { data: { id: string }[] | null }
 
         if (sceneIds && sceneIds.length > 0) {
           const shotsRes = await supabase

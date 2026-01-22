@@ -8,10 +8,6 @@ import {
   FileText,
   Users,
   MapPin,
-  Building2,
-  Clock,
-  Package,
-  Scale,
   BookOpen,
   Globe,
   CheckCircle,
@@ -89,7 +85,7 @@ export function ExportPage() {
 
         // Get relationships
         if (characters && characters.length > 0) {
-          const charIds = characters.map(c => c.id)
+          const charIds = (characters as { id: string }[]).map(c => c.id)
           const { data: relationships } = await supabase
             .from('character_relationships')
             .select('*')
@@ -152,7 +148,7 @@ export function ExportPage() {
         exportData.stories = stories || []
 
         if (stories && stories.length > 0) {
-          const storyIds = stories.map(s => s.id)
+          const storyIds = (stories as { id: string }[]).map(s => s.id)
           const { data: scenes } = await supabase
             .from('scenes')
             .select('*')
@@ -161,7 +157,7 @@ export function ExportPage() {
           exportData.scenes = scenes || []
 
           if (scenes && scenes.length > 0) {
-            const sceneIds = scenes.map(s => s.id)
+            const sceneIds = (scenes as { id: string }[]).map(s => s.id)
             const { data: shots } = await supabase
               .from('shots')
               .select('*')
@@ -332,7 +328,7 @@ export function ExportPage() {
   )
 }
 
-function generateMarkdown(data: any, type: string): string {
+function generateMarkdown(data: any, _type: string): string {
   let md = `# ${data.world.name}\n\n`
   md += `> Exported on ${new Date(data.exportedAt).toLocaleString()}\n\n`
 
