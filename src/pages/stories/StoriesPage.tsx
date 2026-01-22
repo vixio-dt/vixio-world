@@ -1,40 +1,77 @@
-import { BookOpen, Plus } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { useSupabaseCRUD } from '@/lib/hooks'
+import { useToast } from '@/components/ui'
+import { StoryList, StoryForm, StoryDetail } from './components'
+import type { Story } from '@/types/database'
 
 export function StoriesPage() {
-  return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="font-display text-2xl font-bold text-slate-900 dark:text-white">
-            Stories
-          </h1>
-          <p className="text-slate-600 dark:text-slate-400 mt-1">
-            Narratives, scenes, and shots
-          </p>
-        </div>
-        <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-medium transition-colors">
-          <Plus className="w-4 h-4" />
-          <span>Add Story</span>
-        </button>
-      </div>
+  const { id } = useParams<{ id: string }>()
+  const navigate = useNavigate()
+  const toast = useToast()
 
-      <EmptyState
-        icon={BookOpen}
-        title="No stories yet"
-        description="Start crafting your narratives"
-      />
-    </div>
-  )
-}
+  const { data: stories, loading, create, update, remove, getById } = useSupabaseCRUD<Story>({ table: 'stories' })
 
-function EmptyState({ icon: Icon, title, description }: { icon: any; title: string; description: string }) {
+  const [selectedStory, setSelectedStory] = useState<Story | null>(null)
+  const [showForm, setShowForm] = useState(false)
+  const [editingStory, setEditingStory] = useState<Story | null>(null)
+  const [formLoading, setFormLoading] = useState(false)
+
+  useEffect(() => {
+    async function loadStory() {
+      if (id) {
+        const story = await getById(id)
+        setSelectedStory(story)
+      } else {
+        setSelectedStory(null)
+      }
+    }
+    loadStory()
+  }, [id, getById])
+
+  const handleSelect = (story: Story) => navigate(`/stories/${story.id}`)
+  const handleCreateNew = () => { setEditingStory(null); setShowForm(true) }
+  const handleEdit = () => { if (selectedStory) { setEditingStory(selectedStory); setShowForm(true) } }
+
+  const handleSave = async (data: Partial<Story>): Promise<boolean> => {
+    setFormLoading(true)
+    try {
+      if (editingStory) {
+        const updated = await update(editingStory.id, data)
+        if (updated) { setSelectedStory(updated); toast.success('Story updated successfully'); return true }
+      } else {
+        const created = await create(data as Omit<Story, 'id' | 'created_at' | 'updated_at'>)
+        if (created) { toast.success('Story created successfully'); navigate(`/stories/${created.id}`); return true }
+      }
+      toast.error('Failed to save story'); return false
+    } finally { setFormLoading(false) }
+  }
+
+  const handleDelete = async (): Promise<boolean> => {
+    if (!selectedStory) return false
+    const success = await remove(selectedStory.id)
+    if (success) toast.success('Story deleted successfully')
+    else toast.error('Failed to delete story')
+    return success
+  }
+
+  if (selectedStory) {
+    return (
+      <>
+        <StoryDetail story={selectedStory} onEdit={handleEdit} onDelete={handleDelete} />
+        <StoryForm isOpen={showForm} onClose={() => setShowForm(false)} onSave={handleSave} story={editingStory} loading={formLoading} />
+      </>
+    )
+  }
+
+  if (id && !selectedStory) {
+    return <div className="animate-pulse space-y-6"><div className="h-24 bg-slate-200 dark:bg-slate-700 rounded-xl" /><div className="h-64 bg-slate-200 dark:bg-slate-700 rounded-xl" /></div>
+  }
+
   return (
-    <div className="flex flex-col items-center justify-center py-16 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
-      <div className="w-16 h-16 rounded-2xl bg-slate-100 dark:bg-slate-700 flex items-center justify-center mb-4">
-        <Icon className="w-8 h-8 text-slate-400" />
-      </div>
-      <h3 className="font-display font-semibold text-slate-900 dark:text-white mb-1">{title}</h3>
-      <p className="text-slate-500 dark:text-slate-400">{description}</p>
-    </div>
+    <>
+      <StoryList stories={stories} loading={loading} onSelect={handleSelect} onCreateNew={handleCreateNew} />
+      <StoryForm isOpen={showForm} onClose={() => setShowForm(false)} onSave={handleSave} story={editingStory} loading={formLoading} />
+    </>
   )
 }

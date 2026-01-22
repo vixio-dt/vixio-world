@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider } from '@/contexts/AuthContext'
 import { WorldProvider } from '@/contexts/WorldContext'
+import { ToastProvider } from '@/components/ui'
 import { AppShell } from '@/components/shell'
 import { LoginPage } from '@/pages/auth/LoginPage'
 import { SignupPage } from '@/pages/auth/SignupPage'
@@ -20,6 +21,7 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <WorldProvider>
+          <ToastProvider>
           <Routes>
             {/* Auth routes */}
             <Route path="/auth/login" element={<LoginPage />} />
@@ -49,6 +51,7 @@ function App() {
             {/* Catch all */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+          </ToastProvider>
         </WorldProvider>
       </AuthProvider>
     </BrowserRouter>

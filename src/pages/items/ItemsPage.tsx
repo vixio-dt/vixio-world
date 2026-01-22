@@ -1,40 +1,77 @@
-import { Package, Plus } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { useSupabaseCRUD } from '@/lib/hooks'
+import { useToast } from '@/components/ui'
+import { ItemList, ItemForm, ItemDetail } from './components'
+import type { Item } from '@/types/database'
 
 export function ItemsPage() {
-  return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="font-display text-2xl font-bold text-slate-900 dark:text-white">
-            Items
-          </h1>
-          <p className="text-slate-600 dark:text-slate-400 mt-1">
-            Props, artifacts, and significant objects
-          </p>
-        </div>
-        <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-medium transition-colors">
-          <Plus className="w-4 h-4" />
-          <span>Add Item</span>
-        </button>
-      </div>
+  const { id } = useParams<{ id: string }>()
+  const navigate = useNavigate()
+  const toast = useToast()
 
-      <EmptyState
-        icon={Package}
-        title="No items yet"
-        description="Add weapons, artifacts, and props"
-      />
-    </div>
-  )
-}
+  const { data: items, loading, create, update, remove, getById } = useSupabaseCRUD<Item>({ table: 'items' })
 
-function EmptyState({ icon: Icon, title, description }: { icon: any; title: string; description: string }) {
+  const [selectedItem, setSelectedItem] = useState<Item | null>(null)
+  const [showForm, setShowForm] = useState(false)
+  const [editingItem, setEditingItem] = useState<Item | null>(null)
+  const [formLoading, setFormLoading] = useState(false)
+
+  useEffect(() => {
+    async function loadItem() {
+      if (id) {
+        const item = await getById(id)
+        setSelectedItem(item)
+      } else {
+        setSelectedItem(null)
+      }
+    }
+    loadItem()
+  }, [id, getById])
+
+  const handleSelect = (item: Item) => navigate(`/items/${item.id}`)
+  const handleCreateNew = () => { setEditingItem(null); setShowForm(true) }
+  const handleEdit = () => { if (selectedItem) { setEditingItem(selectedItem); setShowForm(true) } }
+
+  const handleSave = async (data: Partial<Item>): Promise<boolean> => {
+    setFormLoading(true)
+    try {
+      if (editingItem) {
+        const updated = await update(editingItem.id, data)
+        if (updated) { setSelectedItem(updated); toast.success('Item updated successfully'); return true }
+      } else {
+        const created = await create(data as Omit<Item, 'id' | 'created_at' | 'updated_at'>)
+        if (created) { toast.success('Item created successfully'); navigate(`/items/${created.id}`); return true }
+      }
+      toast.error('Failed to save item'); return false
+    } finally { setFormLoading(false) }
+  }
+
+  const handleDelete = async (): Promise<boolean> => {
+    if (!selectedItem) return false
+    const success = await remove(selectedItem.id)
+    if (success) toast.success('Item deleted successfully')
+    else toast.error('Failed to delete item')
+    return success
+  }
+
+  if (selectedItem) {
+    return (
+      <>
+        <ItemDetail item={selectedItem} onEdit={handleEdit} onDelete={handleDelete} />
+        <ItemForm isOpen={showForm} onClose={() => setShowForm(false)} onSave={handleSave} item={editingItem} loading={formLoading} />
+      </>
+    )
+  }
+
+  if (id && !selectedItem) {
+    return <div className="animate-pulse space-y-6"><div className="h-24 bg-slate-200 dark:bg-slate-700 rounded-xl" /><div className="h-64 bg-slate-200 dark:bg-slate-700 rounded-xl" /></div>
+  }
+
   return (
-    <div className="flex flex-col items-center justify-center py-16 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
-      <div className="w-16 h-16 rounded-2xl bg-slate-100 dark:bg-slate-700 flex items-center justify-center mb-4">
-        <Icon className="w-8 h-8 text-slate-400" />
-      </div>
-      <h3 className="font-display font-semibold text-slate-900 dark:text-white mb-1">{title}</h3>
-      <p className="text-slate-500 dark:text-slate-400">{description}</p>
-    </div>
+    <>
+      <ItemList items={items} loading={loading} onSelect={handleSelect} onCreateNew={handleCreateNew} />
+      <ItemForm isOpen={showForm} onClose={() => setShowForm(false)} onSave={handleSave} item={editingItem} loading={formLoading} />
+    </>
   )
 }

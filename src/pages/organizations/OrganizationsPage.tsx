@@ -1,40 +1,131 @@
-import { Building2, Plus } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { useSupabaseCRUD } from '@/lib/hooks'
+import { useToast } from '@/components/ui'
+import { OrganizationList, OrganizationForm, OrganizationDetail } from './components'
+import type { Organization } from '@/types/database'
 
 export function OrganizationsPage() {
-  return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="font-display text-2xl font-bold text-slate-900 dark:text-white">
-            Organizations
-          </h1>
-          <p className="text-slate-600 dark:text-slate-400 mt-1">
-            Factions, groups, and institutions
-          </p>
-        </div>
-        <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-sky-500 hover:bg-sky-600 text-white font-medium transition-colors">
-          <Plus className="w-4 h-4" />
-          <span>Add Organization</span>
-        </button>
-      </div>
+  const { id } = useParams<{ id: string }>()
+  const navigate = useNavigate()
+  const toast = useToast()
 
-      <EmptyState
-        icon={Building2}
-        title="No organizations yet"
-        description="Create factions, governments, and groups"
+  const { data: organizations, loading, create, update, remove, getById } = useSupabaseCRUD<Organization>({
+    table: 'organizations',
+  })
+
+  const [selectedOrganization, setSelectedOrganization] = useState<Organization | null>(null)
+  const [showForm, setShowForm] = useState(false)
+  const [editingOrganization, setEditingOrganization] = useState<Organization | null>(null)
+  const [formLoading, setFormLoading] = useState(false)
+
+  useEffect(() => {
+    async function loadOrganization() {
+      if (id) {
+        const org = await getById(id)
+        setSelectedOrganization(org)
+      } else {
+        setSelectedOrganization(null)
+      }
+    }
+    loadOrganization()
+  }, [id, getById])
+
+  const handleSelect = (org: Organization) => {
+    navigate(`/organizations/${org.id}`)
+  }
+
+  const handleCreateNew = () => {
+    setEditingOrganization(null)
+    setShowForm(true)
+  }
+
+  const handleEdit = () => {
+    if (selectedOrganization) {
+      setEditingOrganization(selectedOrganization)
+      setShowForm(true)
+    }
+  }
+
+  const handleSave = async (data: Partial<Organization>): Promise<boolean> => {
+    setFormLoading(true)
+    try {
+      if (editingOrganization) {
+        const updated = await update(editingOrganization.id, data)
+        if (updated) {
+          setSelectedOrganization(updated)
+          toast.success('Organization updated successfully')
+          return true
+        }
+      } else {
+        const created = await create(data as Omit<Organization, 'id' | 'created_at' | 'updated_at'>)
+        if (created) {
+          toast.success('Organization created successfully')
+          navigate(`/organizations/${created.id}`)
+          return true
+        }
+      }
+      toast.error('Failed to save organization')
+      return false
+    } finally {
+      setFormLoading(false)
+    }
+  }
+
+  const handleDelete = async (): Promise<boolean> => {
+    if (!selectedOrganization) return false
+    const success = await remove(selectedOrganization.id)
+    if (success) {
+      toast.success('Organization deleted successfully')
+    } else {
+      toast.error('Failed to delete organization')
+    }
+    return success
+  }
+
+  if (selectedOrganization) {
+    return (
+      <>
+        <OrganizationDetail
+          organization={selectedOrganization}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+        />
+        <OrganizationForm
+          isOpen={showForm}
+          onClose={() => setShowForm(false)}
+          onSave={handleSave}
+          organization={editingOrganization}
+          loading={formLoading}
+        />
+      </>
+    )
+  }
+
+  if (id && !selectedOrganization) {
+    return (
+      <div className="animate-pulse space-y-6">
+        <div className="h-24 bg-slate-200 dark:bg-slate-700 rounded-xl" />
+        <div className="h-64 bg-slate-200 dark:bg-slate-700 rounded-xl" />
+      </div>
+    )
+  }
+
+  return (
+    <>
+      <OrganizationList
+        organizations={organizations}
+        loading={loading}
+        onSelect={handleSelect}
+        onCreateNew={handleCreateNew}
       />
-    </div>
-  )
-}
-
-function EmptyState({ icon: Icon, title, description }: { icon: any; title: string; description: string }) {
-  return (
-    <div className="flex flex-col items-center justify-center py-16 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
-      <div className="w-16 h-16 rounded-2xl bg-slate-100 dark:bg-slate-700 flex items-center justify-center mb-4">
-        <Icon className="w-8 h-8 text-slate-400" />
-      </div>
-      <h3 className="font-display font-semibold text-slate-900 dark:text-white mb-1">{title}</h3>
-      <p className="text-slate-500 dark:text-slate-400">{description}</p>
-    </div>
+      <OrganizationForm
+        isOpen={showForm}
+        onClose={() => setShowForm(false)}
+        onSave={handleSave}
+        organization={editingOrganization}
+        loading={formLoading}
+      />
+    </>
   )
 }
