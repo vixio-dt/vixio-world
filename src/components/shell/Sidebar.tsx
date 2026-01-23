@@ -80,11 +80,6 @@ export function Sidebar() {
             collapsed ? 'w-8 h-8' : 'w-10 h-10'
           )}
         />
-        {!collapsed && (
-          <span className="font-display font-bold text-lg text-slate-900 dark:text-white">
-            Vixio
-          </span>
-        )}
       </div>
 
       {/* World Switcher */}
