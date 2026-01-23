@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '@/contexts/AuthContext'
-import { Globe } from 'lucide-react'
 
 export function LoginPage() {
   const navigate = useNavigate()
@@ -27,13 +26,15 @@ export function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-white dark:bg-slate-900 px-4">
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-sky-400 to-sky-600 mb-4">
-            <Globe className="w-8 h-8 text-white" />
-          </div>
+          <img 
+            src="/vixio-logo.svg" 
+            alt="Vixio" 
+            className="w-20 h-20 mx-auto mb-4"
+          />
           <h1 className="font-display text-3xl font-bold text-slate-900 dark:text-white">
             Vixio Worldbuilder
           </h1>

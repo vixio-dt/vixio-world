@@ -67,6 +67,26 @@ export function Sidebar() {
         collapsed ? 'w-16' : 'w-64'
       )}
     >
+      {/* Logo */}
+      <div className={cn(
+        'p-4 border-b border-slate-200 dark:border-slate-700 flex items-center',
+        collapsed ? 'justify-center' : 'gap-3'
+      )}>
+        <img 
+          src="/vixio-logo.svg" 
+          alt="Vixio" 
+          className={cn(
+            'transition-all duration-200',
+            collapsed ? 'w-8 h-8' : 'w-10 h-10'
+          )}
+        />
+        {!collapsed && (
+          <span className="font-display font-bold text-lg text-slate-900 dark:text-white">
+            Vixio
+          </span>
+        )}
+      </div>
+
       {/* World Switcher */}
       <div className="p-3 border-b border-slate-200 dark:border-slate-700">
         <WorldSwitcher collapsed={collapsed} />
