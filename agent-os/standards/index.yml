@@ -3,3 +3,27 @@
 global:
   tech-stack:
     description: Frontend, backend, design system, and deployment technologies
+
+react:
+  forms:
+    description: Form component patterns, validation, data transformation
+  page-structure:
+    description: Page file organization, list/detail views, URL routing
+  ui-components:
+    description: UI component patterns, cn() usage, compound components
+
+styling:
+  design-tokens:
+    description: Color palette, typography, spacing tokens
+  layout:
+    description: App shell, page layouts, detail views, empty states
+  tailwind-patterns:
+    description: Class merging, common patterns, responsive breakpoints
+
+supabase:
+  crud-hook:
+    description: useSupabaseCRUD hook usage, world scoping, CRUD operations
+  types:
+    description: Database type definitions, entity structure, nullable fields
+  world-context:
+    description: World context usage, switching worlds, world scoping
