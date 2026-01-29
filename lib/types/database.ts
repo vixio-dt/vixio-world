@@ -4,8 +4,9 @@
 // Content block for freeform content in entities
 export type ContentBlock = {
   id: string;
-  type: 'text' | 'media';
+  type: 'text' | 'media' | 'model';
   content: string;
+  platform?: 'sketchfab' | 'tripo';  // For model blocks
   mentions: string[];
   order: number;
   created_at: string;
