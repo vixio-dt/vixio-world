@@ -298,6 +298,7 @@ ALTER TABLE scene_characters ENABLE ROW LEVEL SECURITY;
 ALTER TABLE shot_characters ENABLE ROW LEVEL SECURITY;
 ALTER TABLE story_characters ENABLE ROW LEVEL SECURITY;
 ALTER TABLE item_owners ENABLE ROW LEVEL SECURITY;
+ALTER TABLE entity_mentions ENABLE ROW LEVEL SECURITY;
 
 -- Worlds: users can only access their own worlds
 CREATE POLICY "Users can view own worlds" ON worlds
@@ -448,6 +449,53 @@ CREATE POLICY "Users can access item_owners" ON item_owners
     )
   );
 
+-- Entity mentions: access through source entity ownership
+CREATE POLICY "Users can access entity_mentions" ON entity_mentions
+  FOR ALL USING (
+    EXISTS (
+      SELECT 1 FROM characters 
+      JOIN worlds ON worlds.id = characters.world_id 
+      WHERE characters.id = entity_mentions.source_entity_id 
+      AND worlds.user_id = auth.uid()
+    )
+    OR EXISTS (
+      SELECT 1 FROM locations 
+      JOIN worlds ON worlds.id = locations.world_id 
+      WHERE locations.id = entity_mentions.source_entity_id 
+      AND worlds.user_id = auth.uid()
+    )
+    OR EXISTS (
+      SELECT 1 FROM organizations 
+      JOIN worlds ON worlds.id = organizations.world_id 
+      WHERE organizations.id = entity_mentions.source_entity_id 
+      AND worlds.user_id = auth.uid()
+    )
+    OR EXISTS (
+      SELECT 1 FROM events 
+      JOIN worlds ON worlds.id = events.world_id 
+      WHERE events.id = entity_mentions.source_entity_id 
+      AND worlds.user_id = auth.uid()
+    )
+    OR EXISTS (
+      SELECT 1 FROM items 
+      JOIN worlds ON worlds.id = items.world_id 
+      WHERE items.id = entity_mentions.source_entity_id 
+      AND worlds.user_id = auth.uid()
+    )
+    OR EXISTS (
+      SELECT 1 FROM rules 
+      JOIN worlds ON worlds.id = rules.world_id 
+      WHERE rules.id = entity_mentions.source_entity_id 
+      AND worlds.user_id = auth.uid()
+    )
+    OR EXISTS (
+      SELECT 1 FROM stories 
+      JOIN worlds ON worlds.id = stories.world_id 
+      WHERE stories.id = entity_mentions.source_entity_id 
+      AND worlds.user_id = auth.uid()
+    )
+  );
+
 -- =====================================================
 -- INDEXES
 -- =====================================================
@@ -467,6 +515,12 @@ CREATE INDEX idx_scenes_story_id ON scenes(story_id);
 CREATE INDEX idx_scenes_scene_number ON scenes(scene_number);
 CREATE INDEX idx_shots_scene_id ON shots(scene_id);
 CREATE INDEX idx_shots_shot_number ON shots(shot_number);
+
+-- Entity mentions indexes
+CREATE INDEX idx_entity_mentions_source ON entity_mentions(source_entity_id);
+CREATE INDEX idx_entity_mentions_target ON entity_mentions(target_entity_id);
+CREATE INDEX idx_entity_mentions_source_type ON entity_mentions(source_entity_type);
+CREATE INDEX idx_entity_mentions_target_type ON entity_mentions(target_entity_type);
 
 -- =====================================================
 -- TRIGGERS FOR updated_at
