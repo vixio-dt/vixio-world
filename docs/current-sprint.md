@@ -1,7 +1,35 @@
 # Current Sprint
 
-**Status:** Phase 2 in progress. Entity schema + 3D model viewer implemented.
+**Status:** Phase 2 complete. Entity schema, 3D viewer, and AI import implemented.
 **Updated:** 2026-01-29
+
+---
+
+## Recent Completion: AI Import
+
+### Entity Extraction (2026-01-29)
+
+Added AI-powered entity extraction using OpenRouter (Deepseek V3.2). Users paste content, AI extracts entities, user reviews and confirms creation.
+
+**Design:** [AI Import Design](./plans/2026-01-29-ai-import-design.md)
+
+| Component | Purpose |
+|-----------|---------|
+| `/import` page | Paste content, preview extraction, create entities |
+| `extractEntities` | Sends content to Deepseek, returns structured JSON |
+| `createExtractedEntities` | Creates selected entities in database |
+
+**Supported entity types:**
+- Characters, Locations, Organizations, Items, Events
+
+**Files Created:**
+- `app/(dashboard)/import/page.tsx` - Import page UI
+- `lib/ai/openrouter.ts` - OpenRouter client config
+- `lib/ai/extract-entities.ts` - Extraction logic
+- `lib/ai/types.ts` - Extracted entity types
+- `lib/actions/import.ts` - Server actions
+
+**Environment:** Requires `OPENROUTER_API_KEY` in `.env`
 
 ---
 
@@ -223,7 +251,7 @@ A significant strategic evolution based on market analysis and product positioni
 - [x] Deploy MVP to Vercel (validate production works)
 - [x] Design entity system data model (content_blocks + story_context + entity_mentions)
 - [x] Research model-viewer implementation (Sketchfab + Tripo embeds)
-- [ ] Plan AI integration (OpenAI/Anthropic API setup)
+- [x] Plan AI integration (OpenRouter + Deepseek V3.2)
 
 ---
 
