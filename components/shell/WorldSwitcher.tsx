@@ -10,27 +10,58 @@ export function WorldSwitcher() {
   const [currentWorld, setCurrentWorld] = useState<World | null>(null)
   const [isOpen, setIsOpen] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [isCreating, setIsCreating] = useState(false)
+  const [newWorldName, setNewWorldName] = useState('')
 
   useEffect(() => {
-    async function loadWorlds() {
-      const supabase = createClient()
-      const { data, error } = await supabase
-        .from('worlds')
-        .select('*')
-        .order('created_at', { ascending: false })
-
-      if (!error && data) {
-        setWorlds(data)
-        // Set first world as current if available
-        if (data.length > 0 && !currentWorld) {
-          setCurrentWorld(data[0])
-        }
-      }
-      setLoading(false)
-    }
-
     loadWorlds()
-  }, [currentWorld])
+  }, [])
+
+  async function loadWorlds() {
+    const supabase = createClient()
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data, error } = await (supabase as any)
+      .from('worlds')
+      .select('*')
+      .order('created_at', { ascending: false })
+
+    if (!error && data) {
+      setWorlds(data as World[])
+      // Set first world as current if available
+      if (data.length > 0) {
+        const savedWorldId = localStorage.getItem('currentWorldId')
+        const savedWorld = (data as World[]).find(w => w.id === savedWorldId)
+        setCurrentWorld(savedWorld || data[0])
+      }
+    }
+    setLoading(false)
+  }
+
+  async function createWorld() {
+    if (!newWorldName.trim()) return
+
+    const supabase = createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    
+    if (!user) return
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data, error } = await (supabase as any)
+      .from('worlds')
+      .insert({ user_id: user.id, name: newWorldName.trim() })
+      .select()
+      .single()
+
+    if (!error && data) {
+      const newWorld = data as World
+      setWorlds([newWorld, ...worlds])
+      setCurrentWorld(newWorld)
+      localStorage.setItem('currentWorldId', newWorld.id)
+      setNewWorldName('')
+      setIsCreating(false)
+      setIsOpen(false)
+    }
+  }
 
   function selectWorld(world: World) {
     setCurrentWorld(world)
@@ -45,14 +76,36 @@ export function WorldSwitcher() {
     )
   }
 
-  if (worlds.length === 0) {
+  if (worlds.length === 0 || isCreating) {
     return (
-      <button
-        className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-sky-50 text-sky-600 rounded-lg text-sm font-medium hover:bg-sky-100 transition-colors"
-      >
-        <Plus className="w-4 h-4" />
-        Create your first world
-      </button>
+      <div className="space-y-2">
+        <input
+          type="text"
+          value={newWorldName}
+          onChange={(e) => setNewWorldName(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && createWorld()}
+          placeholder="Enter world name..."
+          className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
+          autoFocus
+        />
+        <div className="flex gap-2">
+          <button
+            onClick={createWorld}
+            disabled={!newWorldName.trim()}
+            className="flex-1 px-3 py-2 bg-sky-500 text-white rounded-lg text-sm font-medium hover:bg-sky-600 transition-colors disabled:opacity-50"
+          >
+            Create World
+          </button>
+          {worlds.length > 0 && (
+            <button
+              onClick={() => setIsCreating(false)}
+              className="px-3 py-2 bg-slate-100 text-slate-600 rounded-lg text-sm font-medium hover:bg-slate-200 transition-colors"
+            >
+              Cancel
+            </button>
+          )}
+        </div>
+      </div>
     )
   }
 
@@ -87,6 +140,7 @@ export function WorldSwitcher() {
           </div>
           <div className="border-t border-slate-200">
             <button
+              onClick={() => { setIsCreating(true); setIsOpen(false); }}
               className="w-full flex items-center gap-2 px-3 py-2 text-sm text-sky-600 hover:bg-sky-50 transition-colors"
             >
               <Plus className="w-4 h-4" />
