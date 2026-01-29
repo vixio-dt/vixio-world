@@ -60,6 +60,8 @@ CREATE TABLE locations (
   lighting_notes TEXT,
   sound_notes TEXT,
   asset_requirements TEXT,
+  story_context TEXT,
+  content_blocks JSONB DEFAULT '[]',
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -78,6 +80,8 @@ CREATE TABLE organizations (
   beliefs TEXT,
   symbols TEXT,
   history TEXT,
+  story_context TEXT,
+  content_blocks JSONB DEFAULT '[]',
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -94,6 +98,8 @@ CREATE TABLE events (
   description TEXT,
   causes TEXT,
   consequences TEXT,
+  story_context TEXT,
+  content_blocks JSONB DEFAULT '[]',
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -113,6 +119,8 @@ CREATE TABLE items (
   visual_references TEXT,
   scale TEXT,
   material_notes TEXT,
+  story_context TEXT,
+  content_blocks JSONB DEFAULT '[]',
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -129,6 +137,8 @@ CREATE TABLE rules (
   exceptions TEXT,
   consequences TEXT,
   examples TEXT,
+  story_context TEXT,
+  content_blocks JSONB DEFAULT '[]',
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -143,6 +153,8 @@ CREATE TABLE stories (
   tone TEXT,
   theme TEXT,
   status TEXT CHECK (status IN ('concept', 'outline', 'draft', 'complete')),
+  story_context TEXT,
+  content_blocks JSONB DEFAULT '[]',
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
