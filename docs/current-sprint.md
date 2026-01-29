@@ -1,7 +1,38 @@
 # Current Sprint
 
-**Status:** Phase 1 (MVP) Complete. Dashboard route fixed. Ready for Phase 2 (Worldbuilder Core).
+**Status:** Phase 2 started. Entity content blocks schema designed and implemented.
 **Updated:** 2026-01-29
+
+---
+
+## Recent Completion: Entity Content Blocks Schema
+
+### Schema Extension (2026-01-29)
+
+Extended entity schema to support freeform content while preserving structured fields. This enables the "soft structure" philosophy.
+
+**Design:** [Entity Content Blocks Design](./plans/2026-01-29-entity-content-blocks-design.md)
+
+| Change | Details |
+|--------|---------|
+| **New columns** | `story_context` (TEXT) + `content_blocks` (JSONB) on all entity tables |
+| **New table** | `entity_mentions` for tracking @mention relationships |
+| **Storage** | Bucket configuration for media attachments |
+| **Types** | `ContentBlock`, `EntityMention` TypeScript types |
+
+**Tables updated:**
+- characters, locations, organizations, events, items, rules, stories
+
+**Key concepts:**
+- **Content Blocks**: Freeform content (text, media) stored as JSONB array
+- **Story Context**: The "Lore Link" field for narrative purpose
+- **@Mentions**: Link entities within content, tracked in `entity_mentions` table
+
+**Files Changed:**
+- `supabase/schema.sql` - Schema extensions
+- `lib/types/database.ts` - TypeScript types
+- `docs/plans/2026-01-29-entity-content-blocks-design.md` - Design doc
+- `docs/plans/2026-01-29-entity-content-blocks-impl.md` - Implementation plan
 
 ---
 
@@ -162,7 +193,7 @@ A significant strategic evolution based on market analysis and product positioni
 ### Before Starting Phase 2
 
 - [x] Deploy MVP to Vercel (validate production works)
-- [ ] Design entity system data model
+- [x] Design entity system data model (content_blocks + story_context + entity_mentions)
 - [ ] Research model-viewer implementation
 - [ ] Plan AI integration (OpenAI/Anthropic API setup)
 
