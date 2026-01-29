@@ -2,168 +2,181 @@
 
 ## Philosophy
 
-Build for yourself first. Dogfood everything. Visual assets are the core. Extract value for others after it's proven useful.
+Build for yourself first. Dogfood everything. Focus on the **idea-to-production pipeline**. Extract value for others after it's proven useful.
+
+**Key insight from research:** The gap between "messy idea" and "production-ready" is underserved. Worldbuilding tools stop at prose. Production tools start after the script. We bridge this gap.
 
 ---
 
-## Phase 1: Foundation (MVP)
+## Phase 1: Foundation (MVP) ✅ In Progress
 
-### Core Asset Structure
-- Entity categories: Characters, Locations, Organizations, Events, Items, Rules, Stories
-- **Visual asset focus** - Images/references attached to all entities
-- Basic CRUD for all entities
-- User authentication (Supabase Auth)
-- Multi-world support
+**Goal:** Working app with auth + Characters CRUD. Validates tech stack.
 
-### Basic AI Integration
-- AI World Chat - query your world
-- Context-aware responses using world data
+### Core Structure
+- [x] User authentication (Supabase Auth)
+- [x] Multi-world support
+- [x] Characters: full CRUD (list, create, view, edit, delete)
+- [x] Basic design system
+- [x] Responsive layout
 
-### Basic Export
-- Plain text / Markdown
-- PDF (basic formatting)
+### Tech Stack
+- Next.js 15 (App Router)
+- TypeScript + Tailwind CSS v4
+- Supabase (PostgreSQL, Auth)
+- Vercel deployment
+
+**Status:** Implementation complete. See [docs/current-sprint.md](../docs/current-sprint.md).
 
 ---
 
-## Phase 2: Import & Soft Worldbuilding
+## Phase 2: Import & AI Organization (Critical Differentiator)
 
-### Import Feature (Central)
+**Goal:** "Paste your messy docs, AI figures it out." This is the central value proposition.
+
+### Import Feature
 
 **Macro Import (World Bible)**
 - Plain text paste/upload
 - AI reads and comprehends content
 - Identifies characters, locations, relationships
-- Offers to extract entities OR just chat
+- User chooses: "Just Chat" OR "Extract & Organize"
 
-**Micro Import (Character/Element)**
-- Import individual character stories
+**Micro Import (Single Element)**
+- Import individual character backstories
 - Import location descriptions
 - AI integrates into existing world context
 
-### Soft/Hard Toggle
-- Setting for AI behavior
-- Soft: Creative companion, builds on ideas
-- Hard: Proactive consistency flagging
+### AI-Powered Organization
+- Entity extraction (characters, locations, props, events)
+- Relationship mapping
+- Timeline detection
+- Consistency tracking (passive, on-demand)
 
 ### Post-Import Flow
 ```
 Import → AI reads → User chooses:
-  ├── "Just Chat" (soft)
-  └── "Extract & Organize" (structured)
+  ├── "Just Chat" (stay free-form, explore ideas)
+  └── "Extract & Organize" (create structured entities)
 ```
 
+**Why this matters:** Most tools require manual form-filling. Import-first is differentiated and validated by research.
+
 ---
 
-## Phase 3: Visualization
+## Phase 3: Visual Asset Graph
 
-### Node-Based Relationship Maps
-- AI generates initial graph from content
-- User can edit, expand, reorganize
-- Click nodes to see asset details
-- Drag to create new relationships
+**Goal:** Characters, locations, props as the organizing unit—not wiki pages.
 
-### Node-Based Timeline
-- Events on temporal axis
-- Connections show causality
-- Zoom in/out on time periods
+### Entity System
+- Entity pages with images, descriptions, relationships
+- Tags and custom attributes
+- Cross-references between entities
 
-### Asset Views
-- Card-based browsing for assets
+### Visualization
+- Simple visual graph showing connections
+- Relationship maps (who knows who, where things happened)
+- Timeline view for story events
+
+### Asset-Driven Views
+- Card-based browsing
 - Visual-first presentation
-- Generated from AI extraction
+- Filter by type, tag, timeline
 
 ---
 
-## Phase 4: Production Export
+## Phase 4: Pre-Production Export (Key Differentiator)
+
+**Goal:** Bridge the gap between creative development and production.
 
 ### Document Exports
 - World Bible PDF (formatted)
-- Character/Location briefs (production-ready)
+- Character briefs (production-ready)
+- Location briefs (production-ready)
 
 ### Screenplay Export
 - PDF in screenplay format
-- Fountain (.fountain) plain text screenplay
+- Fountain (.fountain) plain text
+- Final Draft (.fdx) format
 - AI converts narrative → screenplay format
 
 ### Shot List Generation
 - AI-suggested shots from scenes
 - Shot type, description, notes
 - CSV/PDF export
+- Compatible with StudioBinder/Celtx import
+
+**Why this matters:** Worldbuilding tools stop at prose. Production tools start after the script. We bridge this gap.
 
 ---
 
-## Phase 5: AI Storyboard Generation (Key Differentiator)
+## Phase 5: Collaboration & Polish
 
-### AI-Generated Frames
+**Goal:** Teams can work together without per-seat fee friction.
+
+### Collaboration Features
+- Creator vs Collaborator roles
+- Commenting and suggestions
+- Invite collaborators without per-seat penalty
+- Viewer links (no account required)
+
+### Consistency Assistant
+- On-demand contradiction checks
+- Per-asset "canon summary" auto-generated
+- Soft→hard worldbuilding toggle
+
+### Integrations
+- Google Drive import
+- Notion/Obsidian export compatibility
+- Arc Studio/Final Draft import
+
+---
+
+## Future Phases
+
+### Phase 6: AI-Assisted Storyboards
+
+**Note:** AI image generation is now **commoditized** (Midjourney, DALL-E, etc.). This is table stakes, not a moat. Build it, but don't position as a differentiator.
+
 - Generate storyboard images from shot descriptions
-- AI knows your world (characters, locations, style)
-- Consistent character appearances across frames
+- Style consistency controls
+- Character/location reference images
+- Export as frames, PDF, or animatic-ready sequence
 
-### Style Controls
-- Visual style preferences (realistic, stylized, etc.)
-- Character reference images guide consistency
-- Location mood references
+### Phase 7: Animation-Specific Features (APAC Prep)
 
-### Export Options
-- Individual frames (PNG)
-- Storyboard PDF (frames + descriptions)
-- Animatic-ready sequence
+Requires APAC regional infrastructure to be valuable.
 
----
-
-## Future Phases (Post-MVP)
-
-### Phase 6: Animation-Specific Features
 - Exposure sheet (摄影表) generation
 - Animation timing charts (动画律表)
 - Background art requirement briefs
 - Character design briefs for artists
 
-### Phase 7: Advanced Production Integration
-- Final Draft (.fdx) export
-- MetaHuman character specs (JSON)
-- Environment briefs for UE artists
-- Integration with production software
-
 ### Phase 8: APAC Regional Versions
 
-**Not just translation - separate regional products:**
+**Not just translation - separate regional products.**
 
 | Version | Market | Data Center | Key Features |
 |---------|--------|-------------|--------------|
-| Vixio CN | China | Alibaba/Tencent Cloud | Simplified Chinese, WeChat, local compliance |
+| Vixio CN | China | Alibaba/Tencent Cloud | Simplified Chinese, WeChat, PIPL compliance |
 | Vixio JP | Japan | AWS Tokyo | Japanese, LINE, anime industry conventions |
 | Vixio KR | Korea | AWS Seoul | Korean, KakaoTalk, webtoon templates |
 
-**IP Asset Governance:**
-- Dedicated data centers per region
-- Assets never leave region unless exported
-- Compliance with local data laws (PIPL, APPI, etc.)
-- Clear data residency guarantees
+**Prerequisites:**
+- Architecture supports multi-region deployment
+- Legal/compliance research complete
+- Local partnerships established
 
-**Regional customizations:**
-- Local narrative templates (wuxia, xianxia, isekai, etc.)
-- Regional app integrations (WeChat, LINE, KakaoTalk)
-- Local payment methods
-- UI/UX adapted to regional conventions
+### Phase 9: Advanced Production Integration
 
-### Phase 9: Collaboration (Future)
-- Real-time co-editing
-- Task-based review workflows (@mentions)
-- Version comparison tools
-- Team workspaces
-- Role-based permissions
+- MetaHuman character specs (JSON)
+- Environment briefs for UE artists
+- Integration with production software APIs
 
 ### Phase 10: Mobile & Offline
+
 - Progressive web app
 - Offline mode with sync
 - Mobile-optimized interface
-
-### Phase 11: SaaS Validation
-- Simple public version
-- Free tier with reasonable limits
-- Paid tier for full features
-- Market validation
 
 ---
 
@@ -172,27 +185,40 @@ Import → AI reads → User chooses:
 | Feature | Why Not |
 |---------|---------|
 | BB codes / complex formatting | That's the problem, not the solution |
-| Mandatory structure | Kills soft worldbuilding |
+| Mandatory structure | Kills soft worldbuilding; validated by research |
 | Public by default | Privacy first |
 | Feature parity with World Anvil | Different approach entirely |
 | Complex real-time collab (early) | Solve single-user first |
+| Full production management | Let StudioBinder/Celtx handle call sheets, scheduling |
+| Per-seat pricing | Competitive wedge is "no per-seat fees" |
 
 ---
 
-## Feature Priority Matrix
+## Feature Priority Matrix (Research-Validated)
 
-| Feature | Priority | Phase | Differentiator? |
-|---------|----------|-------|-----------------|
-| Asset management | Critical | 1 | Core |
-| Import | Critical | 2 | Yes |
-| AI chat | Critical | 1-2 | Yes |
-| Node visualization | High | 3 | Yes |
-| Screenplay export | High | 4 | Yes |
-| AI storyboards | High | 5 | **Major** |
-| Animation exports | Medium | 6 | Yes |
-| **Regional versions (CN/JP/KR)** | Medium | 8 | **Yes (data residency)** |
-| Real-time collab | Low | 9 | No |
-| Mobile/offline | Low | 10 | No |
+| Feature | Priority | Phase | Differentiator? | Research Support |
+|---------|----------|-------|-----------------|------------------|
+| **Import-first** | Critical | 2 | **Yes** | High demand, clearly differentiated |
+| **Visual asset graph** | Critical | 3 | Yes | Asset-driven is unique positioning |
+| **Pre-production export** | Critical | 4 | **Yes** | Gap in market validated |
+| **Soft worldbuilding** | Critical | 2-3 | Yes | Pain point validated (creator's fatigue) |
+| **Collaboration** | High | 5 | Yes | No per-seat is competitive wedge |
+| AI chat | High | 2 | Partial | RAG is common; context-awareness helps |
+| Node visualization | Medium | 3 | Partial | Nice to have, not unique |
+| AI storyboards | Medium | 6 | **No** | Commoditized |
+| Animation exports | Low | 7-8 | Future | Requires APAC infrastructure |
+| Regional versions | Low | 8 | Future | High barriers, long-term play |
+| Mobile/offline | Low | 10 | No | Not critical for core users |
+
+---
+
+## Target Market Alignment
+
+| Phase | Primary Market | Secondary Market |
+|-------|----------------|------------------|
+| 1-3 | Solo creators, screenwriters | Writers, worldbuilders |
+| 4-5 | Small production teams | Web series creators |
+| 6-8 | Larger productions | Animation studios (APAC) |
 
 ---
 
@@ -202,12 +228,12 @@ Import → AI reads → User chooses:
 |------|----------|-----------|
 | 2026-01-28 | Visual asset-driven core | Unifying differentiator across markets |
 | 2026-01-28 | Soft worldbuilding default | Hard mode limits creativity |
-| 2026-01-28 | Node-based visualization | Both relationships and timelines |
 | 2026-01-28 | Import as central feature | Meet users where they are |
-| 2026-01-28 | No explicit modes | AI can do both, user just asks |
-| 2026-01-28 | Production export as differentiator | Gap in market - competitors stop at prose |
-| 2026-01-28 | AI storyboard generation | No competitor offers this - major differentiator |
-| 2026-01-28 | APAC animation market | Large opportunity, visual asset approach fits |
-| 2026-01-28 | Real-time collab as future | Solve single-user first, complex to build |
-| 2026-01-28 | Regional versions not translation | APAC needs separate products with data residency |
-| 2026-01-28 | IP asset governance critical | Studios won't use tools storing IP outside jurisdiction |
+| 2026-01-28 | Production export as differentiator | Gap in market—competitors stop at prose |
+| 2026-01-28 | APAC as future phase | High barriers, needs infrastructure |
+| 2026-01-29 | AI storyboards demoted | Commoditized—not a differentiator |
+| 2026-01-29 | Film/video-first positioning | Research validated higher WTP and clearer wedge |
+| 2026-01-29 | Core + Collaborators pricing | Differentiates from StudioBinder per-seat model |
+| 2026-01-29 | Free tier for writers | Captures secondary market without revenue dilution |
+| 2026-01-29 | No production management | Focus on idea→script→export; let StudioBinder handle call sheets |
+| 2026-01-29 | "Professional pre-production, accessible pricing" | Positioning validated by research |

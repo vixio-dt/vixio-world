@@ -1,47 +1,119 @@
 # Current Sprint
 
-**Active Plan:** [MVP Rebuild](./plans/2026-01-29-mvp-rebuild.md)
-**Started:** 2026-01-29
+**Status:** Phase 1 (MVP) Complete. Planning session complete. Ready for Phase 2.
+**Updated:** 2026-01-29
+
+---
+
+## Recent Completion: MVP Rebuild + Strategic Planning
+
+### MVP Implementation ✅ Complete
+
+**Plan:** [MVP Rebuild](./plans/2026-01-29-mvp-rebuild.md)
 **Goal:** Next.js app with auth + Characters CRUD
 
-## Status
+| Task | Status |
+|------|--------|
+| Clean up old Vite/React code | ✅ |
+| Initialize Next.js 15 project | ✅ |
+| Configure Supabase (client, server, middleware) | ✅ |
+| Build auth flow (login/signup) | ✅ |
+| Build app shell (sidebar, header, world switcher) | ✅ |
+| Build design system (Button, Card, Input, etc.) | ✅ |
+| Build Characters feature (full CRUD) | ✅ |
+| Update README | ✅ |
+| Commit and push to GitHub | ✅ |
 
-### Pre-Implementation
-- [x] Update AGENTS.md with documentation rule
-- [x] Create task tracking structure
+**Verification (2026-01-29):**
+- TypeScript compiles (`tsc --noEmit` exit 0)
+- Dev server starts without errors
+- All routes return 200
+- Auth middleware protects dashboard routes
 
-### Implementation
-- [x] Clean up old Vite/React code (deleted, uncommitted)
-- [x] Initialize Next.js 15 project
-- [x] Configure Supabase (client, server, middleware)
-- [x] Migrate database types
-- [x] Build auth flow (login/signup)
-- [x] Build app shell (sidebar, header, world switcher)
-- [x] Build design system (Button, Card, Input, etc.)
-- [x] Build Characters feature (full CRUD)
+### Strategic Planning ✅ Complete
 
-### Post-Implementation
-- [x] Update README
-- [ ] Update roadmap (no changes needed)
-- [ ] Deploy to Vercel (blocked: Vercel project not set up)
+**Session:** Market research and positioning validation (2026-01-29)
 
-### Verification (2026-01-29)
-- [x] TypeScript compiles (`tsc --noEmit` exit 0)
-- [x] Dev server starts without errors
-- [x] All routes return 200 (/, /login, /signup, /dashboard, /dashboard/characters)
-- [x] Auth middleware protects dashboard routes
-- [x] Supabase client initializes (after env var fix: VITE_* → NEXT_PUBLIC_*)
+**Key Decisions Made:**
+
+1. **Target Market:** Film/video productions primary, writers/worldbuilders secondary
+2. **Positioning:** "Professional pre-production tools. Accessible to all."
+3. **Pricing Model:** Core + Collaborators (no per-seat fees)
+4. **AI Storyboards:** Demoted from differentiator to table stakes (commoditized)
+5. **APAC:** Future phase, keep architecture flexible
+
+**Documents Updated:**
+- [x] `product-plan/product-overview.md` - New positioning, target markets
+- [x] `product-plan/mission.md` - Refined problem/solution, user segments
+- [x] `product-plan/pricing.md` - Created with Core + Collaborators model
+- [x] `product-plan/competitive-analysis.md` - StudioBinder research details
+- [x] `product-plan/roadmap.md` - Research-validated feature priorities
+
+---
+
+## Next Phase: Import & AI Organization
+
+**Goal:** "Paste your messy docs, AI figures it out."
+
+This is the **central differentiator** validated by research. Users with existing content (Google Docs, notes, world bibles) don't want to re-type everything into forms.
+
+### Planned Features
+
+1. **Import System**
+   - Plain text / markdown paste
+   - File upload (DOCX, PDF)
+   - AI reads and comprehends content
+
+2. **AI Organization**
+   - Extract characters, locations, props, events
+   - Map relationships
+   - Track consistency (passive, on-demand)
+
+3. **Post-Import Flow**
+   - "Just Chat" mode (stay free-form)
+   - "Extract & Organize" mode (create structured entities)
+
+### Before Starting Phase 2
+
+- [ ] Deploy MVP to Vercel (validate production works)
+- [ ] Design import UX flow
+- [ ] Plan AI integration (OpenAI/Anthropic API setup)
+
+---
+
+## Pending: Vercel Deployment
+
+**Blocked:** Vercel project not set up yet.
+
+When ready:
+1. Import `vixio-dt/vixio-world` repo to Vercel
+2. Add environment variables:
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+3. Deploy
+
+---
 
 ## Context for New Sessions
 
-**IMPORTANT:** Fresh rebuild using Next.js 15 (App Router). 
+### What's Done
+- Next.js 15 app with auth + Characters CRUD
+- Full strategic planning with market research validation
+- Product docs updated with new positioning
 
-- Old `src/` folder contains legacy React/Vite code - IGNORE IT
-- New code goes in `app/`, `components/`, `lib/`
-- Supabase schema in `supabase/schema.sql` is still valid
-- Product docs in `product-plan/` are the source of truth
+### What's Next
+- Deploy to Vercel
+- Start Phase 2: Import & AI Organization
 
-## Tech Stack
+### Key Files
+- `AGENTS.md` - Project rules for AI assistants
+- `docs/current-sprint.md` - This file
+- `product-plan/product-overview.md` - Product vision and positioning
+- `product-plan/pricing.md` - Pricing model
+- `product-plan/roadmap.md` - Feature priorities
+- `supabase/schema.sql` - Database schema
+
+### Tech Stack
 
 | Layer | Technology |
 |-------|------------|
@@ -51,10 +123,3 @@
 | Database | Supabase (PostgreSQL) |
 | Auth | Supabase Auth |
 | Deployment | Vercel |
-
-## Key Files
-
-- `AGENTS.md` - Project rules for AI assistants
-- `docs/current-sprint.md` - This file (active work tracker)
-- `product-plan/product-overview.md` - Product vision
-- `supabase/schema.sql` - Database schema
