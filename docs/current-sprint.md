@@ -1,7 +1,27 @@
 # Current Sprint
 
-**Status:** Phase 1 (MVP) Complete. Strategic pivot complete. Next.js 16 upgraded. Ready for Phase 2 (Worldbuilder Core).
+**Status:** Phase 1 (MVP) Complete. Dashboard route fixed. Ready for Phase 2 (Worldbuilder Core).
 **Updated:** 2026-01-29
+
+---
+
+## Recent Completion: Dashboard Route Fix
+
+### Routing Fix (2026-01-29)
+
+Fixed broken dashboard routing - the dashboard page existed but was unreachable due to route group misconfiguration.
+
+| Issue | Fix |
+|-------|-----|
+| Dashboard at `(dashboard)/page.tsx` had no URL | Moved to `(dashboard)/dashboard/page.tsx` → `/dashboard` |
+| Auth redirects went to non-existent route | Now redirect to `/dashboard` |
+| Logo inverted on auth pages | Removed `invert` class |
+
+**Routes now working:**
+- `/` → Landing page (public)
+- `/login`, `/signup` → Auth pages (public)
+- `/dashboard` → Dashboard with entity counts (protected)
+- `/characters/*` → Characters CRUD (protected)
 
 ---
 
@@ -141,7 +161,7 @@ A significant strategic evolution based on market analysis and product positioni
 
 ### Before Starting Phase 2
 
-- [ ] Deploy MVP to Vercel (validate production works)
+- [x] Deploy MVP to Vercel (validate production works)
 - [ ] Design entity system data model
 - [ ] Research model-viewer implementation
 - [ ] Plan AI integration (OpenAI/Anthropic API setup)
