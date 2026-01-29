@@ -1,0 +1,45 @@
+'use client'
+
+import Link from 'next/link'
+import { Package } from 'lucide-react'
+import { Card, CardContent } from '@/components/ui'
+import type { Item } from '@/lib/types/database'
+
+interface ItemCardProps {
+  item: Item
+}
+
+const typeLabels: Record<string, string> = {
+  weapon: 'Weapon',
+  vehicle: 'Vehicle',
+  artifact: 'Artifact',
+  tool: 'Tool',
+  document: 'Document',
+  clothing: 'Clothing',
+  technology: 'Technology',
+}
+
+export function ItemCard({ item }: ItemCardProps) {
+  return (
+    <Link href={`/items/${item.id}`}>
+      <Card className="hover:border-sky-300 transition-colors cursor-pointer h-full">
+        <CardContent className="p-4">
+          <div className="flex items-start gap-3">
+            <div className="p-2 bg-amber-50 rounded-lg">
+              <Package className="w-5 h-5 text-amber-600" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <h3 className="font-semibold text-slate-900 truncate">{item.name}</h3>
+              {item.type && (
+                <span className="text-sm text-slate-500">{typeLabels[item.type] || item.type}</span>
+              )}
+              {item.description && (
+                <p className="mt-2 text-sm text-slate-600 line-clamp-2">{item.description}</p>
+              )}
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </Link>
+  )
+}
