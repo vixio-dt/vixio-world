@@ -544,3 +544,21 @@ CREATE TRIGGER rules_updated_at BEFORE UPDATE ON rules FOR EACH ROW EXECUTE FUNC
 CREATE TRIGGER stories_updated_at BEFORE UPDATE ON stories FOR EACH ROW EXECUTE FUNCTION update_updated_at();
 CREATE TRIGGER scenes_updated_at BEFORE UPDATE ON scenes FOR EACH ROW EXECUTE FUNCTION update_updated_at();
 CREATE TRIGGER shots_updated_at BEFORE UPDATE ON shots FOR EACH ROW EXECUTE FUNCTION update_updated_at();
+
+-- =====================================================
+-- STORAGE BUCKETS
+-- =====================================================
+
+-- Entity attachments bucket for content block media
+-- Note: Run this in Supabase dashboard or via Supabase CLI
+-- INSERT INTO storage.buckets (id, name, public) VALUES ('entity-attachments', 'entity-attachments', false);
+
+-- Storage RLS: Users can only access attachments in their own worlds
+-- CREATE POLICY "Users can access own world attachments"
+-- ON storage.objects FOR ALL
+-- USING (
+--   bucket_id = 'entity-attachments' 
+--   AND (storage.foldername(name))[1]::uuid IN (
+--     SELECT id FROM worlds WHERE user_id = auth.uid()
+--   )
+-- );
