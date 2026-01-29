@@ -263,6 +263,18 @@ CREATE TABLE item_owners (
   PRIMARY KEY (item_id, character_id)
 );
 
+-- Entity Mentions (tracks @mentions in content blocks)
+CREATE TABLE entity_mentions (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  source_entity_type TEXT NOT NULL CHECK (source_entity_type IN ('character', 'location', 'organization', 'event', 'item', 'rule', 'story')),
+  source_entity_id UUID NOT NULL,
+  target_entity_type TEXT NOT NULL CHECK (target_entity_type IN ('character', 'location', 'organization', 'event', 'item', 'rule', 'story')),
+  target_entity_id UUID NOT NULL,
+  context TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  UNIQUE(source_entity_id, target_entity_id)
+);
+
 -- =====================================================
 -- ROW LEVEL SECURITY
 -- =====================================================
