@@ -4,78 +4,227 @@
 
 **"From messy ideas to production-ready."**
 
-**"Professional pre-production tools. Accessible to all."**
+**"The only pre-production tool where your assets live alongside your story."**
 
 ## What It Is
 
-Vixio is a **creative development and pre-production platform** that bridges the gap between story ideas and production-ready output.
+Vixio is a **creative development and pre-production platform** built around two integrated products:
 
-Unlike text-first worldbuilding tools (World Anvil, Campfire) or script-first production tools (StudioBinder), Vixio treats **visual assets as the primary organizational unit** - connecting characters, locations, and props from initial concept through to scripts, shot lists, and production documents.
+- **Vixio Worldbuilder** - Creative hub for ideation, worldbuilding, and story development
+- **Vixio Studio** - Production planning for modern filmmaking (traditional, virtual production, animation)
 
-**The core promise:** Take your messy ideas, organize them around characters and worlds, and walk out with production-ready docs—without burning out on admin.
+Unlike text-first worldbuilding tools (World Anvil, Campfire) or script-first production tools (StudioBinder), Vixio treats **visual assets as the primary organizational unit** - and connects them to their story context through what we call the **Lore Link**.
 
-## Core Differentiator: Visual Asset-Driven
+**The core promise:** Take your messy ideas, organize them around characters and worlds, and walk out with production-ready docs—whether you're shooting on location, on an LED wall, or in animation.
+
+---
+
+## Product Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                  VISUAL ASSET-DRIVEN                         │
-│                                                              │
-│   Assets are the PRIMARY organizational unit                 │
-│   Everything else flows FROM and TO assets                   │
-│                                                              │
-│   ┌─────────┐     ┌─────────┐     ┌─────────┐              │
-│   │Character│     │Location │     │  Prop   │              │
-│   │  Asset  │     │  Asset  │     │  Asset  │              │
-│   └────┬────┘     └────┬────┘     └────┬────┘              │
-│        │               │               │                    │
-│        └───────────────┼───────────────┘                    │
-│                        ▼                                     │
-│   ┌─────────────────────────────────────────┐              │
-│   │         Generates / Connects To          │              │
-│   ├──────────────────────────────────────────┤              │
-│   │ • World bible text                       │              │
-│   │ • Character design briefs                │              │
-│   │ • Storyboard frames                      │              │
-│   │ • Shot lists & production docs           │              │
-│   │ • Animation timing sheets                │              │
-│   │ • Relationship visualizations            │              │
-│   └─────────────────────────────────────────┘              │
-└─────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────┐
+│                         VIXIO OS                                 │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  WORLDBUILDER                      STUDIO                        │
+│  ─────────────                     ──────                        │
+│  Creative Hub                      Production Planning           │
+│                                                                  │
+│  • Entity creation                 • Status pipeline             │
+│  • Freeform content                • Version tracking            │
+│  • 3D model viewer                 • Assignments & scheduling    │
+│  • Story context                   • Production metadata         │
+│  • Relationship graph              • Export to formats           │
+│                                                                  │
+│        │                                  ▲                      │
+│        │         THE LORE LINK            │                      │
+│        └──────────────────────────────────┘                      │
+│        (Assets connected to story context)                       │
+│                                                                  │
+│  [Writers, directors,              [Producers, VAD leads,        │
+│   concept artists]                  production teams]            │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
 ```
+
+### Why Two Products?
+
+| Single Product Problem | Two-Product Solution |
+|------------------------|----------------------|
+| "Who is this for?" confusion | Worldbuilder = creatives, Studio = production |
+| One-size-fits-all pricing | Worldbuilder = accessible, Studio = professional |
+| Competes with everyone | Worldbuilder ≠ StudioBinder, Studio ≠ World Anvil |
+| VP features awkward for writers | Studio is VP-native by design |
+
+### The Integration is the Moat
+
+```
+World Anvil → Manual export → StudioBinder → Manual asset prep → VP pipeline
+                  ↑                              ↑
+              [Friction]                     [Friction]
+
+Vixio Worldbuilder → Native handoff → Vixio Studio → VP-ready asset specs
+                          ↑                              ↑
+                      [Seamless]                     [Built-in]
+```
+
+---
+
+## Core Differentiator: The Lore Link
+
+**The Lore Link connects every asset to its story context.**
+
+This is what separates Vixio from both worldbuilding tools (which don't understand production) and production tools (which don't understand story).
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  STANDARD ASSET CARD (ShotGrid)                                  │
+├─────────────────────────────────────────────────────────────────┤
+│  File: Robot_Arm_v3.fbx                                          │
+│  Status: Texturing                                               │
+│  Assigned: Sarah                                                 │
+│  Due: Oct 12                                                     │
+└─────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────┐
+│  VIXIO ASSET CARD (with Lore Link)                               │
+├─────────────────────────────────────────────────────────────────┤
+│  Asset: Robot Arm                                                │
+│  Status: Texturing                                               │
+│  Assigned: Sarah                                                 │
+│  Due: Oct 12                                                     │
+├─────────────────────────────────────────────────────────────────┤
+│  STORY CONTEXT:                                                  │
+│  "Rusty from Sea Battle in Scene 4. Kael uses it to break       │
+│   the prison door. Should look weathered, industrial."           │
+│                                                                  │
+│  Related: @Kael, @Scene 4, @Sea Battle, @The Prison              │
+│  [Concept Art] [3D Preview] [Scene Script Link]                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+**Why this matters for production:**
+
+The "Director says 'make it scarier,' artist asks 'roughness map or lighting?'" problem exists because **context is lost in translation**. With the Lore Link, the artist can see:
+- The original concept art
+- The scene where the asset appears
+- The mood/tone notes
+- The narrative purpose
+
+They can make better decisions without constant clarification meetings.
+
+---
+
+## Production Styles
+
+Vixio Studio supports three production workflows:
+
+### Traditional (Live-Action)
+
+Standard film/video production with physical locations, props, and actors.
+
+- Location briefs
+- Prop lists
+- Call sheet data
+- Screenplay export (PDF, Fountain, FDX)
+- Shot lists
+
+### Virtual Production
+
+Modern filmmaking using LED walls, real-time engines, and digital assets.
+
+Virtual Production **inverts the traditional workflow**:
+
+```
+Traditional:  Pre-production → Production → Post-production
+                  (Plan)         (Shoot)      (VFX, edit)
+
+Virtual:      Pre-production ←→ Post-production → Production
+              [Both plan together]  [Final pixel]   (Capture on set)
+```
+
+**VP requires pre-production to answer post-production questions:**
+
+| Traditional Pre-Pro | VP Pre-Pro Requirements |
+|---------------------|------------------------|
+| "What does the castle look like?" | "What does it look like at final render?" |
+| Concept art | Real-time environment specs |
+| Shot list | LED wall content briefs |
+| Location scout | HDRI capture requirements |
+| Storyboard | Previz with accurate lighting |
+
+**Vixio Studio for VP:**
+- Asset lifecycle management (Concept → Model → Texture → Rig → In-Engine)
+- 3D viewer for approval without opening Unreal
+- Technical metadata (poly count, texture resolution, render status)
+- Dependency tracking (if TechVis isn't done, Shoot can't happen)
+
+### Animation
+
+Pre-production for animated content (2D, 3D, anime/donghua).
+
+- Character design briefs
+- Background art briefs
+- Exposure sheets (future)
+- Animation timing charts (future)
+
+---
 
 ## How This Differs From Others
 
-| Tool | Primary Driver | Assets Are... |
-|------|----------------|---------------|
-| World Anvil / Campfire | Text (wiki) | Attachments to text |
-| Clapperbie / StudioBinder | Script | Production metadata |
-| Storyboard Pro | Drawings | Isolated files |
-| **Vixio** | **Visual Assets** | **The organizing unit** |
+| Tool | Primary Driver | Assets Are... | Understands VP? |
+|------|----------------|---------------|-----------------|
+| World Anvil / Campfire | Text (wiki) | Attachments to text | No |
+| StudioBinder | Script | Production metadata | No |
+| ShotGrid / Ftrack | Tasks | Technical files | Partial |
+| Notion / Trello | Lists | Generic items | No |
+| **Vixio** | **Visual Assets** | **Connected to story** | **Yes** |
+
+---
 
 ## Philosophy
 
-**Soft worldbuilding by default, hard mode when you want it.**
+**Soft structure: Typed entities with freeform content.**
 
-- AI serves the creator's intent, not the other way around
-- Import existing content and start working immediately
-- No mandatory forms, no forced structure
-- Consistency checking is available, not enforced
+We reject both extremes:
+
+| Approach | Problem |
+|----------|---------|
+| Pure freeform canvas (Miro) | No structure for production consolidation |
+| Rigid forms (World Anvil) | Blocks creative flow, feels like data entry |
+
+**Our approach:**
+- **Entities have types** (Character, Location, Prop, Story) - provides structure
+- **Content within is freeform** (text, images, 3D, links) - preserves creativity
+- **Relationships are explicit** (@mentions, drag-to-link) - enables graph
+- **AI assists, doesn't dictate** - suggests structure, user confirms
 
 See [product-philosophy.md](./product-philosophy.md) for details.
+
+---
 
 ## Target Markets
 
 ### Primary: Film & Video Productions
+
 The core paying market. Users with real budgets and deadlines.
 
+**Traditional Productions:**
 - Independent filmmakers (short films, features, documentaries)
 - Web series and YouTube narrative creators
 - Screenwriters developing scripts
 - Small production companies (1-10 people)
 - Production teams priced out of StudioBinder
 
+**Virtual Production Teams:**
+- Indie VP creators (green screen + Unreal)
+- LED volume productions (smaller scale)
+- Previz teams
+- Virtual Art Department (VAD) leads
+
 ### Secondary: Writers & Worldbuilders
-Shared pain points, more price-sensitive. Served via free/cheap tiers.
+
+Shared pain points, more price-sensitive. Served via free/cheap Worldbuilder tiers.
 
 - Novelists managing series continuity
 - TTRPG creators and dungeon masters
@@ -84,13 +233,131 @@ Shared pain points, more price-sensitive. Served via free/cheap tiers.
 - Game narrative designers
 
 ### Future: Animation Industry (APAC)
+
 Attractive long-term vertical with high barriers. Requires regional infrastructure.
 
 - Anime/donghua studios (Japan, China, Korea)
 - Animation pre-production teams
 - Storyboard artists
 
-See [markets/apac-regional.md](./markets/apac-regional.md) for APAC considerations. Architecture should remain flexible for future expansion.
+See [markets/apac-regional.md](./markets/apac-regional.md) for APAC considerations.
+
+---
+
+## Core Features
+
+### Worldbuilder (MVP)
+
+**1. Typed Entity System**
+Characters, locations, props, stories as the organizing unit.
+
+- Entity pages with type (Character, Location, Prop, Story, Rule)
+- Freeform content within each entity (text, images, 3D, files)
+- Explicit relationships between entities (@mentions, links)
+- Visual graph showing connections
+
+**2. 3D Model Viewer**
+Native support for AI-generated 3D assets.
+
+- Upload .glb/.gltf files (Three.js / model-viewer)
+- External embeds (Sketchfab, Tripo AI, Meshy share links)
+- Rotatable, zoomable preview in entity cards
+- Future: Direct AI generation (Tripo/Meshy API)
+
+*Why this matters:* Users are already generating 3D with Tripo, Hunyuan, Meshy. If Worldbuilder can't display them, users will use other tools.
+
+**3. AI-Assisted Import**
+Paste your messy docs, AI helps organize.
+
+- Plain text / markdown paste
+- AI suggests entity extraction (user confirms)
+- "Just Chat" OR "Extract & Organize" modes
+- Cross-reference with existing world
+
+*Positioning note:* Import is a **wedge** (gets users in), not a **moat** (keeps them). The real moat is the Worldbuilder → Studio integration.
+
+**4. Story Context (The Lore Link)**
+Every asset carries its narrative purpose.
+
+- Why does this character exist?
+- What scene does this prop appear in?
+- What's the mood/tone?
+- Who needs to know about this?
+
+### Studio (v1.5+)
+
+**5. Status Pipeline**
+Customizable workflow stages per asset type.
+
+- Default: Concept → Approved → In Production → Complete
+- VP: Concept → Modeling → Texturing → Rigging → In-Engine
+- Animation: Design → Approved → Rigged → Animated
+
+**6. Production Metadata**
+The "what happens to this asset" layer.
+
+- Assigned to (person/department)
+- Due date
+- Version history
+- Technical specs (for VP: poly count, texture res, etc.)
+- Dependencies (blocks/blocked by)
+
+**7. Production Export**
+Output to industry formats.
+
+- Screenplay (PDF, Fountain, FDX)
+- Shot lists (CSV, PDF)
+- Character/Location briefs
+- Schedule CSV (importable to StudioBinder/Celtx)
+- VP asset specs (future)
+
+**8. Collaboration**
+Teams without per-seat friction.
+
+- Creator vs Collaborator roles
+- Commenting and suggestions
+- Viewer links (no account required)
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| Framework | Next.js 15 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS v4 |
+| Database | Supabase (PostgreSQL) |
+| Auth | Supabase Auth |
+| AI | OpenAI / Anthropic APIs |
+| 3D Viewer | model-viewer / Three.js |
+| Deployment | Vercel |
+
+---
+
+## Business Context
+
+Vixio is one pillar of **Vixio Creatives Ltd** (Hong Kong).
+
+See [vision.md](./vision.md) for the full company vision.
+
+---
+
+## Pricing
+
+See [pricing.md](./pricing.md) for the Core + Collaborators pricing model.
+
+**Current model (Worldbuilder-focused):**
+- **Free tier**: Hook users with import + basic AI + 3D viewer
+- **Creator** ($15/mo): Solo creators, full features
+- **Team** ($35/mo): Up to 3 creators + 15 collaborators
+- **Studio** ($79/mo): Up to 10 creators + unlimited collaborators
+
+No per-seat fees. No feature gatekeeping on core functionality.
+
+**Future consideration:** Separate Worldbuilder/Studio pricing when Studio launches.
+
+---
 
 ## Regional Versions (Future)
 
@@ -103,105 +370,7 @@ APAC markets require **separate regional versions**, not just translation:
 | **Vixio JP** | Japan | Japan (AWS Tokyo) |
 | **Vixio KR** | Korea | Korea (AWS Seoul) |
 
-**Why separate versions:**
-- **IP Asset Governance**: Studios require assets stored in-region
-- **Legal compliance**: Data protection laws differ (PIPL, APPI)
-- **Cultural fit**: UI/UX conventions vary significantly
-- **Ecosystem integration**: Local apps (WeChat, LINE, KakaoTalk)
-
-## Core Features
-
-Features are prioritized based on market research validation. See [pricing.md](./pricing.md) for tier details.
-
-### Tier 1: MVP (Must-Have)
-
-**1. AI-Powered Import (Central Differentiator)**
-Paste your messy Google Docs, markdown, or notes. AI comprehends and organizes.
-
-- **Macro import**: Full world bibles, story documents
-- **Micro import**: Individual characters, scenes, elements
-- **Your choice**: "Just Chat" (stay free-form) OR "Extract & Organize" (create structured entities)
-
-*Why this matters:* Most tools require manual form-filling. "Paste and go" is underserved.
-
-**2. Visual Asset Graph**
-Characters, locations, props as the organizing unit—not wiki pages or scripts.
-
-- Entity pages with images, descriptions, relationships
-- Simple visual graph showing connections
-- Timeline view for story events
-- One update syncs everywhere
-
-*Why this matters:* Creators think in characters and places, not database fields.
-
-**3. Creative Workspace**
-Free-form notebook tied to assets. AI as consistency assistant, not content generator.
-
-- "Just Chat" mode: Ask questions like "Where has Character X appeared?"
-- AI tracks consistency so you don't have to (reduces creator's fatigue)
-- Soft worldbuilding by default; hard mode optional
-
-**4. Pre-Production Export (Key Differentiator)**
-Export directly to production-ready formats.
-
-- **Screenplay**: PDF, Fountain, FDX - AI converts narrative to script format
-- **Shot Lists**: AI-generated suggestions from scenes
-- **Character/Location Briefs**: Production-ready documentation
-- **Schedule CSV**: Importable to StudioBinder/Celtx for teams using those tools
-
-*Why this matters:* Worldbuilding tools stop at prose. Production tools start after script. We bridge the gap.
-
-### Tier 2: v1.5 (Reinforce Differentiation)
-
-**5. Consistency Assistant**
-On-demand checks for contradictions. Per-asset "canon summary" auto-generated.
-
-**6. Soft→Hard Worldbuilding Controls**
-Toggle to enforce consistency rules once users shift from exploration to lock-down.
-
-**7. Collaboration**
-Commenting, suggestions, invite collaborators without per-seat penalty.
-
-**8. Integrations**
-Google Drive, Notion/Obsidian export, Arc Studio/Final Draft import.
-
-### Future Phases
-
-**9. AI-Assisted Storyboards**
-Generate visual frames from scenes. Note: This is commoditized and not a differentiator—table stakes, not a moat.
-
-**10. Animation Exports**
-Exposure sheets, timing charts for animation pre-production. Requires APAC regional infrastructure.
-
-## Tech Stack
-
-| Layer | Technology |
-|-------|------------|
-| Framework | Next.js 15 (App Router) |
-| Language | TypeScript |
-| Styling | Tailwind CSS v4 |
-| Database | Supabase (PostgreSQL) |
-| Auth | Supabase Auth |
-| AI | OpenAI / Anthropic APIs |
-| Deployment | Vercel |
-
-## Business Context
-
-Vixio is one pillar of **Vixio Creatives Ltd** (Hong Kong).
-
-See [vision.md](./vision.md) for the full company vision.
-
-## Pricing
-
-See [pricing.md](./pricing.md) for the Core + Collaborators pricing model.
-
-**Summary:**
-- **Free tier**: Hook users with import + basic AI
-- **Creator** ($15/mo): Solo creators, full features
-- **Team** ($35/mo): Up to 3 creators + 15 collaborators
-- **Studio** ($79/mo): Up to 10 creators + unlimited collaborators
-
-No per-seat fees. No feature gatekeeping on core functionality.
+---
 
 ## Documents
 

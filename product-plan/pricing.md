@@ -181,6 +181,25 @@ Users should upgrade when they:
 
 ## Future Considerations
 
+### Worldbuilder + Studio Pricing (Future)
+
+With the product architecture split into Worldbuilder (creative) and Studio (production), pricing may evolve:
+
+**Current approach (MVP):** Single pricing model covers both products. Simpler for users, validates demand.
+
+**Future options to consider:**
+
+| Option | Description | Pros | Cons |
+|--------|-------------|------|------|
+| **Bundled** | Both products in all tiers | Simple, encourages full adoption | May overprice writers who only need Worldbuilder |
+| **Separate** | Worldbuilder and Studio priced independently | Matches value, lower entry point | Complexity, potential friction |
+| **Worldbuilder Free + Studio Paid** | Worldbuilder as free tier, Studio as upgrade | Natural funnel, hooks creators | Revenue only from production teams |
+| **Add-on** | Worldbuilder included, Studio as add-on | Clear upsell path | May feel like paywall |
+
+**Recommendation for now:** Keep current model. Validate that users want both products before splitting pricing. The integration (Lore Link) is the value—don't create friction in adopting it.
+
+**Decision trigger:** Revisit pricing when Studio MVP launches and usage patterns are clear.
+
 ### Add-Ons (Possible)
 
 | Add-On | Price | Description |
@@ -188,6 +207,7 @@ Users should upgrade when they:
 | Extra storage | $5/10GB/month | For asset-heavy productions |
 | Extra AI calls | $10/month | Heavy AI users |
 | Custom exports | $10/month | Custom templates, branding |
+| 3D AI generation credits | TBD | Direct Tripo/Meshy generation in-app |
 
 ### Annual Discounts
 
@@ -208,3 +228,4 @@ Consider future discounts for:
 | 2026-01-29 | Free tier included | Hooks users; serves price-sensitive writers |
 | 2026-01-29 | No per-seat fees | Major competitor complaint; competitive wedge |
 | 2026-01-29 | Viewer links free | Encourages sharing with clients/stakeholders |
+| 2026-01-29 | Keep unified pricing for now | Worldbuilder/Studio split doesn't require pricing split yet; validate demand first |
