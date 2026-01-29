@@ -1,0 +1,47 @@
+'use client'
+
+import Link from 'next/link'
+import { Scale } from 'lucide-react'
+import { Card, CardContent } from '@/components/ui'
+import type { Rule } from '@/lib/types/database'
+
+interface RuleCardProps {
+  rule: Rule
+}
+
+const categoryLabels: Record<string, string> = {
+  physics: 'Physics',
+  magic: 'Magic',
+  technology: 'Technology',
+  biology: 'Biology',
+  social: 'Social',
+  political: 'Political',
+  economic: 'Economic',
+  temporal: 'Temporal',
+  cosmological: 'Cosmological',
+}
+
+export function RuleCard({ rule }: RuleCardProps) {
+  return (
+    <Link href={`/rules/${rule.id}`}>
+      <Card className="hover:border-sky-300 transition-colors cursor-pointer h-full">
+        <CardContent className="p-4">
+          <div className="flex items-start gap-3">
+            <div className="p-2 bg-indigo-50 rounded-lg">
+              <Scale className="w-5 h-5 text-indigo-600" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <h3 className="font-semibold text-slate-900 truncate">{rule.name}</h3>
+              {rule.category && (
+                <span className="text-sm text-slate-500">{categoryLabels[rule.category] || rule.category}</span>
+              )}
+              {rule.statement && (
+                <p className="mt-2 text-sm text-slate-600 line-clamp-2">{rule.statement}</p>
+              )}
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </Link>
+  )
+}
