@@ -1,6 +1,31 @@
 // Database types for Vixio Worldbuilder
 // Based on supabase/schema.sql
 
+// Content block for freeform content in entities
+export type ContentBlock = {
+  id: string;
+  type: 'text' | 'media';
+  content: string;
+  mentions: string[];
+  order: number;
+  created_at: string;
+  updated_at: string;
+};
+
+// Entity types for @mentions
+export type EntityType = 'character' | 'location' | 'organization' | 'event' | 'item' | 'rule' | 'story';
+
+// Entity mention for tracking @mentions in content
+export type EntityMention = {
+  id: string;
+  source_entity_type: EntityType;
+  source_entity_id: string;
+  target_entity_type: EntityType;
+  target_entity_id: string;
+  context: string | null;
+  created_at: string;
+};
+
 export type Database = {
   public: {
     Tables: {
@@ -95,6 +120,11 @@ export type Database = {
         Insert: ItemOwner
         Update: Partial<ItemOwner>
       }
+      entity_mentions: {
+        Row: EntityMention
+        Insert: Omit<EntityMention, 'id' | 'created_at'>
+        Update: Partial<Omit<EntityMention, 'id'>>
+      }
     }
   }
 }
@@ -128,6 +158,8 @@ export interface Character {
   visual_references: string | null
   voice_notes: string | null
   movement_notes: string | null
+  story_context: string | null
+  content_blocks: ContentBlock[]
   created_at: string
   updated_at: string
 }
@@ -148,6 +180,8 @@ export interface Location {
   lighting_notes: string | null
   sound_notes: string | null
   asset_requirements: string | null
+  story_context: string | null
+  content_blocks: ContentBlock[]
   created_at: string
   updated_at: string
 }
@@ -165,6 +199,8 @@ export interface Organization {
   beliefs: string | null
   symbols: string | null
   history: string | null
+  story_context: string | null
+  content_blocks: ContentBlock[]
   created_at: string
   updated_at: string
 }
@@ -180,6 +216,8 @@ export interface WorldEvent {
   description: string | null
   causes: string | null
   consequences: string | null
+  story_context: string | null
+  content_blocks: ContentBlock[]
   created_at: string
   updated_at: string
 }
@@ -198,6 +236,8 @@ export interface Item {
   visual_references: string | null
   scale: string | null
   material_notes: string | null
+  story_context: string | null
+  content_blocks: ContentBlock[]
   created_at: string
   updated_at: string
 }
@@ -213,6 +253,8 @@ export interface Rule {
   exceptions: string | null
   consequences: string | null
   examples: string | null
+  story_context: string | null
+  content_blocks: ContentBlock[]
   created_at: string
   updated_at: string
 }
@@ -226,6 +268,8 @@ export interface Story {
   tone: string | null
   theme: string | null
   status: 'concept' | 'outline' | 'draft' | 'complete' | null
+  story_context: string | null
+  content_blocks: ContentBlock[]
   created_at: string
   updated_at: string
 }
