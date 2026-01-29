@@ -37,6 +37,8 @@ CREATE TABLE characters (
   visual_references TEXT,
   voice_notes TEXT,
   movement_notes TEXT,
+  story_context TEXT,
+  content_blocks JSONB DEFAULT '[]',
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
