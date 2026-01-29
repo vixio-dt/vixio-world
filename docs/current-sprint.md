@@ -1,7 +1,34 @@
 # Current Sprint
 
-**Status:** Phase 1 (MVP) Complete. Strategic pivot complete. Ready for Phase 2 (Worldbuilder Core).
+**Status:** Phase 1 (MVP) Complete. Strategic pivot complete. Next.js 16 upgraded. Ready for Phase 2 (Worldbuilder Core).
 **Updated:** 2026-01-29
+
+---
+
+## Recent Completion: Next.js 16 Upgrade
+
+### Framework Upgrade (2026-01-29)
+
+Upgraded from Next.js 15.1.7 to 16.1.6 to adopt latest features and stay current.
+
+| Change | Details |
+|--------|---------|
+| **Next.js** | 15.1.7 → 16.1.6 |
+| **eslint-config-next** | 15.1.0 → 16.1.6 |
+| **Bundler** | Turbopack now default |
+| **Middleware** | Renamed to `proxy.ts` (new convention) |
+| **Linting** | Migrated from `next lint` to ESLint CLI |
+
+**Files Changed:**
+- `package.json` - Updated dependencies, lint script
+- `middleware.ts` → `proxy.ts` - File renamed, function export changed
+- `eslint.config.mjs` - Created (flat config format)
+- `components/ui/Card.tsx` - Fixed empty interface lint error
+
+**Verification:**
+- Build: ✅ Exit 0
+- Lint: ✅ Exit 0 (0 errors)
+- Dev server: ✅ Ready in 975ms
 
 ---
 
@@ -137,7 +164,8 @@ When ready:
 ## Context for New Sessions
 
 ### What's Done
-- Next.js 15 app with auth + Characters CRUD
+- Next.js 16 app with auth + Characters CRUD (upgraded from 15)
+- **Next.js 16 upgrade complete** (Turbopack default, proxy.ts convention, ESLint flat config)
 - **Strategic pivot to Worldbuilder + Studio architecture**
 - **Lore Link identified as core differentiator**
 - **3D viewer added to MVP scope**
@@ -161,7 +189,7 @@ When ready:
 
 | Layer | Technology |
 |-------|------------|
-| Framework | Next.js 15 (App Router) |
+| Framework | Next.js 16 (App Router, Turbopack) |
 | Language | TypeScript |
 | Styling | Tailwind CSS v4 |
 | Database | Supabase (PostgreSQL) |

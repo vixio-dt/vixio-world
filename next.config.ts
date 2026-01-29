@@ -1,7 +1,9 @@
 import type { NextConfig } from 'next'
+import path from 'path'
 
 const nextConfig: NextConfig = {
-  // Enable experimental features as needed
+  // Fix for Vercel detecting parent lockfile
+  outputFileTracingRoot: path.join(__dirname, './'),
 }
 
 export default nextConfig
