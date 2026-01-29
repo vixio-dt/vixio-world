@@ -13,10 +13,6 @@ export function WorldSwitcher() {
   const [isCreating, setIsCreating] = useState(false)
   const [newWorldName, setNewWorldName] = useState('')
 
-  useEffect(() => {
-    loadWorlds()
-  }, [])
-
   async function loadWorlds() {
     const supabase = createClient()
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -36,6 +32,11 @@ export function WorldSwitcher() {
     }
     setLoading(false)
   }
+
+  useEffect(() => {
+    loadWorlds()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   async function createWorld() {
     if (!newWorldName.trim()) return
