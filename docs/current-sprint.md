@@ -1,7 +1,47 @@
 # Current Sprint
 
-**Status:** Phase 2 complete. Entity schema, 3D viewer, and AI import implemented.
+**Status:** Phase 2 UI Integration complete. All entity types have full CRUD with content blocks.
 **Updated:** 2026-01-29
+
+---
+
+## Recent Completion: Phase 2 UI Integration
+
+### All Entity Pages (2026-01-29)
+
+Implemented full CRUD for all entity types with Phase 2 features (story_context, content_blocks, 3D models).
+
+**Design:** [Phase 2 UI Integration Design](./plans/2026-01-29-phase2-ui-integration-design.md)
+
+| Entity Type | Routes | Color Theme |
+|-------------|--------|-------------|
+| Characters | `/characters/*` | Sky blue |
+| Locations | `/locations/*` | Emerald green |
+| Items | `/items/*` | Amber |
+| Organizations | `/organizations/*` | Purple |
+| Timeline/Events | `/timeline/*` | Rose |
+| Rules | `/rules/*` | Indigo |
+| Stories | `/stories/*` | Cyan |
+
+**Each entity includes:**
+- List page with cards
+- Detail page with story_context highlight
+- Create/Edit forms with content blocks editor
+- Delete functionality
+- 3D model support via Add Model button
+
+**New Components:**
+- `components/content-blocks/ContentBlocksDisplay.tsx` - Read-only block viewer
+- `components/content-blocks/ContentBlocksEditor.tsx` - Block editing interface
+- `components/{entity}/` - Card and Form components for each entity
+
+**Server Actions:**
+- `lib/actions/locations.ts`
+- `lib/actions/items.ts`
+- `lib/actions/organizations.ts`
+- `lib/actions/events.ts`
+- `lib/actions/rules.ts`
+- `lib/actions/stories.ts`
 
 ---
 
