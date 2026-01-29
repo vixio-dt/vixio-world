@@ -21,9 +21,9 @@
 - [x] Build Characters feature (full CRUD)
 
 ### Post-Implementation
-- [ ] Update README
-- [ ] Update roadmap
-- [ ] Deploy to Vercel
+- [x] Update README
+- [ ] Update roadmap (no changes needed)
+- [ ] Deploy to Vercel (blocked: Vercel project not set up)
 
 ### Verification (2026-01-29)
 - [x] TypeScript compiles (`tsc --noEmit` exit 0)
