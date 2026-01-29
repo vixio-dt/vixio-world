@@ -15,7 +15,7 @@ export default function AuthLayout({
             alt="Vixio"
             width={80}
             height={80}
-            className="mx-auto mb-8 invert"
+            className="mx-auto mb-8"
           />
           <h1 className="text-4xl font-bold mb-4">Vixio Worldbuilder</h1>
           <p className="text-xl text-sky-100">
