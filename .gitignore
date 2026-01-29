@@ -5,8 +5,8 @@ node_modules
 
 # Build
 dist
-dist-ssr
-*.local
+.next/
+out/
 
 # Editor
 .vscode/*
@@ -31,9 +31,8 @@ Thumbs.db
 .env.test.local
 .env.production.local
 
-# Vite
-*.local
-.vite
-
 # TypeScript
 *.tsbuildinfo
+
+# Vercel
+.vercel
