@@ -1,8 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { Button, Input, Textarea, Select } from '@/components/ui'
-import type { Character } from '@/lib/types/database'
+import { ContentBlocksEditor } from '@/components/content-blocks'
+import type { Character, ContentBlock } from '@/lib/types/database'
 
 interface CharacterFormProps {
   character?: Character
@@ -21,10 +22,20 @@ const roleOptions = [
 export function CharacterForm({ character, worldId, action, submitLabel }: CharacterFormProps) {
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
+  const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>(
+    character?.content_blocks || []
+  )
+
+  const handleContentBlocksChange = useCallback((blocks: ContentBlock[]) => {
+    setContentBlocks(blocks)
+  }, [])
 
   async function handleSubmit(formData: FormData) {
     setLoading(true)
     setError(null)
+    
+    // Add content blocks as JSON
+    formData.set('content_blocks', JSON.stringify(contentBlocks))
     
     const result = await action(formData)
     
@@ -110,6 +121,21 @@ export function CharacterForm({ character, worldId, action, submitLabel }: Chara
         defaultValue={character?.arc_potential || ''}
         placeholder="How might this character grow or change?"
       />
+
+      <Textarea
+        id="story_context"
+        name="story_context"
+        label="Story Context"
+        defaultValue={character?.story_context || ''}
+        placeholder="How does this character fit into your story? What role do they play narratively?"
+      />
+
+      <div className="border-t border-slate-200 pt-6">
+        <ContentBlocksEditor
+          initialBlocks={character?.content_blocks || []}
+          onChange={handleContentBlocksChange}
+        />
+      </div>
 
       <div className="flex justify-end gap-4">
         <Button type="button" variant="outline" onClick={() => window.history.back()}>

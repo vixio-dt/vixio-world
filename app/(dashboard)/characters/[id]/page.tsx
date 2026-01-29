@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ArrowLeft, Edit, Trash2, User } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
 import { Button, Card, CardContent } from '@/components/ui'
+import { ContentBlocksDisplay } from '@/components/content-blocks'
 import { deleteCharacter } from '@/lib/actions/characters'
 import type { Character } from '@/lib/types/database'
 
@@ -81,6 +82,15 @@ export default async function CharacterPage({ params }: CharacterPageProps) {
         </div>
       </div>
 
+      {char.story_context && (
+        <Card className="mb-6 border-sky-200 bg-sky-50">
+          <CardContent className="py-4">
+            <h3 className="text-sm font-medium text-sky-700 mb-1">Story Context</h3>
+            <p className="text-slate-900 whitespace-pre-wrap">{char.story_context}</p>
+          </CardContent>
+        </Card>
+      )}
+
       <div className="space-y-6">
         {char.species && (
           <Card>
@@ -136,6 +146,12 @@ export default async function CharacterPage({ params }: CharacterPageProps) {
           </Card>
         )}
       </div>
+
+      {char.content_blocks && char.content_blocks.length > 0 && (
+        <div className="mt-8">
+          <ContentBlocksDisplay blocks={char.content_blocks} />
+        </div>
+      )}
     </div>
   )
 }

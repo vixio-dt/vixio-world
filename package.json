@@ -12,6 +12,7 @@
     "@supabase/ssr": "^0.5.2",
     "@supabase/supabase-js": "^2.47.0",
     "clsx": "^2.1.1",
+    "lightningcss": "^1.31.1",
     "lucide-react": "^0.469.0",
     "next": "^16.1.6",
     "openai": "^6.17.0",

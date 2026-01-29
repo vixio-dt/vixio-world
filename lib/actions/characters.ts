@@ -42,6 +42,10 @@ export async function getCharacter(id: string) {
 export async function createCharacter(formData: FormData) {
   const supabase = await createClient()
 
+  // Parse content_blocks from JSON if present
+  const contentBlocksRaw = formData.get('content_blocks') as string
+  const content_blocks = contentBlocksRaw ? JSON.parse(contentBlocksRaw) : []
+
   const characterData = {
     world_id: formData.get('world_id') as string,
     name: formData.get('name') as string,
@@ -52,6 +56,8 @@ export async function createCharacter(formData: FormData) {
     background: formData.get('background') as string || null,
     motivations: formData.get('motivations') as string || null,
     arc_potential: formData.get('arc_potential') as string || null,
+    story_context: formData.get('story_context') as string || null,
+    content_blocks,
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -73,6 +79,10 @@ export async function createCharacter(formData: FormData) {
 export async function updateCharacter(id: string, formData: FormData) {
   const supabase = await createClient()
 
+  // Parse content_blocks from JSON if present
+  const contentBlocksRaw = formData.get('content_blocks') as string
+  const content_blocks = contentBlocksRaw ? JSON.parse(contentBlocksRaw) : []
+
   const characterData = {
     name: formData.get('name') as string,
     role: formData.get('role') as string || null,
@@ -82,6 +92,8 @@ export async function updateCharacter(id: string, formData: FormData) {
     background: formData.get('background') as string || null,
     motivations: formData.get('motivations') as string || null,
     arc_potential: formData.get('arc_potential') as string || null,
+    story_context: formData.get('story_context') as string || null,
+    content_blocks,
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
