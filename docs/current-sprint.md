@@ -1,7 +1,35 @@
 # Current Sprint
 
-**Status:** Phase 2 started. Entity content blocks schema designed and implemented.
+**Status:** Phase 2 in progress. Entity schema + 3D model viewer implemented.
 **Updated:** 2026-01-29
+
+---
+
+## Recent Completion: 3D Model Viewer
+
+### Model Embed Components (2026-01-29)
+
+Added 3D model embed support for Sketchfab and Tripo AI. Users can add model URLs to entities via the "Add 3D Model" button.
+
+**Design:** [Model Viewer Design](./plans/2026-01-29-model-viewer-design.md)
+
+| Component | Purpose |
+|-----------|---------|
+| `ModelEmbed` | Renders iframe for Sketchfab/Tripo URLs |
+| `AddModelButton` | Button + modal for adding model URLs |
+| `parseModelUrl` | Utility to parse and validate model URLs |
+
+**Supported platforms:**
+- Sketchfab (https://sketchfab.com/3d-models/...)
+- Tripo AI (https://www.tripo3d.ai/app/share/...)
+
+**Files Created:**
+- `components/models/ModelEmbed.tsx`
+- `components/models/AddModelButton.tsx`
+- `components/models/index.ts`
+- `lib/utils/model-url.ts`
+
+**Integration:** Models stored as `'model'` type in content_blocks JSONB.
 
 ---
 
@@ -194,7 +222,7 @@ A significant strategic evolution based on market analysis and product positioni
 
 - [x] Deploy MVP to Vercel (validate production works)
 - [x] Design entity system data model (content_blocks + story_context + entity_mentions)
-- [ ] Research model-viewer implementation
+- [x] Research model-viewer implementation (Sketchfab + Tripo embeds)
 - [ ] Plan AI integration (OpenAI/Anthropic API setup)
 
 ---
