@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { syncEntityMentions } from './mentions'
 import type { Character } from '@/lib/types/database'
 
 export async function getCharacters(worldId: string) {
@@ -72,6 +73,10 @@ export async function createCharacter(formData: FormData) {
     return { error: error.message }
   }
 
+  // Sync mentions from content blocks
+  const allContent = content_blocks.map((b: { content: string }) => b.content).join('\n')
+  await syncEntityMentions('character', data.id, allContent)
+
   revalidatePath('/characters')
   redirect(`/characters/${data.id}`)
 }
@@ -106,6 +111,10 @@ export async function updateCharacter(id: string, formData: FormData) {
     console.error('Error updating character:', error)
     return { error: error.message }
   }
+
+  // Sync mentions from content blocks
+  const allContent = content_blocks.map((b: { content: string }) => b.content).join('\n')
+  await syncEntityMentions('character', id, allContent)
 
   revalidatePath('/characters')
   revalidatePath(`/characters/${id}`)

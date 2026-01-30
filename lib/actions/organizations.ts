@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { syncEntityMentions } from './mentions'
 import type { Organization } from '@/lib/types/database'
 
 export async function getOrganizations(worldId: string) {
@@ -53,6 +54,10 @@ export async function createOrganization(formData: FormData) {
     return { error: error.message }
   }
 
+  // Sync mentions from content blocks
+  const allContent = content_blocks.map((b: { content: string }) => b.content).join('\n')
+  await syncEntityMentions('organization', data.id, allContent)
+
   revalidatePath('/organizations')
   redirect(`/organizations/${data.id}`)
 }
@@ -85,6 +90,10 @@ export async function updateOrganization(id: string, formData: FormData) {
     console.error('Error updating organization:', error)
     return { error: error.message }
   }
+
+  // Sync mentions from content blocks
+  const allContent = content_blocks.map((b: { content: string }) => b.content).join('\n')
+  await syncEntityMentions('organization', id, allContent)
 
   revalidatePath('/organizations')
   revalidatePath(`/organizations/${id}`)

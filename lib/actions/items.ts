@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { syncEntityMentions } from './mentions'
 import type { Item } from '@/lib/types/database'
 
 export async function getItems(worldId: string) {
@@ -69,6 +70,10 @@ export async function createItem(formData: FormData) {
     return { error: error.message }
   }
 
+  // Sync mentions from content blocks
+  const allContent = content_blocks.map((b: { content: string }) => b.content).join('\n')
+  await syncEntityMentions('item', data.id, allContent)
+
   revalidatePath('/items')
   redirect(`/items/${data.id}`)
 }
@@ -100,6 +105,10 @@ export async function updateItem(id: string, formData: FormData) {
     console.error('Error updating item:', error)
     return { error: error.message }
   }
+
+  // Sync mentions from content blocks
+  const allContent = content_blocks.map((b: { content: string }) => b.content).join('\n')
+  await syncEntityMentions('item', id, allContent)
 
   revalidatePath('/items')
   revalidatePath(`/items/${id}`)

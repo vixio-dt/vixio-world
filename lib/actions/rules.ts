@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { syncEntityMentions } from './mentions'
 import type { Rule } from '@/lib/types/database'
 
 export async function getRules(worldId: string) {
@@ -53,6 +54,10 @@ export async function createRule(formData: FormData) {
     return { error: error.message }
   }
 
+  // Sync mentions from content blocks
+  const allContent = content_blocks.map((b: { content: string }) => b.content).join('\n')
+  await syncEntityMentions('rule', data.id, allContent)
+
   revalidatePath('/rules')
   redirect(`/rules/${data.id}`)
 }
@@ -85,6 +90,10 @@ export async function updateRule(id: string, formData: FormData) {
     console.error('Error updating rule:', error)
     return { error: error.message }
   }
+
+  // Sync mentions from content blocks
+  const allContent = content_blocks.map((b: { content: string }) => b.content).join('\n')
+  await syncEntityMentions('rule', id, allContent)
 
   revalidatePath('/rules')
   revalidatePath(`/rules/${id}`)

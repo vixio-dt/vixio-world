@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { syncEntityMentions } from './mentions'
 import type { Location } from '@/lib/types/database'
 
 export async function getLocations(worldId: string) {
@@ -71,6 +72,10 @@ export async function createLocation(formData: FormData) {
     return { error: error.message }
   }
 
+  // Sync mentions from content blocks
+  const allContent = content_blocks.map((b: { content: string }) => b.content).join('\n')
+  await syncEntityMentions('location', data.id, allContent)
+
   revalidatePath('/locations')
   redirect(`/locations/${data.id}`)
 }
@@ -104,6 +109,10 @@ export async function updateLocation(id: string, formData: FormData) {
     console.error('Error updating location:', error)
     return { error: error.message }
   }
+
+  // Sync mentions from content blocks
+  const allContent = content_blocks.map((b: { content: string }) => b.content).join('\n')
+  await syncEntityMentions('location', id, allContent)
 
   revalidatePath('/locations')
   revalidatePath(`/locations/${id}`)

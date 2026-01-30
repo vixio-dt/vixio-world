@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { syncEntityMentions } from './mentions'
 import type { WorldEvent } from '@/lib/types/database'
 
 export async function getEvents(worldId: string) {
@@ -52,6 +53,10 @@ export async function createEvent(formData: FormData) {
     return { error: error.message }
   }
 
+  // Sync mentions from content blocks
+  const allContent = content_blocks.map((b: { content: string }) => b.content).join('\n')
+  await syncEntityMentions('event', data.id, allContent)
+
   revalidatePath('/timeline')
   redirect(`/timeline/${data.id}`)
 }
@@ -83,6 +88,10 @@ export async function updateEvent(id: string, formData: FormData) {
     console.error('Error updating event:', error)
     return { error: error.message }
   }
+
+  // Sync mentions from content blocks
+  const allContent = content_blocks.map((b: { content: string }) => b.content).join('\n')
+  await syncEntityMentions('event', id, allContent)
 
   revalidatePath('/timeline')
   revalidatePath(`/timeline/${id}`)

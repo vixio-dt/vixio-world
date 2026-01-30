@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { syncEntityMentions } from './mentions'
 import type { Story } from '@/lib/types/database'
 
 export async function getStories(worldId: string) {
@@ -52,6 +53,10 @@ export async function createStory(formData: FormData) {
     return { error: error.message }
   }
 
+  // Sync mentions from content blocks
+  const allContent = content_blocks.map((b: { content: string }) => b.content).join('\n')
+  await syncEntityMentions('story', data.id, allContent)
+
   revalidatePath('/stories')
   redirect(`/stories/${data.id}`)
 }
@@ -83,6 +88,10 @@ export async function updateStory(id: string, formData: FormData) {
     console.error('Error updating story:', error)
     return { error: error.message }
   }
+
+  // Sync mentions from content blocks
+  const allContent = content_blocks.map((b: { content: string }) => b.content).join('\n')
+  await syncEntityMentions('story', id, allContent)
 
   revalidatePath('/stories')
   revalidatePath(`/stories/${id}`)
