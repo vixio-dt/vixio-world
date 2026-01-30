@@ -119,6 +119,7 @@ export function StoryForm({ story, worldId, action, submitLabel }: StoryFormProp
         <ContentBlocksEditor
           initialBlocks={story?.content_blocks || []}
           onChange={handleContentBlocksChange}
+          worldId={worldId}
         />
       </div>
 

@@ -131,6 +131,7 @@ export function LocationForm({ location, worldId, action, submitLabel }: Locatio
         <ContentBlocksEditor
           initialBlocks={location?.content_blocks || []}
           onChange={handleContentBlocksChange}
+          worldId={worldId}
         />
       </div>
 

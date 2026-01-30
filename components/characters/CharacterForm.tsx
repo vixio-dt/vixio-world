@@ -134,6 +134,7 @@ export function CharacterForm({ character, worldId, action, submitLabel }: Chara
         <ContentBlocksEditor
           initialBlocks={character?.content_blocks || []}
           onChange={handleContentBlocksChange}
+          worldId={worldId}
         />
       </div>
 

@@ -130,6 +130,7 @@ export function RuleForm({ rule, worldId, action, submitLabel }: RuleFormProps) 
         <ContentBlocksEditor
           initialBlocks={rule?.content_blocks || []}
           onChange={handleContentBlocksChange}
+          worldId={worldId}
         />
       </div>
 

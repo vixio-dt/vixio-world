@@ -117,6 +117,7 @@ export function EventForm({ event, worldId, action, submitLabel }: EventFormProp
         <ContentBlocksEditor
           initialBlocks={event?.content_blocks || []}
           onChange={handleContentBlocksChange}
+          worldId={worldId}
         />
       </div>
 

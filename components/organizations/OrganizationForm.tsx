@@ -128,6 +128,7 @@ export function OrganizationForm({ organization, worldId, action, submitLabel }:
         <ContentBlocksEditor
           initialBlocks={organization?.content_blocks || []}
           onChange={handleContentBlocksChange}
+          worldId={worldId}
         />
       </div>
 

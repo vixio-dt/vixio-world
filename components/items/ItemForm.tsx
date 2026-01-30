@@ -120,6 +120,7 @@ export function ItemForm({ item, worldId, action, submitLabel }: ItemFormProps) 
         <ContentBlocksEditor
           initialBlocks={item?.content_blocks || []}
           onChange={handleContentBlocksChange}
+          worldId={worldId}
         />
       </div>
 
