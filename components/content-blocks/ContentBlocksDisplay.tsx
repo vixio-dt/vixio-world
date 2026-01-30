@@ -1,9 +1,61 @@
 'use client';
 
+import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui';
 import { ModelEmbed } from '@/components/models';
 import type { ContentBlock } from '@/lib/types/database';
 import { FileText, Image, Box } from 'lucide-react';
+
+// Entity type to URL path mapping
+const entityPaths: Record<string, string> = {
+  character: '/characters',
+  location: '/locations',
+  organization: '/organizations',
+  event: '/timeline',
+  item: '/items',
+  rule: '/rules',
+  story: '/stories',
+};
+
+/**
+ * Render text with @mentions as clickable links.
+ */
+function renderTextWithMentions(text: string): React.ReactNode[] {
+  const mentionRegex = /@\[(\w+):([a-f0-9-]+):([^\]]+)\]/g;
+  const parts: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let match;
+
+  while ((match = mentionRegex.exec(text)) !== null) {
+    // Add text before mention
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index));
+    }
+
+    // Add mention as link
+    const [, type, id, name] = match;
+    const path = entityPaths[type] || '/dashboard';
+    
+    parts.push(
+      <Link
+        key={`${type}-${id}-${match.index}`}
+        href={`${path}/${id}`}
+        className="inline-flex items-center gap-1 px-1.5 py-0.5 bg-sky-50 text-sky-700 hover:bg-sky-100 rounded text-sm font-medium transition-colors"
+      >
+        @{name}
+      </Link>
+    );
+
+    lastIndex = match.index + match[0].length;
+  }
+
+  // Add remaining text
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+
+  return parts.length > 0 ? parts : [text];
+}
 
 interface ContentBlocksDisplayProps {
   blocks: ContentBlock[];
@@ -41,7 +93,9 @@ function ContentBlockItem({ block }: { block: ContentBlock }) {
           <CardContent className="py-4">
             <div className="flex items-start gap-2">
               <FileText className="w-4 h-4 text-slate-400 mt-1 flex-shrink-0" />
-              <p className="text-slate-900 whitespace-pre-wrap flex-1">{block.content}</p>
+              <div className="text-slate-900 whitespace-pre-wrap flex-1">
+                {renderTextWithMentions(block.content)}
+              </div>
             </div>
           </CardContent>
         </Card>
