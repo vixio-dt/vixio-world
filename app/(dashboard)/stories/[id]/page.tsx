@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowLeft, Edit, Trash2, BookOpen } from 'lucide-react'
+import { Edit, Trash2, BookOpen } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
-import { Button, Card, CardContent } from '@/components/ui'
+import { Button, Card, CardContent, Breadcrumbs } from '@/components/ui'
 import { ContentBlocksDisplay } from '@/components/content-blocks'
 import { deleteStory } from '@/lib/actions/stories'
 import type { Story } from '@/lib/types/database'
@@ -49,15 +49,12 @@ export default async function StoryPage({ params }: StoryPageProps) {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <div className="mb-6">
-        <Link 
-          href="/stories" 
-          className="inline-flex items-center text-sm text-slate-600 hover:text-slate-900"
-        >
-          <ArrowLeft className="w-4 h-4 mr-1" />
-          Back to Stories
-        </Link>
-      </div>
+      <Breadcrumbs
+        items={[
+          { label: 'Stories', href: '/stories' },
+          { label: str.title },
+        ]}
+      />
 
       <div className="flex items-start justify-between mb-8">
         <div className="flex items-start gap-4">

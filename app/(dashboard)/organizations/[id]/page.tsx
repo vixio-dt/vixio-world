@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowLeft, Edit, Trash2, Building2 } from 'lucide-react'
+import { Edit, Trash2, Building2 } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
-import { Button, Card, CardContent } from '@/components/ui'
+import { Button, Card, CardContent, Breadcrumbs } from '@/components/ui'
 import { ContentBlocksDisplay } from '@/components/content-blocks'
 import { deleteOrganization } from '@/lib/actions/organizations'
 import type { Organization } from '@/lib/types/database'
@@ -45,15 +45,12 @@ export default async function OrganizationPage({ params }: OrganizationPageProps
 
   return (
     <div className="max-w-4xl mx-auto">
-      <div className="mb-6">
-        <Link 
-          href="/organizations" 
-          className="inline-flex items-center text-sm text-slate-600 hover:text-slate-900"
-        >
-          <ArrowLeft className="w-4 h-4 mr-1" />
-          Back to Organizations
-        </Link>
-      </div>
+      <Breadcrumbs
+        items={[
+          { label: 'Organizations', href: '/organizations' },
+          { label: org.name },
+        ]}
+      />
 
       <div className="flex items-start justify-between mb-8">
         <div className="flex items-start gap-4">

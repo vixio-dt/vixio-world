@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowLeft, Edit, Trash2, Scale } from 'lucide-react'
+import { Edit, Trash2, Scale } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
-import { Button, Card, CardContent } from '@/components/ui'
+import { Button, Card, CardContent, Breadcrumbs } from '@/components/ui'
 import { ContentBlocksDisplay } from '@/components/content-blocks'
 import { deleteRule } from '@/lib/actions/rules'
 import type { Rule } from '@/lib/types/database'
@@ -47,15 +47,12 @@ export default async function RulePage({ params }: RulePageProps) {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <div className="mb-6">
-        <Link 
-          href="/rules" 
-          className="inline-flex items-center text-sm text-slate-600 hover:text-slate-900"
-        >
-          <ArrowLeft className="w-4 h-4 mr-1" />
-          Back to Rules
-        </Link>
-      </div>
+      <Breadcrumbs
+        items={[
+          { label: 'Rules', href: '/rules' },
+          { label: rul.name },
+        ]}
+      />
 
       <div className="flex items-start justify-between mb-8">
         <div className="flex items-start gap-4">

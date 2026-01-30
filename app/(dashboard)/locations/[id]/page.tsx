@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowLeft, Edit, Trash2, MapPin } from 'lucide-react'
+import { Edit, Trash2, MapPin } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
-import { Button, Card, CardContent } from '@/components/ui'
+import { Button, Card, CardContent, Breadcrumbs } from '@/components/ui'
 import { ContentBlocksDisplay } from '@/components/content-blocks'
 import { deleteLocation } from '@/lib/actions/locations'
 import type { Location } from '@/lib/types/database'
@@ -45,15 +45,12 @@ export default async function LocationPage({ params }: LocationPageProps) {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <div className="mb-6">
-        <Link 
-          href="/locations" 
-          className="inline-flex items-center text-sm text-slate-600 hover:text-slate-900"
-        >
-          <ArrowLeft className="w-4 h-4 mr-1" />
-          Back to Locations
-        </Link>
-      </div>
+      <Breadcrumbs
+        items={[
+          { label: 'Locations', href: '/locations' },
+          { label: loc.name },
+        ]}
+      />
 
       <div className="flex items-start justify-between mb-8">
         <div className="flex items-start gap-4">

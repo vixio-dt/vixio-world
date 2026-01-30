@@ -43,6 +43,7 @@ export function MentionInput({
   // Search for entities when query changes
   useEffect(() => {
     if (!showDropdown || !searchQuery) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setResults([])
       return
     }
@@ -62,27 +63,6 @@ export function MentionInput({
 
     return () => clearTimeout(timer)
   }, [searchQuery, worldId, showDropdown])
-
-  const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent) => {
-      if (!showDropdown) return
-
-      if (e.key === 'ArrowDown') {
-        e.preventDefault()
-        setSelectedIndex((prev) => (prev + 1) % Math.max(results.length, 1))
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault()
-        setSelectedIndex((prev) => (prev - 1 + Math.max(results.length, 1)) % Math.max(results.length, 1))
-      } else if (e.key === 'Enter' && results.length > 0) {
-        e.preventDefault()
-        handleSelect(results[selectedIndex])
-      } else if (e.key === 'Escape') {
-        e.preventDefault()
-        setShowDropdown(false)
-      }
-    },
-    [showDropdown, results, selectedIndex]
-  )
 
   const handleSelect = useCallback(
     (result: SearchResult) => {
@@ -108,6 +88,27 @@ export function MentionInput({
       }, 0)
     },
     [mentionStartIndex, value, onChange]
+  )
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (!showDropdown) return
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault()
+        setSelectedIndex((prev) => (prev + 1) % Math.max(results.length, 1))
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault()
+        setSelectedIndex((prev) => (prev - 1 + Math.max(results.length, 1)) % Math.max(results.length, 1))
+      } else if (e.key === 'Enter' && results.length > 0) {
+        e.preventDefault()
+        handleSelect(results[selectedIndex])
+      } else if (e.key === 'Escape') {
+        e.preventDefault()
+        setShowDropdown(false)
+      }
+    },
+    [showDropdown, results, selectedIndex, handleSelect]
   )
 
   const handleChange = useCallback(

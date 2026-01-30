@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowLeft, Edit, Trash2, User } from 'lucide-react'
+import { Edit, Trash2, User } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
-import { Button, Card, CardContent } from '@/components/ui'
+import { Button, Card, CardContent, Breadcrumbs } from '@/components/ui'
 import { ContentBlocksDisplay } from '@/components/content-blocks'
 import { deleteCharacter } from '@/lib/actions/characters'
 import type { Character } from '@/lib/types/database'
@@ -42,15 +42,12 @@ export default async function CharacterPage({ params }: CharacterPageProps) {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <div className="mb-6">
-        <Link 
-          href="/characters" 
-          className="inline-flex items-center text-sm text-slate-600 hover:text-slate-900"
-        >
-          <ArrowLeft className="w-4 h-4 mr-1" />
-          Back to Characters
-        </Link>
-      </div>
+      <Breadcrumbs
+        items={[
+          { label: 'Characters', href: '/characters' },
+          { label: char.name },
+        ]}
+      />
 
       <div className="flex items-start justify-between mb-8">
         <div className="flex items-start gap-4">

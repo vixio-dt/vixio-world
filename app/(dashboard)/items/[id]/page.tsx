@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowLeft, Edit, Trash2, Package } from 'lucide-react'
+import { Edit, Trash2, Package } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
-import { Button, Card, CardContent } from '@/components/ui'
+import { Button, Card, CardContent, Breadcrumbs } from '@/components/ui'
 import { ContentBlocksDisplay } from '@/components/content-blocks'
 import { deleteItem } from '@/lib/actions/items'
 import type { Item } from '@/lib/types/database'
@@ -45,15 +45,12 @@ export default async function ItemPage({ params }: ItemPageProps) {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <div className="mb-6">
-        <Link 
-          href="/items" 
-          className="inline-flex items-center text-sm text-slate-600 hover:text-slate-900"
-        >
-          <ArrowLeft className="w-4 h-4 mr-1" />
-          Back to Items
-        </Link>
-      </div>
+      <Breadcrumbs
+        items={[
+          { label: 'Items', href: '/items' },
+          { label: itm.name },
+        ]}
+      />
 
       <div className="flex items-start justify-between mb-8">
         <div className="flex items-start gap-4">

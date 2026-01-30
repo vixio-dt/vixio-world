@@ -13,7 +13,8 @@ import {
   Scale, 
   BookOpen,
   MessageSquare,
-  Download
+  Download,
+  Network
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { WorldSwitcher } from './WorldSwitcher'
@@ -27,6 +28,7 @@ const navItems = [
   { href: '/items', label: 'Items', icon: Package },
   { href: '/rules', label: 'Rules', icon: Scale },
   { href: '/stories', label: 'Stories', icon: BookOpen },
+  { href: '/graph', label: 'Graph', icon: Network },
 ]
 
 const bottomNavItems = [

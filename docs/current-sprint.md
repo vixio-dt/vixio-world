@@ -1,36 +1,91 @@
 # Current Sprint
 
-**Status:** Phase 2+3 Consolidated design complete. Ready for implementation.
-**Updated:** 2026-01-29
+**Status:** Phase 2+3 Implementation COMPLETE
+**Updated:** 2026-01-30
 
 ---
 
-## Next Up: Phase 2+3 Consolidated Implementation
+## Recent Completion: Phase 2+3 Features (2026-01-30)
 
-### Design Complete (2026-01-29)
+### @Mentions System
 
-Combining Phase 2 remaining items with Phase 3 for a complete, impressive product.
+Inline @mentions for linking entities within content blocks.
 
-**Design:** [Phase 2+3 Consolidated Design](./plans/2026-01-29-phase2-3-consolidated-design.md)
+| Component | Purpose |
+|-----------|---------|
+| `MentionInput` | Textarea with autocomplete dropdown for @mentions |
+| `MentionDropdown` | Searchable entity picker grouped by type |
+| `searchEntities` | Server action for cross-entity search |
+| `syncEntityMentions` | Auto-saves mention relationships to database |
 
-| Category | Features | Status |
-|----------|----------|--------|
-| **@Mentions** | Inline autocomplete, entity linking | Design approved |
-| **Relationship Graph** | Interactive force-directed visualization | Design approved |
-| **Export System** | PDF World Bible, Markdown, JSON | Design approved |
-| **UX Polish** | Global search, keyboard shortcuts, breadcrumbs | Design approved |
+**Features:**
+- Type `@` in any content block to trigger autocomplete
+- Search filters by name across all entity types
+- Mentions render as clickable links in read mode
+- Relationships tracked in `entity_mentions` table
 
-### Implementation Order
-1. @mentions system - Core relationship feature
-2. Relationship graph - Visual representation
-3. Global search - UX essential
-4. Export system - Complete the workflow
-5. UX polish - Keyboard shortcuts, breadcrumbs, loading states
+### Relationship Graph
 
-### Dependencies to Install
-- `react-force-graph-2d` - Graph visualization
-- `@react-pdf/renderer` - PDF generation
-- `jszip` - Markdown multi-file export
+Interactive force-directed graph visualization of world entities and connections.
+
+| Component | Purpose |
+|-----------|---------|
+| `RelationshipGraph` | Force-directed graph using react-force-graph-2d |
+| `GraphControls` | Filter by type, search, zoom controls |
+| `/graph` route | Full-page graph view |
+
+**Features:**
+- Nodes colored by entity type
+- Node size based on connection count
+- Click to navigate to entity detail
+- Filter toggles by entity type
+- Search to highlight entities
+- Fullscreen mode
+
+### Global Search (Cmd+K)
+
+Command palette for quick entity search accessible with keyboard shortcut.
+
+| Component | Purpose |
+|-----------|---------|
+| `CommandPalette` | Modal search interface |
+| `Cmd/Ctrl+K` | Keyboard shortcut to open |
+
+**Features:**
+- Real-time search across all entities
+- Results grouped by type with icons
+- Arrow key navigation
+- Enter to select and navigate
+
+### Export System
+
+Export world data in multiple formats.
+
+| Format | Use Case |
+|--------|----------|
+| JSON | Backups, migrations, API integration |
+| Markdown | World Bible document for sharing |
+
+**Features:**
+- Select entity types to export
+- Download as file
+- `/export` route with format selection
+
+### UX Polish
+
+| Feature | Description |
+|---------|-------------|
+| Breadcrumbs | Navigation hierarchy on detail pages |
+| Toast notifications | Success/error feedback system |
+| Keyboard shortcuts | Ctrl+G (graph), Ctrl+E (export) |
+| Loading skeletons | Placeholder content during load |
+| Slide-in animations | Toast notification entrance |
+
+### MCP Configuration Updates
+
+Added new MCP servers to `.cursor/mcp.json`:
+- **GitHub** - Repository management, PRs, issues
+- **AntVis Chart** - 25+ visualization charts for export diagrams
 
 ---
 
