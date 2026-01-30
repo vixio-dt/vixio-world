@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Button, Textarea, Card, CardContent } from '@/components/ui';
+import { Button, Card, CardContent } from '@/components/ui';
 import { AddModelButton } from '@/components/models';
+import { MentionInput } from '@/components/mentions';
 import { FileText, Box, Trash2 } from 'lucide-react';
 import type { ContentBlock } from '@/lib/types/database';
 import type { ModelPlatform } from '@/lib/utils/model-url';
@@ -10,13 +11,15 @@ import type { ModelPlatform } from '@/lib/utils/model-url';
 interface ContentBlocksEditorProps {
   initialBlocks?: ContentBlock[];
   onChange: (blocks: ContentBlock[]) => void;
+  worldId: string;
 }
 
 /**
  * Editor for content blocks.
  * Allows adding/editing/removing text and model blocks.
+ * Text blocks support @mentions.
  */
-export function ContentBlocksEditor({ initialBlocks = [], onChange }: ContentBlocksEditorProps) {
+export function ContentBlocksEditor({ initialBlocks = [], onChange, worldId }: ContentBlocksEditorProps) {
   const [blocks, setBlocks] = useState<ContentBlock[]>(initialBlocks);
 
   useEffect(() => {
@@ -95,6 +98,7 @@ export function ContentBlocksEditor({ initialBlocks = [], onChange }: ContentBlo
               index={index}
               onUpdate={updateBlock}
               onRemove={removeBlock}
+              worldId={worldId}
             />
           ))}
         </div>
@@ -108,9 +112,10 @@ interface ContentBlockEditorProps {
   index: number;
   onUpdate: (id: string, content: string) => void;
   onRemove: (id: string) => void;
+  worldId: string;
 }
 
-function ContentBlockEditor({ block, index, onUpdate, onRemove }: ContentBlockEditorProps) {
+function ContentBlockEditor({ block, index, onUpdate, onRemove, worldId }: ContentBlockEditorProps) {
   if (block.type === 'text') {
     return (
       <Card>
@@ -121,10 +126,13 @@ function ContentBlockEditor({ block, index, onUpdate, onRemove }: ContentBlockEd
               <span className="text-xs text-slate-500">#{index + 1}</span>
             </div>
             <div className="flex-1">
-              <Textarea
+              <MentionInput
+                id={`block-${block.id}`}
+                name={`block-${block.id}`}
                 value={block.content}
-                onChange={(e) => onUpdate(block.id, e.target.value)}
-                placeholder="Write content here..."
+                onChange={(value) => onUpdate(block.id, value)}
+                worldId={worldId}
+                placeholder="Write content here... Use @ to mention other entities"
                 className="min-h-[100px]"
               />
             </div>
