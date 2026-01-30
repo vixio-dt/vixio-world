@@ -1,31 +1,31 @@
 ---
-description: Enforce AGENTS.md compliance for all development work
+description: Enforce AGENTS.md and superpowers workflow for all development
 alwaysApply: true
 ---
 
 # Always Follow AGENTS.md
 
-This project uses AGENTS.md as the source of truth for AI agent behavior.
+Read and follow `AGENTS.md` at the repository root for all development work.
 
-## Required Actions
+## Key Requirements
 
-1. **Read AGENTS.md first** - Before any work, ensure you understand the project rules in AGENTS.md at the repository root.
+1. **95% Confidence** - Ask clarifying questions before making changes
+2. **Recommend with Reasoning** - Always explain WHY when presenting options
+3. **Brainstorm Before Build** - Use `/brainstorm` before creative work
+4. **Verify Before Done** - Use `/verify` before claiming completion
+5. **Update Docs** - Keep `docs/current-sprint.md` current
 
-2. **95% Confidence Rule** - Do NOT make changes until you have 95% confidence you understand what to build. Ask clarifying questions until you reach that confidence.
+## Available Commands
 
-3. **Use Available Skills** - Check if any skills listed in AGENTS.md apply to your task. Invoke them before proceeding:
-   - `brainstorming` - Before any creative work (features, components, modifications)
-   - `writing-plans` - Before multi-step tasks
-   - `verification-before-completion` - Before claiming work is done
-   - `systematic-debugging` - Before proposing fixes for bugs
+Use `/command` to trigger workflows. See AGENTS.md for full list.
 
-4. **Recommend with Reasoning** - When presenting options, always include your recommendation and explain WHY.
+## Skills Location
 
-5. **Update Documentation** - After completing tasks, update relevant docs (current-sprint.md, roadmap, plans).
+Skills are in `.claude/skills/`. The commands read them automatically.
 
-## Prohibited Actions
+## Subagents
 
-- Making changes without 95% confidence in requirements
-- Skipping brainstorming for creative work
-- Claiming completion without verification
-- Leaving documentation stale after changes
+Three subagents available for parallel execution:
+- `implementer` - Execute tasks
+- `spec-reviewer` - Verify spec compliance  
+- `code-reviewer` - Review code quality
