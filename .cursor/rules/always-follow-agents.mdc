@@ -1,0 +1,31 @@
+---
+description: Enforce AGENTS.md compliance for all development work
+alwaysApply: true
+---
+
+# Always Follow AGENTS.md
+
+This project uses AGENTS.md as the source of truth for AI agent behavior.
+
+## Required Actions
+
+1. **Read AGENTS.md first** - Before any work, ensure you understand the project rules in AGENTS.md at the repository root.
+
+2. **95% Confidence Rule** - Do NOT make changes until you have 95% confidence you understand what to build. Ask clarifying questions until you reach that confidence.
+
+3. **Use Available Skills** - Check if any skills listed in AGENTS.md apply to your task. Invoke them before proceeding:
+   - `brainstorming` - Before any creative work (features, components, modifications)
+   - `writing-plans` - Before multi-step tasks
+   - `verification-before-completion` - Before claiming work is done
+   - `systematic-debugging` - Before proposing fixes for bugs
+
+4. **Recommend with Reasoning** - When presenting options, always include your recommendation and explain WHY.
+
+5. **Update Documentation** - After completing tasks, update relevant docs (current-sprint.md, roadmap, plans).
+
+## Prohibited Actions
+
+- Making changes without 95% confidence in requirements
+- Skipping brainstorming for creative work
+- Claiming completion without verification
+- Leaving documentation stale after changes
