@@ -39,6 +39,11 @@
         "${SUPABASE_ACCESS_TOKEN}"
       ],
       "description": "Direct access to Supabase database, auth, and edge functions"
+    },
+    "sentry": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "https://mcp.sentry.dev/mcp"],
+      "description": "Error monitoring, crash reports, and AI debugging from Sentry"
     }
   }
 }

@@ -71,6 +71,7 @@ MCP servers provide REAL-TIME access to external systems. **Prefer them over sta
 | **Sequential Thinking** | Complex multi-step reasoning | Ad-hoc problem solving |
 | **Fetch** | Web content retrieval | Assuming content |
 | **Filesystem** | File operations | Shell commands |
+| **Sentry** | Error monitoring, crash reports | Guessing prod issues |
 
 ### When to Use MCP First
 
