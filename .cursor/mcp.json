@@ -32,32 +32,13 @@
     },
     "supabase": {
       "command": "npx",
-      "args": ["-y", "supabase-mcp-server@latest"],
-      "env": {
-        "SUPABASE_URL": "${NEXT_PUBLIC_SUPABASE_URL}",
-        "SUPABASE_SERVICE_ROLE_KEY": "${SUPABASE_SERVICE_ROLE_KEY}"
-      },
-      "description": "Direct access to Supabase database, auth, and edge functions"
-    },
-    "serena": {
-      "command": "uvx",
       "args": [
-        "--from",
-        "git+https://github.com/oraios/serena",
-        "serena",
-        "start-mcp-server",
-        "--project-root",
-        "."
+        "-y",
+        "@supabase/mcp-server-supabase@latest",
+        "--access-token",
+        "${SUPABASE_ACCESS_TOKEN}"
       ],
-      "description": "Symbol-level code retrieval and editing - IDE-like capabilities for AI"
-    },
-    "sentry": {
-      "command": "npx",
-      "args": ["-y", "@sentry/mcp-server-stdio@latest"],
-      "env": {
-        "SENTRY_AUTH_TOKEN": "${SENTRY_AUTH_TOKEN}"
-      },
-      "description": "Error monitoring, crash reports, and production debugging from Sentry"
+      "description": "Direct access to Supabase database, auth, and edge functions"
     }
   }
 }

@@ -64,7 +64,6 @@ MCP servers provide REAL-TIME access to external systems. **Prefer them over sta
 
 | MCP Server | Use For | Instead Of |
 |------------|---------|------------|
-| **Serena** | Symbol-level code ops (find refs, rename) | Grep for semantic queries |
 | **Context7** | Library docs (Next.js, React, Supabase) | Web search for API syntax |
 | **Supabase** | Live DB queries, auth, RLS policies | Guessing schema |
 | **Playwright** | E2E testing, screenshots | Manual browser testing |
@@ -72,7 +71,6 @@ MCP servers provide REAL-TIME access to external systems. **Prefer them over sta
 | **Sequential Thinking** | Complex multi-step reasoning | Ad-hoc problem solving |
 | **Fetch** | Web content retrieval | Assuming content |
 | **Filesystem** | File operations | Shell commands |
-| **Sentry** | Error monitoring, crash reports | Guessing prod issues |
 
 ### When to Use MCP First
 
