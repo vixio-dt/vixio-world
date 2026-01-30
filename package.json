@@ -9,15 +9,22 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@mantine/core": "^8.3.13",
+    "@mantine/hooks": "^8.3.13",
+    "@mantine/notifications": "^8.3.13",
+    "@mantine/spotlight": "^8.3.13",
+    "@react-pdf/renderer": "^4.3.2",
     "@supabase/ssr": "^0.5.2",
     "@supabase/supabase-js": "^2.47.0",
     "clsx": "^2.1.1",
+    "jszip": "^3.10.1",
     "lightningcss": "^1.31.1",
     "lucide-react": "^0.469.0",
     "next": "^16.1.6",
     "openai": "^6.17.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-force-graph-2d": "^1.29.0",
     "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
