@@ -19,7 +19,7 @@
     },
     "sequential-thinking": {
       "command": "npx",
-      "args": ["-y", "@anthropic/mcp-server-sequential-thinking"],
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
       "description": "Dynamic problem-solving through structured thought sequences"
     },
     "supabase": {
@@ -33,7 +33,7 @@
     },
     "github": {
       "command": "npx",
-      "args": ["-y", "@anthropic/mcp-server-github"],
+      "args": ["-y", "@modelcontextprotocol/server-github"],
       "env": {
         "GITHUB_TOKEN": "${GITHUB_TOKEN}"
       },
@@ -41,13 +41,23 @@
     },
     "memory": {
       "command": "npx",
-      "args": ["-y", "@anthropic/mcp-server-memory"],
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
       "description": "Persistent memory across sessions using knowledge graph"
     },
     "fetch": {
       "command": "npx",
-      "args": ["-y", "@anthropic/mcp-server-fetch"],
+      "args": ["-y", "@modelcontextprotocol/server-fetch"],
       "description": "Fetch web content and convert to LLM-friendly format"
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-playwright"],
+      "description": "Browser automation for E2E testing, web scraping, and UI interaction"
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "."],
+      "description": "Secure file operations with configurable access controls"
     }
   }
 }
