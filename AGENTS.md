@@ -23,7 +23,7 @@ alwaysApply: true
   - Update implementation plan if approach changes
   - Never leave documentation stale
 
-6. **MCP-First for Live Data**: Before guessing about database schema, library APIs, production errors, or external state, check if an MCP server can provide real data. Use Supabase MCP for DB, Context7 for docs, Sentry for errors, GitHub for PRs/issues.
+6. **MCP-First for Live Data**: **MANDATORY** - Before implementing ANY code involving external libraries, database, or Next.js features, ALWAYS consult the relevant MCP specialist first. See `.cursor/rules/mcp-first.mdc` for the full decision matrix. This is NOT optional.
 
 </project_rules>
 
@@ -64,7 +64,10 @@ MCP servers provide REAL-TIME access to external systems. **Prefer them over sta
 
 | MCP Server | Use For | Instead Of |
 |------------|---------|------------|
-| **Context7** | Library docs (Next.js, React, Supabase) | Web search for API syntax |
+| **next-devtools** | Next.js runtime errors, routes, Server Actions | Guessing build issues |
+| **Context7** | Library docs (React, Mantine, any npm package) | Web search for API syntax |
+| **eslint** | Linting diagnostics and fixes | Manual lint error fixing |
+| **tailwindcss** | Tailwind utilities, CSS-to-Tailwind | Guessing class names |
 | **Supabase** | Live DB queries, auth, RLS policies | Guessing schema |
 | **Playwright** | E2E testing, screenshots | Manual browser testing |
 | **Memory** | Persist decisions across sessions | Repeating context |
@@ -77,13 +80,15 @@ MCP servers provide REAL-TIME access to external systems. **Prefer them over sta
 
 | Situation | MCP to Use |
 |-----------|------------|
-| "What's the schema for X table?" | Supabase |
-| "How does X work in React 19?" | Context7 |
-| "Find all references to this function" | Serena |
-| "Test the login flow" | Playwright |
-| "What errors are happening in prod?" | Sentry |
-| "Create a PR for this branch" | GitHub |
-| "Remember this architectural decision" | Memory |
+| "Implement X using Mantine/React/any library" | **Context7** (get docs first!) |
+| "Build a Next.js route or Server Action" | **next-devtools** |
+| "What's the schema for X table?" | **Supabase** |
+| "Fix this lint error" | **eslint** |
+| "Style this component with Tailwind" | **tailwindcss** |
+| "Test the login flow" | **Playwright** |
+| "What errors are happening in prod?" | **Sentry** |
+| "Remember this architectural decision" | **Memory** |
+| "Complex problem needs step-by-step thinking" | **Sequential Thinking** |
 
 </mcp_servers>
 

@@ -1,0 +1,68 @@
+---
+description: MANDATORY - Always consult MCP specialists before implementing
+alwaysApply: true
+---
+
+# MCP-First: Consult the Specialist
+
+**This rule is MANDATORY and takes priority over speed or convenience.**
+
+## Core Principle
+
+MCP servers are domain specialists with up-to-date knowledge. Before writing code that involves their domain, you MUST consult them first.
+
+## Decision Matrix
+
+| Before Doing This... | FIRST Consult This MCP |
+|---------------------|------------------------|
+| Using any external library (React, Mantine, etc.) | **Context7** - Get current API docs |
+| Writing database queries or schema changes | **Supabase** - Verify actual schema |
+| Writing Next.js code (routes, server actions) | **next-devtools** - Check for errors, get best practices |
+| Styling with Tailwind classes | **tailwindcss** - Get correct utilities |
+| Fixing linter errors | **eslint** - Get proper fixes |
+| Testing UI or frontend | **Playwright** - Automate browser tests |
+| Debugging production issues | **Sentry** - Check real error data |
+| Complex multi-step reasoning | **Sequential Thinking** - Structure the approach |
+| Remembering project decisions | **Memory** - Store/retrieve context |
+
+## Workflow
+
+```
+1. STOP before implementing
+2. IDENTIFY which MCP specialist applies
+3. CONSULT the MCP for current information
+4. THEN implement using MCP guidance
+5. VERIFY with Playwright if UI-related
+```
+
+## Examples
+
+### BAD (Don't do this)
+```
+User: "Add Mantine Spotlight"
+Agent: *writes code from memory or plan snippets*
+```
+
+### GOOD (Do this)
+```
+User: "Add Mantine Spotlight"
+Agent: *calls Context7 MCP to get @mantine/spotlight docs*
+Agent: *implements using current API from docs*
+```
+
+## Why This Matters
+
+- Library APIs change between versions
+- Plan snippets may be outdated
+- Your actual database schema is the truth
+- Runtime errors are only visible via Next.js devtools
+- Guessing leads to bugs
+
+## Exceptions
+
+Only skip MCP consultation when:
+1. Making trivial edits (typos, comments)
+2. The MCP is unavailable/erroring
+3. User explicitly says to skip
+
+**When in doubt, consult the specialist.**

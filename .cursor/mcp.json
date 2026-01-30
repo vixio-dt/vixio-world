@@ -1,9 +1,24 @@
 {
   "mcpServers": {
+    "next-devtools": {
+      "command": "npx",
+      "args": ["-y", "next-devtools-mcp@latest"],
+      "description": "Next.js runtime errors, application state, routes, and Server Actions inspection"
+    },
     "context7": {
       "command": "npx",
       "args": ["-y", "@upstash/context7-mcp@latest"],
       "description": "Up-to-date documentation for 4000+ libraries including Next.js, React, Supabase"
+    },
+    "eslint": {
+      "command": "npx",
+      "args": ["-y", "@eslint/mcp@latest"],
+      "description": "Official ESLint MCP for linting diagnostics and fixes"
+    },
+    "tailwindcss": {
+      "command": "npx",
+      "args": ["-y", "tailwindcss-mcp-server@latest"],
+      "description": "Tailwind CSS utilities, class lookups, and CSS-to-Tailwind conversion"
     },
     "sequential-thinking": {
       "command": "npx",
