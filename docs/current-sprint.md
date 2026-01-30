@@ -1,7 +1,36 @@
 # Current Sprint
 
-**Status:** Phase 2 UI Integration complete. All entity types have full CRUD with content blocks.
+**Status:** Phase 2+3 Consolidated design complete. Ready for implementation.
 **Updated:** 2026-01-29
+
+---
+
+## Next Up: Phase 2+3 Consolidated Implementation
+
+### Design Complete (2026-01-29)
+
+Combining Phase 2 remaining items with Phase 3 for a complete, impressive product.
+
+**Design:** [Phase 2+3 Consolidated Design](./plans/2026-01-29-phase2-3-consolidated-design.md)
+
+| Category | Features | Status |
+|----------|----------|--------|
+| **@Mentions** | Inline autocomplete, entity linking | Design approved |
+| **Relationship Graph** | Interactive force-directed visualization | Design approved |
+| **Export System** | PDF World Bible, Markdown, JSON | Design approved |
+| **UX Polish** | Global search, keyboard shortcuts, breadcrumbs | Design approved |
+
+### Implementation Order
+1. @mentions system - Core relationship feature
+2. Relationship graph - Visual representation
+3. Global search - UX essential
+4. Export system - Complete the workflow
+5. UX polish - Keyboard shortcuts, breadcrumbs, loading states
+
+### Dependencies to Install
+- `react-force-graph-2d` - Graph visualization
+- `@react-pdf/renderer` - PDF generation
+- `jszip` - Markdown multi-file export
 
 ---
 
