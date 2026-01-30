@@ -100,6 +100,7 @@ Use `/command` in chat to trigger workflows:
 
 | Command | Triggers |
 |---------|----------|
+| `/continue` | **Run pre-action checklist, then proceed with work** |
 | `/brainstorm` | Design session before building |
 | `/plan` | Create implementation plan |
 | `/execute` | Run plan with checkpoints |

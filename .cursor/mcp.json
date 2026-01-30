@@ -59,6 +59,19 @@
       "command": "npx",
       "args": ["-y", "mcp-remote@latest", "https://mcp.sentry.dev/mcp"],
       "description": "Error monitoring, crash reports, and AI debugging from Sentry"
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+      },
+      "description": "GitHub repository management, PRs, issues, and code search"
+    },
+    "antvis-chart": {
+      "command": "npx",
+      "args": ["-y", "@antv/mcp-server-chart"],
+      "description": "25+ visualization charts including network graphs for data analysis and exports"
     }
   }
 }

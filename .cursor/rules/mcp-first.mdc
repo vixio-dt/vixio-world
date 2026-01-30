@@ -24,6 +24,8 @@ MCP servers are domain specialists with up-to-date knowledge. Before writing cod
 | Debugging production issues | **Sentry** - Check real error data |
 | Complex multi-step reasoning | **Sequential Thinking** - Structure the approach |
 | Remembering project decisions | **Memory** - Store/retrieve context |
+| GitHub operations (PRs, issues, commits) | **GitHub** - Repo management and code search |
+| Generating charts/diagrams for export | **AntVis Chart** - 25+ chart types from JSON data |
 
 ## Workflow
 

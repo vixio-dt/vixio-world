@@ -14,10 +14,26 @@ Read and follow `AGENTS.md` at the repository root for all development work.
 3. **Brainstorm Before Build** - Use `/brainstorm` before creative work
 4. **Verify Before Done** - Use `/verify` before claiming completion
 5. **Update Docs** - Keep `docs/current-sprint.md` current
+6. **MCP-First** - Consult MCP specialists before implementing (see `mcp-first.mdc`)
 
-## Available Commands
+## Pre-Action Checklist
 
-Use `/command` to trigger workflows. See AGENTS.md for full list.
+**Before ANY implementation work**, run the checklist in `pre-action-checklist.mdc`:
+- 95% confidence check
+- Brainstorm if creative work
+- MCP consultation if external data/APIs
+- Plan exists for complex work
+- Matching skill identified
+
+## Key Commands
+
+| Command | Use |
+|---------|-----|
+| `/continue` | **Run checklist and proceed** - Use instead of "continue" |
+| `/brainstorm` | Design session before building |
+| `/verify` | Pre-completion verification |
+
+See AGENTS.md for full command list.
 
 ## Skills Location
 
@@ -27,5 +43,5 @@ Skills are in `.claude/skills/`. The commands read them automatically.
 
 Three subagents available for parallel execution:
 - `implementer` - Execute tasks
-- `spec-reviewer` - Verify spec compliance  
+- `spec-reviewer` - Verify spec compliance 
 - `code-reviewer` - Review code quality

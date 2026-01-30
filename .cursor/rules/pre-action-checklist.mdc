@@ -1,0 +1,103 @@
+---
+description: Pre-action checklist - STOP and verify before implementing, creating, or modifying code
+alwaysApply: true
+---
+
+# Pre-Action Checklist
+
+**Before taking ANY implementation action, STOP and run this checklist.**
+
+## When This Applies
+
+This checklist is MANDATORY before:
+- Implementing features or components
+- Modifying existing code
+- Creating new files
+- Executing implementation plans
+- Making architectural changes
+- Writing database queries or schema changes
+
+## The Checklist
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  PRE-ACTION CHECKLIST - Verify ALL before proceeding        │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  □ 1. CONFIDENCE: Do I have 95% confidence I understand?    │
+│       → If NO: Ask clarifying questions first               │
+│                                                             │
+│  □ 2. BRAINSTORM: Is this creative/new work?                │
+│       → If YES: Use brainstorming skill first               │
+│                                                             │
+│  □ 3. MCP-FIRST: Does this involve external data/APIs?      │
+│       → Libraries/docs → Context7                           │
+│       → Database/schema → Supabase MCP                      │
+│       → Next.js runtime → next-devtools MCP                 │
+│       → Styling/Tailwind → tailwindcss MCP                  │
+│       → Linting errors → eslint MCP                         │
+│       → UI testing → Playwright MCP                         │
+│       → Production errors → Sentry MCP                      │
+│       → PRs/issues → GitHub MCP                             │
+│       → Charts/diagrams → AntVis Chart MCP                  │
+│                                                             │
+│  □ 4. COMPLEX REASONING: Does this involve...               │
+│       → Choosing between 3+ approaches? → Sequential Think  │
+│       → Debugging with multiple hypotheses? → Seq Think     │
+│       → Ambiguous/conflicting requirements? → Seq Think     │
+│       → Already failed once at this? → Seq Think            │
+│                                                             │
+│  □ 5. PLAN EXISTS: Is there an implementation plan?         │
+│       → If NO for complex work: Create plan first           │
+│       → If YES: Follow the plan steps                       │
+│                                                             │
+│  □ 6. SKILL MATCH: Does a skill apply to this work?         │
+│       → Check skills table in AGENTS.md                     │
+│       → Read and follow the matching skill                  │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+## After Implementation
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  POST-ACTION CHECKLIST - Before claiming done               │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  □ 1. VERIFY: Use verification-before-completion skill      │
+│       → Run actual commands to confirm success              │
+│       → Evidence before assertions                          │
+│                                                             │
+│  □ 2. DOCS: Update relevant documentation                   │
+│       → docs/current-sprint.md                              │
+│       → Implementation plans                                │
+│       → Roadmap if scope changed                            │
+│                                                             │
+│  □ 3. LINT: Check for introduced errors                     │
+│       → Run ReadLints on edited files                       │
+│       → Fix any new errors                                  │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+## Quick Reference
+
+| Trigger | Required Action |
+|---------|-----------------|
+| "implement X" | Full pre-action checklist |
+| "create X" | Full pre-action checklist |
+| "modify X" | Full pre-action checklist |
+| "fix bug" | Systematic debugging skill first |
+| "add feature" | Brainstorm + plan first |
+| "continue" | Re-verify checklist, then proceed |
+
+## Exceptions
+
+Skip checklist ONLY for:
+- Trivial edits (typos, comments, formatting)
+- Reading/exploring code (no changes)
+- Answering questions (no implementation)
+- User explicitly says to skip
+
+**When in doubt, run the checklist.**
