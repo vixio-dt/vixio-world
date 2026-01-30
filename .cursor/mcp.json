@@ -1,5 +1,44 @@
 {
   "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp@latest"],
+      "description": "Up-to-date documentation for 4000+ libraries including Next.js, React, Supabase"
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "description": "Dynamic problem-solving through structured thought sequences"
+    },
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "description": "Persistent memory across sessions using knowledge graph"
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "."],
+      "description": "Secure file operations with configurable access controls"
+    },
+    "fetch": {
+      "command": "uvx",
+      "args": ["mcp-server-fetch"],
+      "description": "Fetch web content and convert to LLM-friendly format"
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest"],
+      "description": "Browser automation for E2E testing, web scraping, and UI interaction"
+    },
+    "supabase": {
+      "command": "npx",
+      "args": ["-y", "supabase-mcp-server@latest"],
+      "env": {
+        "SUPABASE_URL": "${NEXT_PUBLIC_SUPABASE_URL}",
+        "SUPABASE_SERVICE_ROLE_KEY": "${SUPABASE_SERVICE_ROLE_KEY}"
+      },
+      "description": "Direct access to Supabase database, auth, and edge functions"
+    },
     "serena": {
       "command": "uvx",
       "args": [
@@ -12,60 +51,11 @@
       ],
       "description": "Symbol-level code retrieval and editing - IDE-like capabilities for AI"
     },
-    "context7": {
-      "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp@latest"],
-      "description": "Up-to-date documentation for 4000+ libraries including Next.js, React, Supabase"
-    },
-    "sequential-thinking": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
-      "description": "Dynamic problem-solving through structured thought sequences"
-    },
-    "supabase": {
-      "command": "npx",
-      "args": ["-y", "@supabase/mcp-server@latest"],
-      "env": {
-        "SUPABASE_URL": "${NEXT_PUBLIC_SUPABASE_URL}",
-        "SUPABASE_SERVICE_ROLE_KEY": "${SUPABASE_SERVICE_ROLE_KEY}"
-      },
-      "description": "Direct access to Supabase database, auth, and edge functions"
-    },
-    "github": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
-      "env": {
-        "GITHUB_TOKEN": "${GITHUB_TOKEN}"
-      },
-      "description": "GitHub API for PRs, issues, commits, and repository management"
-    },
-    "memory": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-memory"],
-      "description": "Persistent memory across sessions using knowledge graph"
-    },
-    "fetch": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-fetch"],
-      "description": "Fetch web content and convert to LLM-friendly format"
-    },
-    "playwright": {
-      "command": "npx",
-      "args": ["-y", "@anthropic/mcp-server-playwright"],
-      "description": "Browser automation for E2E testing, web scraping, and UI interaction"
-    },
-    "filesystem": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "."],
-      "description": "Secure file operations with configurable access controls"
-    },
     "sentry": {
       "command": "npx",
-      "args": ["-y", "@sentry/mcp-server@latest"],
+      "args": ["-y", "@sentry/mcp-server-stdio@latest"],
       "env": {
-        "SENTRY_AUTH_TOKEN": "${SENTRY_AUTH_TOKEN}",
-        "SENTRY_ORG": "${SENTRY_ORG}",
-        "SENTRY_PROJECT": "${SENTRY_PROJECT}"
+        "SENTRY_AUTH_TOKEN": "${SENTRY_AUTH_TOKEN}"
       },
       "description": "Error monitoring, crash reports, and production debugging from Sentry"
     }
