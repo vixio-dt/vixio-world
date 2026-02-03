@@ -8,4 +8,17 @@ app.message(async ({ message, say }) => {
   }
 })
 
+// Graceful shutdown handlers
+process.on('SIGINT', async () => {
+  console.log('\n🛑 Shutting down gracefully...')
+  await app.stop()
+  process.exit(0)
+})
+
+process.on('SIGTERM', async () => {
+  console.log('\n🛑 Received SIGTERM, shutting down...')
+  await app.stop()
+  process.exit(0)
+})
+
 startBot().catch(console.error)
