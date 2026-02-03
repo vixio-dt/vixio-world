@@ -47,9 +47,9 @@ export function Sidebar() {
           <Image
             src="/vixio-logo.svg"
             alt="Vixio"
-            width={120}
-            height={40}
-            className="h-10 w-auto"
+            width={160}
+            height={80}
+            className="h-20 w-auto"
           />
         </Link>
       </div>
