@@ -40,7 +40,7 @@ function renderTextWithMentions(text: string): React.ReactNode[] {
       <Link
         key={`${type}-${id}-${match.index}`}
         href={`${path}/${id}`}
-        className="inline-flex items-center gap-1 px-1.5 py-0.5 bg-sky-50 text-sky-700 hover:bg-sky-100 rounded text-sm font-medium transition-colors"
+        className="inline-flex items-center gap-1 px-1.5 py-0.5 bg-cyan-50 text-cyan-700 hover:bg-cyan-100 rounded text-sm font-medium transition-colors"
       >
         @{name}
       </Link>

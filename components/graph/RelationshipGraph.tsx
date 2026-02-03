@@ -16,13 +16,13 @@ interface RelationshipGraphProps {
 }
 
 const entityColors: Record<EntityType, string> = {
-  character: '#0ea5e9', // sky-500
+  character: '#22d3ee', // cyan-400
   location: '#10b981', // emerald-500
   organization: '#a855f7', // purple-500
   event: '#f43f5e', // rose-500
   item: '#f59e0b', // amber-500
   rule: '#6366f1', // indigo-500
-  story: '#06b6d4', // cyan-500
+  story: '#14b8a6', // teal-500
 }
 
 const entityPaths: Record<EntityType, string> = {

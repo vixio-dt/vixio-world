@@ -222,7 +222,7 @@ export function renderMentions(text: string): React.ReactNode[] {
     parts.push(
       <span
         key={`${type}-${id}-${match.index}`}
-        className="inline-flex items-center gap-1 px-1.5 py-0.5 bg-sky-50 text-sky-700 rounded text-sm font-medium"
+        className="inline-flex items-center gap-1 px-1.5 py-0.5 bg-cyan-50 text-cyan-700 rounded text-sm font-medium"
       >
         @{name}
       </span>

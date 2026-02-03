@@ -11,12 +11,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         className={cn(
-          'inline-flex items-center justify-center font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed',
+          'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed',
           {
-            'bg-sky-500 text-white hover:bg-sky-600 focus:ring-sky-500': variant === 'primary',
-            'bg-slate-100 text-slate-900 hover:bg-slate-200 focus:ring-slate-500': variant === 'secondary',
-            'border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 focus:ring-slate-500': variant === 'outline',
-            'text-slate-700 hover:bg-slate-100 focus:ring-slate-500': variant === 'ghost',
+            'bg-gradient-to-r from-cyan-400 to-teal-400 text-white hover:from-cyan-500 hover:to-teal-500 focus:ring-cyan-400 shadow-lg shadow-cyan-500/20': variant === 'primary',
+            'bg-cyan-50 text-cyan-700 hover:bg-cyan-100 focus:ring-cyan-400': variant === 'secondary',
+            'border border-cyan-200 bg-white text-slate-700 hover:bg-cyan-50 hover:border-cyan-300 focus:ring-cyan-400': variant === 'outline',
+            'text-slate-700 hover:bg-cyan-50 hover:text-cyan-700 focus:ring-cyan-400': variant === 'ghost',
             'bg-red-500 text-white hover:bg-red-600 focus:ring-red-500': variant === 'destructive',
           },
           {

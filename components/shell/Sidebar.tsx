@@ -43,14 +43,14 @@ export function Sidebar() {
     <aside className="w-64 h-screen bg-white border-r border-slate-200 flex flex-col">
       {/* Logo */}
       <div className="p-4 border-b border-slate-200">
-        <Link href="/dashboard" className="flex items-center gap-3">
+        <Link href="/dashboard" className="flex items-center justify-center">
           <Image
             src="/vixio-logo.svg"
             alt="Vixio"
-            width={32}
-            height={32}
+            width={120}
+            height={40}
+            className="h-10 w-auto"
           />
-          <span className="font-semibold text-slate-900">Vixio</span>
         </Link>
       </div>
 
@@ -68,10 +68,10 @@ export function Sidebar() {
               key={item.href}
               href={item.href}
               className={cn(
-                'flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors',
+                'flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200',
                 isActive
-                  ? 'bg-sky-50 text-sky-600'
-                  : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                  ? 'bg-gradient-to-r from-cyan-50 to-teal-50 text-cyan-600 shadow-sm'
+                  : 'text-slate-600 hover:bg-cyan-50/50 hover:text-cyan-700'
               )}
             >
               <item.icon className="w-5 h-5" />
@@ -90,10 +90,10 @@ export function Sidebar() {
               key={item.href}
               href={item.href}
               className={cn(
-                'flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors',
+                'flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200',
                 isActive
-                  ? 'bg-sky-50 text-sky-600'
-                  : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                  ? 'bg-gradient-to-r from-cyan-50 to-teal-50 text-cyan-600 shadow-sm'
+                  : 'text-slate-600 hover:bg-cyan-50/50 hover:text-cyan-700'
               )}
             >
               <item.icon className="w-5 h-5" />

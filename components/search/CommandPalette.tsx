@@ -32,13 +32,13 @@ const entityPaths: Record<EntityType, string> = {
 }
 
 const entityColors: Record<EntityType, string> = {
-  character: 'text-sky-600 bg-sky-50',
+  character: 'text-cyan-600 bg-cyan-50',
   location: 'text-emerald-600 bg-emerald-50',
   organization: 'text-purple-600 bg-purple-50',
   event: 'text-rose-600 bg-rose-50',
   item: 'text-amber-600 bg-amber-50',
   rule: 'text-indigo-600 bg-indigo-50',
-  story: 'text-cyan-600 bg-cyan-50',
+  story: 'text-teal-600 bg-teal-50',
 }
 
 export function CommandPalette({ worldId }: CommandPaletteProps) {
@@ -181,8 +181,8 @@ export function CommandPalette({ worldId }: CommandPaletteProps) {
                   return (
                     <li
                       key={`${result.type}-${result.id}`}
-                      className={`flex items-center gap-3 px-4 py-2 cursor-pointer ${
-                        index === selectedIndex ? 'bg-slate-100' : 'hover:bg-slate-50'
+                      className={`flex items-center gap-3 px-4 py-2 cursor-pointer transition-colors ${
+                        index === selectedIndex ? 'bg-cyan-50' : 'hover:bg-slate-50'
                       }`}
                       onClick={() => handleSelect(result)}
                     >

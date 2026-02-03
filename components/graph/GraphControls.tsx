@@ -14,7 +14,7 @@ interface GraphControlsProps {
 }
 
 const entityTypes: { type: EntityType; icon: typeof Users; label: string; color: string }[] = [
-  { type: 'character', icon: Users, label: 'Characters', color: 'bg-sky-500' },
+  { type: 'character', icon: Users, label: 'Characters', color: 'bg-cyan-500' },
   { type: 'location', icon: MapPin, label: 'Locations', color: 'bg-emerald-500' },
   { type: 'organization', icon: Building2, label: 'Organizations', color: 'bg-purple-500' },
   { type: 'event', icon: Calendar, label: 'Events', color: 'bg-rose-500' },

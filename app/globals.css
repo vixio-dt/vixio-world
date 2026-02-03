@@ -6,20 +6,25 @@
 :root {
   --background: #ffffff;
   --foreground: #0f172a;
-  --primary: #0ea5e9;
+  /* Vixio brand colors - cyan to yellow gradient palette */
+  --primary: #22d3ee;
+  --primary-hover: #06b6d4;
   --primary-foreground: #ffffff;
-  --secondary: #f1f5f9;
+  --secondary: #f0fdfa;
   --secondary-foreground: #0f172a;
-  --muted: #f1f5f9;
+  --muted: #f0fdfa;
   --muted-foreground: #64748b;
-  --accent: #f1f5f9;
+  --accent: #a5f3fc;
   --accent-foreground: #0f172a;
+  --highlight: #fef9c3;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --border: #e2e8f0;
-  --input: #e2e8f0;
-  --ring: #0ea5e9;
-  --radius: 0.5rem;
+  --border: #cffafe;
+  --input: #e0f2fe;
+  --ring: #22d3ee;
+  --radius: 0.75rem;
+  /* Gradient for brand elements */
+  --gradient-brand: linear-gradient(135deg, #67e8f9 0%, #a5f3fc 50%, #fef9c3 100%);
 }
 
 body {

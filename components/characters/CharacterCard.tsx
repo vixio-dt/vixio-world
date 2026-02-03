@@ -17,11 +17,11 @@ export function CharacterCard({ character }: CharacterCardProps) {
   return (
     <Link
       href={`/characters/${character.id}`}
-      className="group bg-white rounded-xl border border-slate-200 p-6 hover:border-sky-300 hover:shadow-md transition-all"
+      className="group bg-white rounded-xl border border-slate-200 p-6 hover:border-cyan-300 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-200"
     >
       <div className="flex items-start gap-4">
-        <div className="p-3 bg-sky-50 rounded-lg group-hover:bg-sky-100 transition-colors">
-          <User className="w-6 h-6 text-sky-600" />
+        <div className="p-3 bg-cyan-50 rounded-xl group-hover:bg-cyan-100 transition-colors">
+          <User className="w-6 h-6 text-cyan-600" />
         </div>
         <div className="flex-1 min-w-0">
           <h3 className="text-lg font-semibold text-slate-900 truncate">

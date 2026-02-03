@@ -44,7 +44,7 @@ export default function SignupPage() {
             type="email"
             autoComplete="email"
             required
-            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-colors"
+            className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-cyan-400/20 focus:border-cyan-400 outline-none transition-all duration-200 hover:border-cyan-300"
             placeholder="you@example.com"
           />
         </div>
@@ -60,7 +60,7 @@ export default function SignupPage() {
             autoComplete="new-password"
             required
             minLength={6}
-            className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none transition-colors"
+            className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-cyan-400/20 focus:border-cyan-400 outline-none transition-all duration-200 hover:border-cyan-300"
             placeholder="••••••••"
           />
           <p className="mt-1 text-sm text-slate-500">Minimum 6 characters</p>
@@ -69,7 +69,7 @@ export default function SignupPage() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-3 px-4 bg-sky-500 text-white font-medium rounded-lg hover:bg-sky-600 focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="w-full py-3 px-4 bg-gradient-to-r from-cyan-400 to-teal-400 text-white font-medium rounded-xl hover:from-cyan-500 hover:to-teal-500 focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg shadow-cyan-500/20"
         >
           {loading ? 'Creating account...' : 'Create account'}
         </button>
@@ -77,7 +77,7 @@ export default function SignupPage() {
 
       <p className="mt-8 text-center text-slate-600">
         Already have an account?{' '}
-        <Link href="/login" className="text-sky-500 hover:text-sky-600 font-medium">
+        <Link href="/login" className="text-cyan-500 hover:text-cyan-600 font-medium">
           Sign in
         </Link>
       </p>

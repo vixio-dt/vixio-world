@@ -24,7 +24,7 @@ const entityIcons: Record<EntityType, typeof Users> = {
 }
 
 const entityColors: Record<EntityType, string> = {
-  character: 'text-sky-600 bg-sky-50',
+  character: 'text-cyan-600 bg-cyan-50',
   location: 'text-emerald-600 bg-emerald-50',
   organization: 'text-purple-600 bg-purple-50',
   event: 'text-rose-600 bg-rose-50',

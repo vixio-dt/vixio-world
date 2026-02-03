@@ -86,14 +86,14 @@ export function WorldSwitcher() {
           onChange={(e) => setNewWorldName(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && createWorld()}
           placeholder="Enter world name..."
-          className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
+          className="w-full px-3 py-2 text-sm border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400/20 focus:border-cyan-400 transition-all duration-200"
           autoFocus
         />
         <div className="flex gap-2">
           <button
             onClick={createWorld}
             disabled={!newWorldName.trim()}
-            className="flex-1 px-3 py-2 bg-sky-500 text-white rounded-lg text-sm font-medium hover:bg-sky-600 transition-colors disabled:opacity-50"
+            className="flex-1 px-3 py-2 bg-gradient-to-r from-cyan-400 to-teal-400 text-white rounded-xl text-sm font-medium hover:from-cyan-500 hover:to-teal-500 transition-all duration-200 disabled:opacity-50"
           >
             Create World
           </button>
@@ -130,8 +130,8 @@ export function WorldSwitcher() {
               <button
                 key={world.id}
                 onClick={() => selectWorld(world)}
-                className={`w-full flex items-center gap-2 px-3 py-2 text-sm text-left hover:bg-slate-50 transition-colors ${
-                  currentWorld?.id === world.id ? 'bg-sky-50 text-sky-600' : 'text-slate-700'
+                className={`w-full flex items-center gap-2 px-3 py-2 text-sm text-left hover:bg-cyan-50/50 transition-colors ${
+                  currentWorld?.id === world.id ? 'bg-cyan-50 text-cyan-600' : 'text-slate-700'
                 }`}
               >
                 <Globe className="w-4 h-4 flex-shrink-0" />
@@ -142,7 +142,7 @@ export function WorldSwitcher() {
           <div className="border-t border-slate-200">
             <button
               onClick={() => { setIsCreating(true); setIsOpen(false); }}
-              className="w-full flex items-center gap-2 px-3 py-2 text-sm text-sky-600 hover:bg-sky-50 transition-colors"
+              className="w-full flex items-center gap-2 px-3 py-2 text-sm text-cyan-600 hover:bg-cyan-50 transition-colors"
             >
               <Plus className="w-4 h-4" />
               Create new world

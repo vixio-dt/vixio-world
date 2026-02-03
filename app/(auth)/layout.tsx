@@ -8,17 +8,16 @@ export default function AuthLayout({
   return (
     <div className="min-h-screen flex">
       {/* Left side - branding */}
-      <div className="hidden lg:flex lg:w-1/2 bg-sky-500 flex-col justify-center items-center p-12">
-        <div className="max-w-md text-center text-white">
+      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-cyan-400 via-teal-400 to-emerald-300 flex-col justify-center items-center p-12">
+        <div className="max-w-md text-center">
           <Image
             src="/vixio-logo.svg"
             alt="Vixio"
-            width={80}
+            width={240}
             height={80}
             className="mx-auto mb-8"
           />
-          <h1 className="text-4xl font-bold mb-4">Vixio Worldbuilder</h1>
-          <p className="text-xl text-sky-100">
+          <p className="text-xl text-white/90">
             Visual asset-driven creative platform for worldbuilding and production
           </p>
         </div>

@@ -88,11 +88,11 @@ export default async function DashboardPage() {
           <Link
             key={entity.href}
             href={entity.href}
-            className="group bg-white rounded-xl border border-slate-200 p-6 hover:border-sky-300 hover:shadow-md transition-all"
+            className="group bg-white rounded-xl border border-slate-200 p-6 hover:border-cyan-300 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-200"
           >
             <div className="flex items-start justify-between mb-4">
-              <div className="p-3 bg-sky-50 rounded-lg group-hover:bg-sky-100 transition-colors">
-                <entity.icon className="w-6 h-6 text-sky-600" />
+              <div className="p-3 bg-gradient-to-br from-cyan-50 to-teal-50 rounded-xl group-hover:from-cyan-100 group-hover:to-teal-100 transition-colors">
+                <entity.icon className="w-6 h-6 text-cyan-600" />
               </div>
               <span className="text-2xl font-bold text-slate-900">
                 {counts[entity.table]}
@@ -104,7 +104,7 @@ export default async function DashboardPage() {
             <p className="text-sm text-slate-600 mb-4">
               {entity.description}
             </p>
-            <div className="flex items-center text-sm text-sky-600 font-medium group-hover:gap-2 transition-all">
+            <div className="flex items-center text-sm text-cyan-600 font-medium group-hover:gap-2 transition-all">
               <span>View all</span>
               <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>

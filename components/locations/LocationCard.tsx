@@ -22,7 +22,7 @@ const typeLabels: Record<string, string> = {
 export function LocationCard({ location }: LocationCardProps) {
   return (
     <Link href={`/locations/${location.id}`}>
-      <Card className="hover:border-sky-300 transition-colors cursor-pointer h-full">
+      <Card className="hover:border-cyan-300 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-200 cursor-pointer h-full">
         <CardContent className="p-4">
           <div className="flex items-start gap-3">
             <div className="p-2 bg-emerald-50 rounded-lg">
