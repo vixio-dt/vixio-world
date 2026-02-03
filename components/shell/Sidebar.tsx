@@ -14,7 +14,8 @@ import {
   BookOpen,
   MessageSquare,
   Download,
-  Network
+  Network,
+  Upload
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { WorldSwitcher } from './WorldSwitcher'
@@ -32,6 +33,7 @@ const navItems = [
 ]
 
 const bottomNavItems = [
+  { href: '/import', label: 'Import', icon: Upload },
   { href: '/chat', label: 'AI Chat', icon: MessageSquare },
   { href: '/export', label: 'Export', icon: Download },
 ]

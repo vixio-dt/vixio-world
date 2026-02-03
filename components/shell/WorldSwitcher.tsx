@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react'
 import { ChevronDown, Plus, Globe } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
+import { setCurrentWorldId, getCurrentWorldId } from '@/lib/utils/world-context'
+import { WorldOnboarding } from './WorldOnboarding'
 import type { World } from '@/lib/types/database'
 
 export function WorldSwitcher() {
@@ -10,8 +12,7 @@ export function WorldSwitcher() {
   const [currentWorld, setCurrentWorld] = useState<World | null>(null)
   const [isOpen, setIsOpen] = useState(false)
   const [loading, setLoading] = useState(true)
-  const [isCreating, setIsCreating] = useState(false)
-  const [newWorldName, setNewWorldName] = useState('')
+  const [showOnboarding, setShowOnboarding] = useState(false)
 
   async function loadWorlds() {
     const supabase = createClient()
@@ -25,9 +26,12 @@ export function WorldSwitcher() {
       setWorlds(data as World[])
       // Set first world as current if available
       if (data.length > 0) {
-        const savedWorldId = localStorage.getItem('currentWorldId')
+        const savedWorldId = getCurrentWorldId()
         const savedWorld = (data as World[]).find(w => w.id === savedWorldId)
-        setCurrentWorld(savedWorld || data[0])
+        const worldToSelect = savedWorld || data[0]
+        setCurrentWorld(worldToSelect)
+        // Sync to both localStorage and cookie
+        setCurrentWorldId(worldToSelect.id)
       }
     }
     setLoading(false)
@@ -38,37 +42,26 @@ export function WorldSwitcher() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  async function createWorld() {
-    if (!newWorldName.trim()) return
-
-    const supabase = createClient()
-    const { data: { user } } = await supabase.auth.getUser()
-    
-    if (!user) return
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data, error } = await (supabase as any)
-      .from('worlds')
-      .insert({ user_id: user.id, name: newWorldName.trim() })
-      .select()
-      .single()
-
-    if (!error && data) {
-      const newWorld = data as World
-      setWorlds([newWorld, ...worlds])
-      setCurrentWorld(newWorld)
-      localStorage.setItem('currentWorldId', newWorld.id)
-      setNewWorldName('')
-      setIsCreating(false)
-      setIsOpen(false)
-    }
-  }
-
   function selectWorld(world: World) {
     setCurrentWorld(world)
     setIsOpen(false)
-    // Store in localStorage for persistence
-    localStorage.setItem('currentWorldId', world.id)
+    // Sync to both localStorage and cookie
+    setCurrentWorldId(world.id)
+    // Refresh to update server components
+    window.location.reload()
+  }
+
+  // Show onboarding when no worlds exist
+  useEffect(() => {
+    if (!loading && worlds.length === 0) {
+      setShowOnboarding(true)
+    }
+  }, [loading, worlds.length])
+
+  function handleWorldCreated(world: World) {
+    setWorlds([world, ...worlds])
+    setCurrentWorld(world)
+    setShowOnboarding(false)
   }
 
   if (loading) {
@@ -77,36 +70,23 @@ export function WorldSwitcher() {
     )
   }
 
-  if (worlds.length === 0 || isCreating) {
+  // When no worlds, show a button to open onboarding
+  if (worlds.length === 0) {
     return (
-      <div className="space-y-2">
-        <input
-          type="text"
-          value={newWorldName}
-          onChange={(e) => setNewWorldName(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && createWorld()}
-          placeholder="Enter world name..."
-          className="w-full px-3 py-2 text-sm border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400/20 focus:border-cyan-400 transition-all duration-200"
-          autoFocus
+      <>
+        <button
+          onClick={() => setShowOnboarding(true)}
+          className="w-full px-3 py-2 bg-gradient-to-r from-cyan-400 to-teal-400 text-white rounded-xl text-sm font-medium hover:from-cyan-500 hover:to-teal-500 transition-all duration-200 flex items-center justify-center gap-2"
+        >
+          <Plus className="w-4 h-4" />
+          Get Started
+        </button>
+        <WorldOnboarding
+          isOpen={showOnboarding}
+          onClose={() => setShowOnboarding(false)}
+          onWorldCreated={handleWorldCreated}
         />
-        <div className="flex gap-2">
-          <button
-            onClick={createWorld}
-            disabled={!newWorldName.trim()}
-            className="flex-1 px-3 py-2 bg-gradient-to-r from-cyan-400 to-teal-400 text-white rounded-xl text-sm font-medium hover:from-cyan-500 hover:to-teal-500 transition-all duration-200 disabled:opacity-50"
-          >
-            Create World
-          </button>
-          {worlds.length > 0 && (
-            <button
-              onClick={() => setIsCreating(false)}
-              className="px-3 py-2 bg-slate-100 text-slate-600 rounded-lg text-sm font-medium hover:bg-slate-200 transition-colors"
-            >
-              Cancel
-            </button>
-          )}
-        </div>
-      </div>
+      </>
     )
   }
 
@@ -141,7 +121,7 @@ export function WorldSwitcher() {
           </div>
           <div className="border-t border-slate-200">
             <button
-              onClick={() => { setIsCreating(true); setIsOpen(false); }}
+              onClick={() => { setShowOnboarding(true); setIsOpen(false); }}
               className="w-full flex items-center gap-2 px-3 py-2 text-sm text-cyan-600 hover:bg-cyan-50 transition-colors"
             >
               <Plus className="w-4 h-4" />
@@ -150,6 +130,13 @@ export function WorldSwitcher() {
           </div>
         </div>
       )}
+
+      {/* Onboarding modal for creating/importing worlds */}
+      <WorldOnboarding
+        isOpen={showOnboarding}
+        onClose={() => setShowOnboarding(false)}
+        onWorldCreated={handleWorldCreated}
+      />
     </div>
   )
 }
