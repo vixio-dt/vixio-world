@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
 import { Globe, FileText, Plus, Sparkles, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { setCurrentWorldId } from '@/lib/utils/world-context'
@@ -97,9 +96,10 @@ export function WorldOnboarding({ isOpen, onClose, onWorldCreated }: WorldOnboar
               </p>
 
               <div className="grid gap-4">
-                {/* Import Option - Use Link for reliable navigation */}
-                <Link
-                  href="/import"
+                {/* Import Option - Use button with window.location for reliable navigation in modal */}
+                <button
+                  type="button"
+                  onClick={() => { window.location.href = '/import' }}
                   className="group flex items-start gap-4 p-4 bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 rounded-xl hover:border-amber-300 hover:shadow-lg hover:shadow-amber-500/10 transition-all duration-200 text-left"
                 >
                   <div className="p-3 bg-white rounded-xl shadow-sm group-hover:shadow transition-shadow">
@@ -117,7 +117,7 @@ export function WorldOnboarding({ isOpen, onClose, onWorldCreated }: WorldOnboar
                       Paste your story, script, or world bible and let AI extract characters, locations, and more.
                     </p>
                   </div>
-                </Link>
+                </button>
 
                 {/* Create Option */}
                 <button
