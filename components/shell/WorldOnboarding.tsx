@@ -43,8 +43,8 @@ export function WorldOnboarding({ isOpen, onClose, onWorldCreated }: WorldOnboar
         .single()
 
       if (error) {
-        console.error('Error creating world:', error)
-        alert('Failed to create world. Please try again.')
+        console.error('Error creating world:', JSON.stringify(error, null, 2))
+        alert(`Failed to create world: ${error.message || JSON.stringify(error)}`)
         setImportLoading(false)
         return
       }
@@ -84,8 +84,8 @@ export function WorldOnboarding({ isOpen, onClose, onWorldCreated }: WorldOnboar
         .single()
 
       if (error) {
-        console.error('Error creating world:', error)
-        alert('Failed to create world. Please try again.')
+        console.error('Error creating world:', JSON.stringify(error, null, 2))
+        alert(`Failed to create world: ${error.message || JSON.stringify(error)}`)
         setLoading(false)
         return
       }
