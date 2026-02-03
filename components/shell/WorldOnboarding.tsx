@@ -16,8 +16,51 @@ export function WorldOnboarding({ isOpen, onClose, onWorldCreated }: WorldOnboar
   const [mode, setMode] = useState<'choose' | 'create'>('choose')
   const [worldName, setWorldName] = useState('')
   const [loading, setLoading] = useState(false)
+  const [importLoading, setImportLoading] = useState(false)
 
   if (!isOpen) return null
+
+  // Create a world and navigate to import page
+  async function handleImport() {
+    setImportLoading(true)
+    
+    try {
+      const supabase = createClient()
+      const { data: { user } } = await supabase.auth.getUser()
+      
+      if (!user) {
+        alert('Please log in to import')
+        setImportLoading(false)
+        return
+      }
+
+      // Create a default world for import
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { data, error } = await (supabase as any)
+        .from('worlds')
+        .insert({ user_id: user.id, name: 'Imported World' })
+        .select()
+        .single()
+
+      if (error) {
+        console.error('Error creating world:', error)
+        alert('Failed to create world. Please try again.')
+        setImportLoading(false)
+        return
+      }
+
+      if (data) {
+        const newWorld = data as World
+        setCurrentWorldId(newWorld.id)
+        // Navigate to import page
+        window.location.href = '/import'
+      }
+    } catch (err) {
+      console.error('Error:', err)
+      alert('An error occurred. Please try again.')
+      setImportLoading(false)
+    }
+  }
 
   async function handleCreate() {
     if (!worldName.trim()) return
@@ -96,18 +139,21 @@ export function WorldOnboarding({ isOpen, onClose, onWorldCreated }: WorldOnboar
               </p>
 
               <div className="grid gap-4">
-                {/* Import Option - Use button with window.location for reliable navigation in modal */}
+                {/* Import Option - Creates a world then navigates to import */}
                 <button
                   type="button"
-                  onClick={() => { window.location.href = '/import' }}
-                  className="group flex items-start gap-4 p-4 bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 rounded-xl hover:border-amber-300 hover:shadow-lg hover:shadow-amber-500/10 transition-all duration-200 text-left"
+                  onClick={handleImport}
+                  disabled={importLoading}
+                  className="group flex items-start gap-4 p-4 bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 rounded-xl hover:border-amber-300 hover:shadow-lg hover:shadow-amber-500/10 transition-all duration-200 text-left disabled:opacity-50 disabled:cursor-wait"
                 >
                   <div className="p-3 bg-white rounded-xl shadow-sm group-hover:shadow transition-shadow">
                     <FileText className="w-6 h-6 text-amber-600" />
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <h3 className="font-semibold text-slate-900">Import from Document</h3>
+                      <h3 className="font-semibold text-slate-900">
+                        {importLoading ? 'Setting up...' : 'Import from Document'}
+                      </h3>
                       <span className="px-2 py-0.5 bg-amber-200 text-amber-700 text-xs font-medium rounded-full flex items-center gap-1">
                         <Sparkles className="w-3 h-3" />
                         AI-Powered
