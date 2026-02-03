@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { Globe, FileText, Plus, Sparkles, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { setCurrentWorldId } from '@/lib/utils/world-context'
@@ -14,7 +14,6 @@ interface WorldOnboardingProps {
 }
 
 export function WorldOnboarding({ isOpen, onClose, onWorldCreated }: WorldOnboardingProps) {
-  const router = useRouter()
   const [mode, setMode] = useState<'choose' | 'create'>('choose')
   const [worldName, setWorldName] = useState('')
   const [loading, setLoading] = useState(false)
@@ -25,36 +24,41 @@ export function WorldOnboarding({ isOpen, onClose, onWorldCreated }: WorldOnboar
     if (!worldName.trim()) return
     setLoading(true)
 
-    const supabase = createClient()
-    const { data: { user } } = await supabase.auth.getUser()
-    
-    if (!user) {
+    try {
+      const supabase = createClient()
+      const { data: { user } } = await supabase.auth.getUser()
+      
+      if (!user) {
+        alert('Please log in to create a world')
+        setLoading(false)
+        return
+      }
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { data, error } = await (supabase as any)
+        .from('worlds')
+        .insert({ user_id: user.id, name: worldName.trim() })
+        .select()
+        .single()
+
+      if (error) {
+        console.error('Error creating world:', error)
+        alert('Failed to create world. Please try again.')
+        setLoading(false)
+        return
+      }
+
+      if (data) {
+        const newWorld = data as World
+        setCurrentWorldId(newWorld.id)
+        // Refresh to update server components with new cookie
+        window.location.reload()
+      }
+    } catch (err) {
+      console.error('Error creating world:', err)
+      alert('An error occurred. Please try again.')
       setLoading(false)
-      return
     }
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data, error } = await (supabase as any)
-      .from('worlds')
-      .insert({ user_id: user.id, name: worldName.trim() })
-      .select()
-      .single()
-
-    if (!error && data) {
-      const newWorld = data as World
-      setCurrentWorldId(newWorld.id)
-      onWorldCreated(newWorld)
-      setWorldName('')
-      setMode('choose')
-      // Refresh to update server components
-      window.location.reload()
-    }
-    setLoading(false)
-  }
-
-  function handleImport() {
-    router.push('/import')
-    onClose()
   }
 
   return (
@@ -93,9 +97,9 @@ export function WorldOnboarding({ isOpen, onClose, onWorldCreated }: WorldOnboar
               </p>
 
               <div className="grid gap-4">
-                {/* Import Option */}
-                <button
-                  onClick={handleImport}
+                {/* Import Option - Use Link for reliable navigation */}
+                <Link
+                  href="/import"
                   className="group flex items-start gap-4 p-4 bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 rounded-xl hover:border-amber-300 hover:shadow-lg hover:shadow-amber-500/10 transition-all duration-200 text-left"
                 >
                   <div className="p-3 bg-white rounded-xl shadow-sm group-hover:shadow transition-shadow">
@@ -113,7 +117,7 @@ export function WorldOnboarding({ isOpen, onClose, onWorldCreated }: WorldOnboar
                       Paste your story, script, or world bible and let AI extract characters, locations, and more.
                     </p>
                   </div>
-                </button>
+                </Link>
 
                 {/* Create Option */}
                 <button
