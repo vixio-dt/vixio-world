@@ -11,6 +11,10 @@ export interface AgentResult {
 /**
  * Execute a task using the Cursor CLI agent
  */
+// Path to Cursor agent CLI (installed via cursor.com/install)
+const AGENT_PATH = process.env.CURSOR_AGENT_PATH || 
+  `${process.env.LOCALAPPDATA || 'C:\\Users\\DT Work\\AppData\\Local'}\\cursor-agent\\agent.ps1`
+
 export async function executeWithCursorAgent(
   task: Task,
   phase: number
@@ -19,17 +23,19 @@ export async function executeWithCursorAgent(
   
   console.log(`🚀 Spawning Cursor agent for task ${task.id}, phase ${phase}`)
   console.log(`📝 Prompt: ${prompt.slice(0, 100)}...`)
+  console.log(`🔧 Agent path: ${AGENT_PATH}`)
   
   return new Promise((resolve) => {
+    // Use PowerShell to run the agent script
     const args = [
+      '-ExecutionPolicy', 'Bypass',
+      '-File', AGENT_PATH,
       '-p', prompt,
       '--output-format', 'text',
-      '--model', 'claude-sonnet-4.5',
     ]
     
-    const agent = spawn('agent', args, {
-      cwd: process.cwd().replace('/dev-bot', ''), // Run from repo root
-      shell: true,
+    const agent = spawn('powershell.exe', args, {
+      cwd: process.cwd().replace(/[\\/]dev-bot$/, ''), // Run from repo root
       env: { ...process.env },
     })
     

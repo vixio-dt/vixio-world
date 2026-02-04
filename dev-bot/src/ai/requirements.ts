@@ -50,10 +50,21 @@ Keep it concise and actionable.`
   }
 }
 
+// Path to Cursor agent CLI
+const AGENT_PATH = process.env.CURSOR_AGENT_PATH || 
+  `${process.env.LOCALAPPDATA || 'C:\\Users\\DT Work\\AppData\\Local'}\\cursor-agent\\agent.ps1`
+
 function runCursorAgent(prompt: string): Promise<string> {
   return new Promise((resolve, reject) => {
-    const agent = spawn('agent', ['-p', prompt, '--output-format', 'text', '--mode', 'ask'], {
-      shell: true,
+    const args = [
+      '-ExecutionPolicy', 'Bypass',
+      '-File', AGENT_PATH,
+      '-p', prompt,
+      '--output-format', 'text',
+      '--mode', 'ask',
+    ]
+    
+    const agent = spawn('powershell.exe', args, {
       env: { ...process.env },
     })
     
