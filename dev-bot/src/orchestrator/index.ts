@@ -5,23 +5,17 @@ import { assessComplexity } from './complexity.js'
 import { writeTaskFile } from '../executor/task-writer.js'
 import { resultWatcher, TaskResult } from '../executor/result-watcher.js'
 import { formatRequirementForm, formatPhaseComplete, formatQuickComplete, formatError } from '../slack/messages.js'
+import { generateRequirementsWithAI } from '../ai/requirements.js'
 import type { Task } from '../state/types.js'
 
-// Generate AI suggestion for requirements (placeholder - will integrate with AI later)
-function generateRequirements(description: string) {
-  return {
-    feature: description,
-    userStory: `As a user, I want to ${description.toLowerCase()}, so that I can improve my workflow.`,
-    acceptanceCriteria: [
-      'Feature works as described',
-      'No regressions in existing functionality',
-      'Code passes lint and type checks',
-      'Tests added or updated as needed',
-    ],
-  }
-}
-
 export async function handleNewTask(description: string, slackChannel: string, slackThread: string) {
+  // Send immediate acknowledgment
+  await app.client.chat.postMessage({
+    channel: slackChannel,
+    thread_ts: slackThread,
+    text: '🤔 Analyzing task...',
+  })
+
   // Assess complexity
   const { complexity, reasoning, estimatedFiles } = assessComplexity(description)
   
@@ -33,8 +27,8 @@ export async function handleNewTask(description: string, slackChannel: string, s
     slackThread,
   })
   
-  // Generate AI requirements suggestion
-  const requirements = generateRequirements(description)
+  // Generate AI requirements (async)
+  const requirements = await generateRequirementsWithAI(description)
   updateTask(task.id, { requirements })
   
   // Send requirement form to Slack
