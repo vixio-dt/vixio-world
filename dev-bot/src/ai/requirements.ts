@@ -54,6 +54,17 @@ Keep it concise and actionable.`
 const AGENT_PATH = process.env.CURSOR_AGENT_PATH || 
   `${process.env.LOCALAPPDATA || 'C:\\Users\\DT Work\\AppData\\Local'}\\cursor-agent\\agent.ps1`
 
+// Ripgrep path (required by Cursor agent)
+const RG_DIR = `${process.env.LOCALAPPDATA || 'C:\\Users\\DT Work\\AppData\\Local'}\\Microsoft\\WinGet\\Packages\\BurntSushi.ripgrep.MSVC_Microsoft.Winget.Source_8wekyb3d8bbwe\\ripgrep-15.1.0-x86_64-pc-windows-msvc`
+
+function getEnvWithPath() {
+  const currentPath = process.env.Path || process.env.PATH || ''
+  return {
+    ...process.env,
+    Path: `${RG_DIR};${currentPath}`,
+  }
+}
+
 function runCursorAgent(prompt: string): Promise<string> {
   return new Promise((resolve, reject) => {
     const args = [
@@ -65,7 +76,7 @@ function runCursorAgent(prompt: string): Promise<string> {
     ]
     
     const agent = spawn('powershell.exe', args, {
-      env: { ...process.env },
+      env: getEnvWithPath(),
     })
     
     let stdout = ''
