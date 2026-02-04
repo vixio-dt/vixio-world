@@ -2,8 +2,7 @@
 import { app } from '../slack/bot.js'
 import { createTask, updateTask, getTask } from '../state/store.js'
 import { assessComplexity } from './complexity.js'
-import { writeTaskFile } from '../executor/task-writer.js'
-import { resultWatcher, TaskResult } from '../executor/result-watcher.js'
+import { executeWithCursorAgent } from '../executor/cursor-agent.js'
 import { formatRequirementForm, formatPhaseComplete, formatQuickComplete, formatError } from '../slack/messages.js'
 import { generateRequirementsWithAI } from '../ai/requirements.js'
 import type { Task } from '../state/types.js'
@@ -17,7 +16,7 @@ export async function handleNewTask(description: string, slackChannel: string, s
   })
 
   // Assess complexity
-  const { complexity, reasoning, estimatedFiles } = assessComplexity(description)
+  const { complexity } = assessComplexity(description)
   
   // Create task
   const task = createTask({
@@ -50,20 +49,60 @@ export async function handleTaskApproval(taskId: string) {
   const branch = `feat/${task.description.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 40)}`
   
   // Update task and start first phase
-  updateTask(taskId, {
+  const updatedTask = updateTask(taskId, {
     status: task.complexity === 'quick' ? 'implementing' : 'planning',
     branch,
     currentPhase: 1,
   })
   
-  // Write task file for Cursor agent
-  writeTaskFile({ ...task, branch }, 1)
-  
   await app.client.chat.postMessage({
     channel: task.slackChannel,
     thread_ts: task.slackThread,
-    text: `🚀 Starting ${task.complexity === 'quick' ? 'implementation' : 'Phase 1: Planning'}...\nBranch: \`${branch}\``,
+    text: `🚀 Starting ${task.complexity === 'quick' ? 'implementation' : 'Phase 1: Planning'}...\nBranch: \`${branch}\`\n\n_Cursor Agent is working..._`,
   })
+  
+  // Execute with Cursor Agent (async - don't await, let it run in background)
+  executePhase(updatedTask, 1)
+}
+
+async function executePhase(task: Task, phase: number) {
+  try {
+    const result = await executeWithCursorAgent(task, phase)
+    
+    if (result.success) {
+      updateTask(task.id, { status: 'awaiting_phase_approval' })
+      
+      // Truncate output for Slack (max ~3000 chars)
+      const summary = result.output.length > 2500 
+        ? result.output.slice(-2500) + '\n\n_(output truncated)_'
+        : result.output
+      
+      const phaseNames = ['Planning', 'Implementation', 'Testing & PR']
+      const message = formatPhaseComplete(task, phaseNames[phase - 1], summary)
+      await app.client.chat.postMessage({
+        channel: task.slackChannel,
+        thread_ts: task.slackThread,
+        ...message,
+      })
+    } else {
+      updateTask(task.id, { status: 'failed', error: result.error })
+      const message = formatError(task, result.error || 'Unknown error')
+      await app.client.chat.postMessage({
+        channel: task.slackChannel,
+        thread_ts: task.slackThread,
+        ...message,
+      })
+    }
+  } catch (err) {
+    const error = err instanceof Error ? err.message : String(err)
+    updateTask(task.id, { status: 'failed', error })
+    const message = formatError(task, error)
+    await app.client.chat.postMessage({
+      channel: task.slackChannel,
+      thread_ts: task.slackThread,
+      ...message,
+    })
+  }
 }
 
 export async function handlePhaseApproval(taskId: string) {
@@ -75,24 +114,29 @@ export async function handlePhaseApproval(taskId: string) {
   if (nextPhase > task.totalPhases) {
     // All phases complete
     updateTask(taskId, { status: 'complete' })
+    await app.client.chat.postMessage({
+      channel: task.slackChannel,
+      thread_ts: task.slackThread,
+      text: `✅ Task complete! All ${task.totalPhases} phases finished.`,
+    })
     return
   }
   
   // Move to next phase
   const phaseNames = ['Planning', 'Implementation', 'Testing & PR']
-  updateTask(taskId, {
+  const updatedTask = updateTask(taskId, {
     currentPhase: nextPhase,
     status: nextPhase === 2 ? 'implementing' : nextPhase === 3 ? 'testing' : 'planning',
   })
   
-  // Write task file for next phase
-  writeTaskFile(task, nextPhase)
-  
   await app.client.chat.postMessage({
     channel: task.slackChannel,
     thread_ts: task.slackThread,
-    text: `🚀 Starting Phase ${nextPhase}: ${phaseNames[nextPhase - 1]}...`,
+    text: `🚀 Starting Phase ${nextPhase}: ${phaseNames[nextPhase - 1]}...\n\n_Cursor Agent is working..._`,
   })
+  
+  // Execute next phase
+  executePhase(updatedTask, nextPhase)
 }
 
 export async function handleTaskAbort(taskId: string) {
@@ -107,45 +151,3 @@ export async function handleTaskAbort(taskId: string) {
     text: `🛑 Task aborted. Branch \`${task.branch}\` can be deleted.`,
   })
 }
-
-// Handle results from Cursor agent
-resultWatcher.on('result', async (result: TaskResult) => {
-  const task = getTask(result.taskId)
-  if (!task) return
-  
-  if (result.status === 'error') {
-    updateTask(result.taskId, { status: 'failed', error: result.error })
-    const message = formatError(task, result.error || 'Unknown error')
-    await app.client.chat.postMessage({
-      channel: task.slackChannel,
-      thread_ts: task.slackThread,
-      ...message,
-    })
-    return
-  }
-  
-  if (result.status === 'success') {
-    // Update task with results
-    updateTask(result.taskId, {
-      commits: [...task.commits, ...(result.commits || [])],
-      status: 'awaiting_phase_approval',
-    })
-    
-    if (task.complexity === 'quick' && result.prUrl) {
-      const message = formatQuickComplete(task, result.summary, result.prUrl)
-      await app.client.chat.postMessage({
-        channel: task.slackChannel,
-        thread_ts: task.slackThread,
-        ...message,
-      })
-    } else {
-      const phaseNames = ['Planning', 'Implementation', 'Testing & PR']
-      const message = formatPhaseComplete(task, phaseNames[task.currentPhase - 1], result.summary)
-      await app.client.chat.postMessage({
-        channel: task.slackChannel,
-        thread_ts: task.slackThread,
-        ...message,
-      })
-    }
-  }
-})

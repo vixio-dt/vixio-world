@@ -1,6 +1,5 @@
 // dev-bot/src/index.ts
 import { startBot, app } from './slack/bot.js'
-import { resultWatcher } from './executor/result-watcher.js'
 import { handleNewTask, handleTaskApproval, handlePhaseApproval, handleTaskAbort } from './orchestrator/index.js'
 
 // Handle new messages (task requests)
@@ -103,14 +102,12 @@ app.action('request_changes', async ({ ack, body }) => {
 
 // Start everything
 async function main() {
-  resultWatcher.start()
   await startBot()
 }
 
 // Graceful shutdown
 process.on('SIGINT', async () => {
   console.log('\n🛑 Shutting down...')
-  resultWatcher.stop()
   process.exit(0)
 })
 
