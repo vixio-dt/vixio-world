@@ -12,11 +12,11 @@ const openrouter = new OpenAI({
 
 // Configurable via env: DEVBOT_AI_MODEL
 // Top models on OpenRouter (2026 leaderboard):
-//   - anthropic/claude-sonnet-4 (best balance, ~$3/1M tokens)
+//   - deepseek/deepseek-v3.2 (best value, ~$0.14/1M tokens) - DEFAULT
 //   - google/gemini-3-flash-preview (very fast, ~$0.10/1M tokens)
 //   - x-ai/grok-code-fast-1 (fast for code, ~$0.15/1M tokens)
-//   - anthropic/claude-opus-4 (highest quality, ~$15/1M tokens)
-//   - deepseek/deepseek-v3.2 (best value, ~$0.14/1M tokens) - DEFAULT
+//   - anthropic/claude-sonnet-4.5 (best balance, ~$3/1M tokens)
+//   - anthropic/claude-opus-4.5 (highest quality, ~$15/1M tokens)
 const AI_MODEL = process.env.DEVBOT_AI_MODEL || 'deepseek/deepseek-v3.2'
 
 // Log model on first import
