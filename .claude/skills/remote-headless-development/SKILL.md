@@ -1,139 +1,97 @@
+---
+name: remote-headless-development
+description: "Use when setting up remote development access, controlling Cursor from a mobile device, or troubleshooting tunnel connectivity issues"
+---
+
 # Remote Headless Development
 
 ## Overview
 
-This skill enables developers to control their full Cursor IDE environment remotely from a mobile device using VS Code Remote Tunnels. It transforms a phone into a command center for orchestrating AI-powered development workflows.
+Control your Cursor IDE remotely from a mobile device using VS Code Remote Tunnels. Stream the "brain" of your desktop to your phone—use your Cursor Ultra plan without extra API keys.
 
 ## When to Use
 
-- Working away from your primary development machine
-- Managing long-running AI tasks from your phone
-- Quick code reviews or fixes while mobile
-- Orchestrating complex multi-file changes via voice dictation
-- Monitoring build/test processes remotely
+- Setting up remote access to development environment
+- Working away from primary machine
+- Orchestrating AI tasks from mobile
+- Troubleshooting tunnel connection issues
 
-## Core Concepts
-
-### Architecture
+## Architecture
 
 ```
 Desktop (Host)          Mobile (Controller)
 ┌─────────────┐         ┌─────────────┐
 │   Cursor    │◄───────►│  PWA/Browser│
 │   + Ultra   │ HTTPS   │             │
-│   + Tunnel  │ Tunnel  │  Voice +    │
+│   + Tunnel  │         │  Voice +    │
 │             │         │  Touch UI   │
 └─────────────┘         └─────────────┘
 ```
 
-### Key Components
+## Quick Setup
 
-1. **VS Code Remote Tunnels** - The underlying technology enabling secure remote access
-2. **GitHub Authentication** - Security layer for tunnel access
-3. **PWA Installation** - Transforms browser into full-screen app experience
-4. **Composer/Agent** - The AI assistant for code generation and editing
-
-## Setup Workflow
-
-### Phase 1: Enable Tunnel (Desktop)
+### 1. Enable Tunnel (Desktop)
 
 ```
 Command Palette (Ctrl/Cmd + Shift + P)
-    → Remote Tunnels: Turn on Remote Tunnel Access...
-    → Authenticate with GitHub
-    → Name your machine (e.g., "DevBase")
-    → Copy the generated URL (https://vscode.dev/tunnel/[name])
+→ Remote Tunnels: Turn on Remote Tunnel Access...
+→ Authenticate with GitHub
+→ Name machine (e.g., "DevBase")
+→ Copy URL: https://vscode.dev/tunnel/[name]
 ```
 
-### Phase 2: Install PWA (Mobile)
+### 2. Install PWA (Mobile)
+
+| Platform | Steps |
+|----------|-------|
+| iOS | Share → Add to Home Screen |
+| Android | Menu (⋮) → Install App |
+
+### 3. Navigate Without Keyboard
 
 ```
-iOS Safari:
-    Share → Add to Home Screen → Add
-
-Android Chrome:
-    Menu (⋮) → Install App
+☰ (Hamburger Menu)
+→ View → Command Palette
+→ "Cursor: Open Composer"
 ```
 
-### Phase 3: Mobile Navigation
+## Mobile Workflow
 
-Since physical keyboard shortcuts aren't available:
+| Action | How |
+|--------|-----|
+| Open Composer | Command Palette → "Cursor: Open Composer" |
+| Run Terminal | ☰ → Terminal → New Terminal |
+| Input Commands | Use voice dictation (microphone button) |
+| Accept Changes | Tap "Accept All" in Composer |
 
-```
-Hamburger Menu (☰)
-    → View → Command Palette
-    → Search: "Cursor: Open Composer"
-```
+## Keeping Desktop Awake
 
-## Best Practices
-
-### Effective Mobile Prompts
-
-Use voice dictation for complex prompts:
-
-```
-Good: "Create a REST API endpoint in app/api/users/route.ts 
-       that handles GET and POST requests. Include validation 
-       using zod and return appropriate error responses."
-
-Bad:  "Make an API" (too vague for mobile context)
-```
-
-### Keep Desktop Alive
-
-The tunnel dies if the desktop sleeps:
+**The tunnel dies if desktop sleeps.**
 
 | OS | Solution |
-|-----|----------|
-| macOS | Amphetamine app or `caffeinate -d -i -s` |
-| Windows | PowerToys Awake or Power Settings → Never Sleep |
+|----|----------|
+| macOS | `caffeinate -d -i -s` or Amphetamine app |
+| Windows | PowerToys Awake or Power Settings → Never |
 | Linux | `systemd-inhibit --what=idle sleep infinity` |
 
-### Workflow Optimization
-
-1. **Batch operations** - Give comprehensive instructions in single prompts
-2. **Use Accept All** - Review on desktop later for detailed inspection
-3. **Terminal verification** - Run tests/lints after AI changes
-4. **Commit frequently** - Use source control to checkpoint work
+Helper scripts available: `scripts/remote-dev/keep-awake-*.sh`
 
 ## Troubleshooting
 
-### Common Issues
-
-| Issue | Solution |
-|-------|----------|
-| Can't connect | Verify Cursor is running; restart tunnel |
-| Blurry UI elements | Use Command Palette instead of sidebar |
-| Missing modifier keys | Tap floating circle for virtual keys |
-| Auth expired | Re-run tunnel authentication |
-
-### Emergency Commands
-
-```bash
-# On desktop - restart tunnel
-# Command Palette → Remote Tunnels: Turn off Remote Tunnel Access
-# Command Palette → Remote Tunnels: Turn on Remote Tunnel Access...
-
-# Check tunnel status
-# Command Palette → Remote Tunnels: Show Log
-```
-
-## Integration with Other Skills
-
-This skill complements:
-
-- **dev-bot-agent** - Orchestrate dev-bot tasks remotely
-- **verification-before-completion** - Run verification from mobile
-- **test-driven-development** - Monitor test runs remotely
+| Issue | Fix |
+|-------|-----|
+| Can't connect | Verify Cursor running; restart tunnel |
+| Missing modifier keys | Tap floating circle at screen bottom |
+| Blurry UI | Use Command Palette instead of sidebar |
+| Auth expired | Command Palette → Remote Tunnels: Sign In |
 
 ## Security Notes
 
 - Tunnels use HTTPS encryption
 - GitHub OAuth provides authentication
-- Stop tunnel when not in use: `Remote Tunnels: Turn off Remote Tunnel Access`
-- Never enable on shared/public computers
+- Stop when not in use: `Remote Tunnels: Turn off Remote Tunnel Access`
 
 ## Related Documentation
 
 - [Full Setup Guide](/docs/remote-headless-development.md)
-- [VS Code Tunnels Docs](https://code.visualstudio.com/docs/remote/tunnels)
+- [Helper Scripts](/scripts/remote-dev/README.md)
