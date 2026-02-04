@@ -11,13 +11,13 @@ const openrouter = new OpenAI({
 })
 
 // Configurable via env: DEVBOT_AI_MODEL
-// Popular options on OpenRouter:
-//   - deepseek/deepseek-chat (default, very cheap ~$0.14/1M tokens)
-//   - anthropic/claude-3.5-sonnet (best quality, ~$3/1M tokens)
-//   - openai/gpt-4o-mini (fast & cheap, ~$0.15/1M tokens)
-//   - google/gemini-2.0-flash-001 (fast, ~$0.10/1M tokens)
-//   - meta-llama/llama-3.3-70b-instruct (good & cheap, ~$0.40/1M tokens)
-const AI_MODEL = process.env.DEVBOT_AI_MODEL || 'deepseek/deepseek-chat'
+// Top models on OpenRouter (2026 leaderboard):
+//   - anthropic/claude-sonnet-4 (best balance, ~$3/1M tokens)
+//   - google/gemini-3-flash-preview (very fast, ~$0.10/1M tokens)
+//   - x-ai/grok-code-fast-1 (fast for code, ~$0.15/1M tokens)
+//   - anthropic/claude-opus-4 (highest quality, ~$15/1M tokens)
+//   - deepseek/deepseek-v3.2 (best value, ~$0.14/1M tokens) - DEFAULT
+const AI_MODEL = process.env.DEVBOT_AI_MODEL || 'deepseek/deepseek-v3.2'
 
 // Log model on first import
 console.log(`🤖 AI Model: ${AI_MODEL}`)
