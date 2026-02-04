@@ -11,8 +11,7 @@
   "dependencies": {
     "@slack/bolt": "^4.1.0",
     "chokidar": "^3.6.0",
-    "dotenv": "^16.4.0",
-    "openai": "^4.77.0"
+    "dotenv": "^16.4.0"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",
