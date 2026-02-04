@@ -28,19 +28,20 @@ export function saveStore(store: TaskStore): void {
 
 export function createTask(partial: Partial<Task> & { description: string; slackThread: string; slackChannel: string }): Task {
   const id = `task-${Date.now()}`
+  const complexity = partial.complexity || 'standard'
   const task: Task = {
+    ...partial,
     id,
     description: partial.description,
-    complexity: partial.complexity || 'standard',
+    complexity,
     status: 'pending_approval',
     currentPhase: 0,
-    totalPhases: partial.complexity === 'quick' ? 1 : 3,
+    totalPhases: complexity === 'quick' ? 1 : 3,
     commits: [],
     slackThread: partial.slackThread,
     slackChannel: partial.slackChannel,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
-    ...partial,
   }
 
   const store = loadStore()
