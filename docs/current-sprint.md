@@ -37,10 +37,22 @@ Implemented core UX infrastructure for professional design system.
 
 ### Phase 2: In Progress
 
-**Timeline Visualization:**
-- Replace simple event cards with actual timeline visualization
-- Vertical timeline with date markers
-- Event positioning based on dates
+**Timeline Visualization:** ✅ COMPLETE
+- Replaced grid layout with proper Mantine Timeline component
+- Vertical timeline with date/period grouping
+- Events grouped by year/period with sticky headers
+- Type-based visual differentiation (icons + colors for historical/plot_point/scheduled/recurring)
+- View toggle between Timeline and Grid modes
+- Motion stagger animations on timeline items
+- Dark mode support throughout
+
+**Files Created:**
+- `components/timeline/TimelineView.tsx` - Main timeline visualization component
+
+**Files Updated:**
+- `app/(dashboard)/timeline/page.tsx` - Added view toggle (timeline/grid)
+- `components/timeline/EventCard.tsx` - Dark mode support, type-based icons
+- `components/timeline/index.ts` - Export TimelineView
 
 **Category Differentiation:**
 - Each entity type gets distinctive visual treatment
@@ -49,7 +61,7 @@ Implemented core UX infrastructure for professional design system.
 - Rules: Sidebar navigation pattern
 
 **Motion Integration:**
-- Apply stagger animations to entity lists
+- ✅ Apply stagger animations to entity lists (Timeline)
 - Page transitions
 - Card hover effects
 
