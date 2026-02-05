@@ -1,54 +1,65 @@
 ---
 name: continue
-description: Run pre-action checklist and proceed with implementation
+description: Query MCPs first, run pre-action checklist, then proceed with implementation
 ---
 
-**STOP. Before proceeding, run through the pre-action checklist.**
+# /continue - MCP-First Implementation
 
-Read `.cursor/rules/pre-action-checklist.mdc` and verify each item:
+**STOP. Before ANY implementation, you MUST query relevant MCPs.**
 
-## Pre-Action Checklist
+## Step 1: MCP Consultation (MANDATORY)
+
+**DO THIS NOW - Call the relevant MCPs before anything else:**
+
+| If your task involves... | CALL THIS MCP NOW |
+|--------------------------|-------------------|
+| Any library (React, Mantine, Motion, etc.) | **Context7** → `resolve-library-id` then `query-docs` |
+| Multiple approaches or complex decisions | **Sequential Thinking** → structure your reasoning |
+| Database queries or schema | **Supabase** → verify actual schema |
+| Next.js routes, server actions, errors | **next-devtools** → `nextjs_index` then `nextjs_call` |
+| Tailwind styling | **tailwindcss** → `get_tailwind_utilities` or `search_tailwind_docs` |
+| UI testing or verification | **Playwright** → browser automation |
+| Linting issues | **eslint** → `lint-files` |
+
+**Minimum MCP set for ANY implementation:**
+- Context7 for libraries you'll use
+- Sequential Thinking if 2+ approaches exist
+
+## Step 2: Pre-Action Checklist
+
+After MCP consultation, verify:
 
 1. **95% CONFIDENCE**: Do I fully understand what to build?
-   - If NO → Ask clarifying questions first
+2. **BRAINSTORM**: Is this creative/new work? → Use brainstorming skill
+3. **PLAN**: Is there an implementation plan? → Follow it or create one
+4. **SKILL**: Does a skill apply? → Read and follow it
 
-2. **BRAINSTORM**: Is this creative/new work?
-   - If YES → Use brainstorming skill at `.claude/skills/brainstorming/SKILL.md`
+## Step 3: Show MCP Summary Before Proceeding
 
-3. **MCP-FIRST**: Does this involve external data/APIs?
-   - Libraries/docs → Context7 MCP
-   - Database/schema → Supabase MCP
-   - Next.js runtime → next-devtools MCP
-   - Styling/Tailwind → tailwindcss MCP
-   - Linting errors → eslint MCP
-   - UI testing → Playwright MCP
-   - Production errors → Sentry MCP
-   - PRs/issues/commits → GitHub MCP
-   - Charts/diagrams → AntVis Chart MCP
+**You MUST show what MCPs you queried and what you learned:**
 
-4. **COMPLEX REASONING**: Does this involve...
-   - Choosing between 3+ approaches? → Sequential Thinking MCP
-   - Debugging with multiple hypotheses? → Sequential Thinking MCP
-   - Ambiguous/conflicting requirements? → Sequential Thinking MCP
-   - Already failed once at this? → Sequential Thinking MCP
-
-5. **PLAN**: Is there an implementation plan for complex work?
-   - If NO → Create plan first using `.claude/skills/writing-plans/SKILL.md`
-   - If YES → Follow the plan steps
-
-6. **SKILL MATCH**: Does a skill apply?
-   - Check skills table in `AGENTS.md`
-   - Read and follow matching skill
+```
+┌─────────────────────────────────────────────────────────────┐
+│  MCP CONSULTATION COMPLETE                                  │
+├─────────────────────────────────────────────────────────────┤
+│  Context7:                                                  │
+│    → Queried: [library name]                                │
+│    → Learned: [key API/pattern discovered]                  │
+│                                                             │
+│  Sequential Thinking: (if used)                             │
+│    → Structured: [X decisions/steps]                        │
+│    → Key insight: [main takeaway]                           │
+│                                                             │
+│  Other MCPs: [list any others queried]                      │
+├─────────────────────────────────────────────────────────────┤
+│  Checklist:                                                 │
+│    ✓ Confidence: [status]                                   │
+│    ✓ Brainstorm: [needed/done/not needed]                   │
+│    ✓ Plan: [following X / not needed]                       │
+│    ✓ Skill: [using X / not needed]                          │
+└─────────────────────────────────────────────────────────────┘
+```
 
 ## Then Proceed
 
-Once ALL checklist items are verified, continue with the implementation work.
-
-Show a brief summary of checklist status before proceeding:
-```
-✓ Confidence: [status]
-✓ Brainstorm: [needed/not needed/done]
-✓ MCP: [consulted X / not needed]
-✓ Plan: [following plan X / not needed]
-✓ Skill: [using X / not needed]
-```
+Only after showing the MCP summary, continue with implementation.

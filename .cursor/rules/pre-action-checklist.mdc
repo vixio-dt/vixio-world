@@ -1,5 +1,5 @@
 ---
-description: Pre-action checklist - STOP and verify before implementing, creating, or modifying code
+description: Pre-action checklist - MCP FIRST, then verify before implementing
 alwaysApply: true
 ---
 
@@ -21,42 +21,49 @@ This checklist is MANDATORY before:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  PRE-ACTION CHECKLIST - Verify ALL before proceeding        │
+│  PRE-ACTION CHECKLIST - MCP FIRST, then verify              │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
-│  □ 1. CONFIDENCE: Do I have 95% confidence I understand?    │
+│  ★ 1. MCP-FIRST (DO THIS NOW - NOT OPTIONAL)                │
+│       → CALL Context7 for any libraries you'll use          │
+│       → CALL Sequential Thinking if 2+ approaches exist     │
+│       → CALL Supabase if touching database                  │
+│       → CALL next-devtools if writing Next.js code          │
+│       → CALL tailwindcss if styling                         │
+│       → SHOW what you learned before proceeding             │
+│                                                             │
+│  □ 2. CONFIDENCE: Do I have 95% confidence I understand?    │
 │       → If NO: Ask clarifying questions first               │
 │                                                             │
-│  □ 2. BRAINSTORM: Is this creative/new work?                │
+│  □ 3. BRAINSTORM: Is this creative/new work?                │
 │       → If YES: Use brainstorming skill first               │
 │                                                             │
-│  □ 3. MCP-FIRST: Does this involve external data/APIs?      │
-│       → Libraries/docs → Context7                           │
-│       → Database/schema → Supabase MCP                      │
-│       → Next.js runtime → next-devtools MCP                 │
-│       → Styling/Tailwind → tailwindcss MCP                  │
-│       → Linting errors → eslint MCP                         │
-│       → UI testing → Playwright MCP                         │
-│       → Production errors → Sentry MCP                      │
-│       → PRs/issues → GitHub MCP                             │
-│       → Charts/diagrams → AntVis Chart MCP                  │
-│                                                             │
-│  □ 4. COMPLEX REASONING: Does this involve...               │
-│       → Choosing between 3+ approaches? → Sequential Think  │
-│       → Debugging with multiple hypotheses? → Seq Think     │
-│       → Ambiguous/conflicting requirements? → Seq Think     │
-│       → Already failed once at this? → Seq Think            │
-│                                                             │
-│  □ 5. PLAN EXISTS: Is there an implementation plan?         │
+│  □ 4. PLAN EXISTS: Is there an implementation plan?         │
 │       → If NO for complex work: Create plan first           │
 │       → If YES: Follow the plan steps                       │
 │                                                             │
-│  □ 6. SKILL MATCH: Does a skill apply to this work?         │
+│  □ 5. SKILL MATCH: Does a skill apply to this work?         │
 │       → Check skills table in AGENTS.md                     │
 │       → Read and follow the matching skill                  │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
+
+## MCP Quick Reference
+
+| MCP | When to Call | Tool to Use |
+|-----|--------------|-------------|
+| **Context7** | Any library (Mantine, React, Motion) | `resolve-library-id` → `query-docs` |
+| **Sequential Thinking** | Complex decisions, debugging | `sequentialthinking` |
+| **Supabase** | Database queries, schema | Query tools |
+| **next-devtools** | Routes, server actions, errors | `nextjs_index` → `nextjs_call` |
+| **tailwindcss** | Styling, utilities | `search_tailwind_docs` |
+| **eslint** | Lint errors | `lint-files` |
+| **Playwright** | UI testing | Browser automation |
+| **Sentry** | Production errors | `search_issues` |
+| **GitHub** | PRs, issues, commits | PR/issue tools |
+| **AntVis Chart** | Data visualization | Chart generation |
+| **Memory** | Persist decisions | `create_entities` |
 
 ## After Implementation
 
@@ -85,19 +92,20 @@ This checklist is MANDATORY before:
 
 | Trigger | Required Action |
 |---------|-----------------|
-| "implement X" | Full pre-action checklist |
-| "create X" | Full pre-action checklist |
-| "modify X" | Full pre-action checklist |
-| "fix bug" | Systematic debugging skill first |
-| "add feature" | Brainstorm + plan first |
-| "continue" | Re-verify checklist, then proceed |
+| "implement X" | **MCP first**, then full checklist |
+| "create X" | **MCP first**, then full checklist |
+| "modify X" | **MCP first**, then full checklist |
+| "fix bug" | **MCP first** (Context7 + Sequential Thinking), then systematic debugging |
+| "add feature" | **MCP first**, then brainstorm + plan |
+| "continue" | **MCP first** (query relevant MCPs), show summary, proceed |
+| "/continue" | Same as "continue" - MCP consultation is mandatory |
 
 ## Exceptions
 
-Skip checklist ONLY for:
+Skip MCP + checklist ONLY for:
 - Trivial edits (typos, comments, formatting)
 - Reading/exploring code (no changes)
 - Answering questions (no implementation)
-- User explicitly says to skip
+- User explicitly says "skip MCP"
 
-**When in doubt, run the checklist.**
+**Default: ALWAYS query MCPs first. Show what you learned. Then implement.**

@@ -9,21 +9,26 @@ alwaysApply: true
 
 ## Mandatory Rules
 
-1. **95% Confidence Rule**: Do NOT make changes until you have 95% confidence you understand what to build. Ask clarifying questions until you reach that confidence. This applies to ALL work - features, bugfixes, refactors, documentation.
+1. **MCP-First (ALWAYS)**: Before ANY implementation, you MUST query relevant MCPs first:
+   - **Context7** for any library (Mantine, React, Motion, etc.) - get current docs
+   - **Sequential Thinking** for complex decisions (2+ approaches)
+   - **Supabase** for database work - verify actual schema
+   - **next-devtools** for Next.js code - check runtime state
+   - **tailwindcss** for styling - get correct utilities
+   - Show what you learned from MCPs before proceeding. This is NOT optional.
 
-2. **Always Recommend with Reasoning**: When presenting options, ALWAYS include your recommendation and explain WHY. Don't just list options neutrally - lead with your recommendation and reasoning, then present alternatives.
+2. **95% Confidence Rule**: Do NOT make changes until you have 95% confidence you understand what to build. Ask clarifying questions until you reach that confidence.
 
-3. **Brainstorm Before Build**: Use the `brainstorming` skill before any creative work. Never skip this step.
+3. **Always Recommend with Reasoning**: When presenting options, ALWAYS include your recommendation and explain WHY. Lead with your recommendation and reasoning.
 
-4. **Verify Before Claiming Done**: Use the `verification-before-completion` skill before claiming any work is complete.
+4. **Brainstorm Before Build**: Use the `brainstorming` skill before any creative work. Never skip this step.
 
-5. **Update Docs After Actions**: After completing any task, update relevant documentation:
-  - Update `docs/current-sprint.md` with progress
-  - Update roadmap if scope changes
-  - Update implementation plan if approach changes
-  - Never leave documentation stale
+5. **Verify Before Claiming Done**: Use the `verification-before-completion` skill before claiming any work is complete.
 
-6. **MCP-First for Live Data**: **MANDATORY** - Before implementing ANY code involving external libraries, database, or Next.js features, ALWAYS consult the relevant MCP specialist first. See `.cursor/rules/mcp-first.mdc` for the full decision matrix. This is NOT optional.
+6. **Update Docs After Actions**: After completing any task, update relevant documentation:
+   - Update `docs/current-sprint.md` with progress
+   - Update roadmap if scope changes
+   - Never leave documentation stale
 
 </project_rules>
 
@@ -66,17 +71,18 @@ MCP servers provide REAL-TIME access to external systems. **Prefer them over sta
 
 | MCP Server | Use For | Instead Of |
 |------------|---------|------------|
-| **next-devtools** | Next.js runtime errors, routes, Server Actions | Guessing build issues |
 | **Context7** | Library docs (React, Mantine, any npm package) | Web search for API syntax |
-| **eslint** | Linting diagnostics and fixes | Manual lint error fixing |
-| **tailwindcss** | Tailwind utilities, CSS-to-Tailwind | Guessing class names |
-| **Supabase** | Live DB queries, auth, RLS policies | Guessing schema |
-| **Playwright** | E2E testing, screenshots | Manual browser testing |
-| **Memory** | Persist decisions across sessions | Repeating context |
 | **Sequential Thinking** | Complex multi-step reasoning | Ad-hoc problem solving |
-| **Fetch** | Web content retrieval | Assuming content |
-| **Filesystem** | File operations | Shell commands |
+| **next-devtools** | Next.js runtime errors, routes, Server Actions | Guessing build issues |
+| **Supabase** | Live DB queries, auth, RLS policies | Guessing schema |
+| **tailwindcss** | Tailwind utilities, CSS-to-Tailwind | Guessing class names |
+| **eslint** | Linting diagnostics and fixes | Manual lint error fixing |
+| **Playwright** | E2E testing, screenshots | Manual browser testing |
 | **Sentry** | Error monitoring, crash reports | Guessing prod issues |
+| **GitHub** | PRs, issues, repo management | Manual git operations |
+| **AntVis Chart** | Data visualizations, charts, diagrams | Manual chart building |
+| **Memory** | Persist decisions across sessions | Repeating context |
+| **Fetch** | Web content retrieval | Assuming content |
 
 ### When to Use MCP First
 
@@ -102,7 +108,7 @@ Use `/command` in chat to trigger workflows:
 
 | Command | Triggers |
 |---------|----------|
-| `/continue` | **Run pre-action checklist, then proceed with work** |
+| `/continue` | **Query MCPs first, show summary, then proceed** |
 | `/brainstorm` | Design session before building |
 | `/plan` | Create implementation plan |
 | `/execute` | Run plan with checkpoints |

@@ -1,70 +1,78 @@
 ---
-description: MANDATORY - Always consult MCP specialists before implementing
+description: MANDATORY FIRST STEP - Query MCP specialists BEFORE any implementation
 alwaysApply: true
 ---
 
-# MCP-First: Consult the Specialist
+# MCP-First: Query Before You Code
 
-**This rule is MANDATORY and takes priority over speed or convenience.**
+**This is STEP ONE of any implementation. Do this BEFORE confidence checks, brainstorming, or planning.**
 
-## Core Principle
-
-MCP servers are domain specialists with up-to-date knowledge. Before writing code that involves their domain, you MUST consult them first.
-
-## Decision Matrix
-
-| Before Doing This... | FIRST Consult This MCP |
-|---------------------|------------------------|
-| Using any external library (React, Mantine, etc.) | **Context7** - Get current API docs |
-| Writing database queries or schema changes | **Supabase** - Verify actual schema |
-| Writing Next.js code (routes, server actions) | **next-devtools** - Check for errors, get best practices |
-| Styling with Tailwind classes | **tailwindcss** - Get correct utilities |
-| Fixing linter errors | **eslint** - Get proper fixes |
-| Testing UI or frontend | **Playwright** - Automate browser tests |
-| Debugging production issues | **Sentry** - Check real error data |
-| Complex multi-step reasoning | **Sequential Thinking** - Structure the approach |
-| Remembering project decisions | **Memory** - Store/retrieve context |
-| GitHub operations (PRs, issues, commits) | **GitHub** - Repo management and code search |
-| Generating charts/diagrams for export | **AntVis Chart** - 25+ chart types from JSON data |
-
-## Workflow
+## The Rule
 
 ```
-1. STOP before implementing
-2. IDENTIFY which MCP specialist applies
-3. CONSULT the MCP for current information
-4. THEN implement using MCP guidance
-5. VERIFY with Playwright if UI-related
+┌─────────────────────────────────────────────────────────────┐
+│  BEFORE WRITING ANY CODE, YOU MUST:                         │
+│                                                             │
+│  1. IDENTIFY which MCPs are relevant to this task           │
+│  2. CALL those MCPs and get current information             │
+│  3. SHOW what you learned before proceeding                 │
+│                                                             │
+│  This is NOT optional. This is NOT "if needed".             │
+│  This is ALWAYS for implementation tasks.                   │
+└─────────────────────────────────────────────────────────────┘
 ```
 
-## Examples
+## MCP Action Table
 
-### BAD (Don't do this)
+| Task Type | MCP to CALL | Specific Tool |
+|-----------|-------------|---------------|
+| Using ANY library | **Context7** | `resolve-library-id` → `query-docs` |
+| Complex decisions (2+ options) | **Sequential Thinking** | `sequentialthinking` |
+| Database work | **Supabase** | Query actual schema |
+| Next.js code | **next-devtools** | `nextjs_index` → `nextjs_call` |
+| Tailwind styling | **tailwindcss** | `search_tailwind_docs` or `get_tailwind_utilities` |
+| Fixing lint errors | **eslint** | `lint-files` |
+| UI verification | **Playwright** | Browser automation |
+| Production bugs | **Sentry** | `search_issues` or `get_issue_details` |
+| GitHub operations | **GitHub** | PR/issue tools |
+| Data visualization | **AntVis Chart** | Chart generation tools |
+| Persist decisions | **Memory** | `create_entities` / `search_nodes` |
+
+## Minimum MCP Set
+
+For ANY implementation task, query at minimum:
+
+1. **Context7** - For every library you'll touch (Mantine, React, Motion, etc.)
+2. **Sequential Thinking** - If there are multiple approaches or the task is complex
+
+## Required Output Format
+
+Before implementing, show this summary:
+
 ```
-User: "Add Mantine Spotlight"
-Agent: *writes code from memory or plan snippets*
+MCP Queries Complete:
+• Context7 (@mantine/core): createTheme() with custom colors, MantineProvider setup
+• Sequential Thinking: Structured 4 decisions - theme first, then migration
+• [Other MCPs if used]
+
+Proceeding with implementation...
 ```
 
-### GOOD (Do this)
-```
-User: "Add Mantine Spotlight"
-Agent: *calls Context7 MCP to get @mantine/spotlight docs*
-Agent: *implements using current API from docs*
-```
+## Why MCPs Beat Working Alone
 
-## Why This Matters
+| Without MCP | With MCP |
+|-------------|----------|
+| Guess at API syntax | Get current docs for your exact version |
+| Hope schema is correct | Query actual database structure |
+| Miss runtime errors | See real Next.js dev server state |
+| Inconsistent styling | Get correct Tailwind utilities |
+| Ad-hoc problem solving | Structured reasoning with audit trail |
 
-- Library APIs change between versions
-- Plan snippets may be outdated
-- Your actual database schema is the truth
-- Runtime errors are only visible via Next.js devtools
-- Guessing leads to bugs
+## Exceptions (rare)
 
-## Exceptions
+Skip MCP ONLY when:
+1. Trivial edits (typos, comments, formatting)
+2. MCP is unavailable/erroring after retry
+3. User explicitly says "skip MCP"
 
-Only skip MCP consultation when:
-1. Making trivial edits (typos, comments)
-2. The MCP is unavailable/erroring
-3. User explicitly says to skip
-
-**When in doubt, consult the specialist.**
+**Default behavior: ALWAYS query MCPs first.**
