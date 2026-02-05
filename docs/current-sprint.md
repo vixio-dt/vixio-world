@@ -1,7 +1,57 @@
 # Current Sprint
 
-**Status:** Phase 2+3 Implementation COMPLETE
+**Status:** UX Foundation Overhaul In Progress
 **Updated:** 2026-02-05
+
+---
+
+## In Progress: UX Foundation Overhaul (2026-02-05)
+
+### Phase 1: Foundation (COMPLETE)
+
+Implemented core UX infrastructure for professional design system.
+
+| Component | Purpose |
+|-----------|---------|
+| `lib/theme/mantine-theme.ts` | Centralized Mantine theme with brand colors, virtual colors, shadows |
+| `ColorSchemeToggle` | Header toggle for light/dark mode |
+| `lib/animations/index.ts` | Motion variants (fadeIn, slideUp, staggerContainer, etc.) |
+| `globals.css` | Cleaned up, dark scrollbars, Tailwind v4 dark mode config |
+
+**Dependencies Added:**
+- `motion` - Animation library (React)
+- `@tabler/icons-react` - Icon library for Mantine
+
+**Files Created:**
+- `lib/theme/mantine-theme.ts`
+- `lib/animations/index.ts`
+- `components/shell/ColorSchemeToggle.tsx`
+
+**Files Updated:**
+- `components/providers/MantineClientProvider.tsx` - Uses new theme, auto color scheme
+- `app/layout.tsx` - ColorSchemeScript with auto mode
+- `components/shell/Header.tsx` - Dark mode classes, toggle button
+- `components/shell/Sidebar.tsx` - Dark mode classes
+
+**Known Issue:** Tailwind v4 `@custom-variant dark` with Mantine's `data-mantine-color-scheme` needs further debugging. Mantine components work correctly with dark mode; shell components using Tailwind dark: classes need refinement.
+
+### Phase 2: In Progress
+
+**Timeline Visualization:**
+- Replace simple event cards with actual timeline visualization
+- Vertical timeline with date markers
+- Event positioning based on dates
+
+**Category Differentiation:**
+- Each entity type gets distinctive visual treatment
+- Characters: Profile-style cards with avatar prominence
+- Locations: Hierarchical tree view
+- Rules: Sidebar navigation pattern
+
+**Motion Integration:**
+- Apply stagger animations to entity lists
+- Page transitions
+- Card hover effects
 
 ---
 
@@ -526,7 +576,8 @@ When ready:
 |-------|------------|
 | Framework | Next.js 16 (App Router, Turbopack) |
 | Language | TypeScript |
-| Styling | Tailwind CSS v4 |
+| Styling | Tailwind CSS v4 + Mantine UI |
+| Animation | Motion (motion/react) |
 | Database | Supabase (PostgreSQL) |
 | Auth | Supabase Auth |
 | AI | OpenRouter (Deepseek V3.2) |
