@@ -3,67 +3,48 @@
 @import "@mantine/spotlight/styles.css";
 @import "@mantine/notifications/styles.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #0f172a;
-  /* Vixio brand colors - cyan to yellow gradient palette */
-  --primary: #22d3ee;
-  --primary-hover: #06b6d4;
-  --primary-foreground: #ffffff;
-  --secondary: #f0fdfa;
-  --secondary-foreground: #0f172a;
-  --muted: #f0fdfa;
-  --muted-foreground: #64748b;
-  --accent: #a5f3fc;
-  --accent-foreground: #0f172a;
-  --highlight: #fef9c3;
-  --destructive: #ef4444;
-  --destructive-foreground: #ffffff;
-  --border: #cffafe;
-  --input: #e0f2fe;
-  --ring: #22d3ee;
-  --radius: 0.75rem;
-  /* Gradient for brand elements */
-  --gradient-brand: linear-gradient(135deg, #67e8f9 0%, #a5f3fc 50%, #fef9c3 100%);
-}
+/* Configure Tailwind dark mode to use Mantine's data attribute */
+@custom-variant dark (&:where([data-mantine-color-scheme=dark], [data-mantine-color-scheme=dark] *));
 
 body {
-  background: var(--background);
-  color: var(--foreground);
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - light mode */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--secondary);
+  background: #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--muted-foreground);
+  background: #94a3b8;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--foreground);
+  background: #64748b;
 }
 
-/* Toast slide-in animation */
-@keyframes slide-in {
-  from {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+/* Custom scrollbar - dark mode */
+[data-mantine-color-scheme="dark"] ::-webkit-scrollbar-track {
+  background: #1e293b;
 }
 
-.animate-slide-in {
-  animation: slide-in 0.3s ease-out;
+[data-mantine-color-scheme="dark"] ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+[data-mantine-color-scheme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Smooth color scheme transitions */
+* {
+  transition-property: background-color, border-color;
+  transition-duration: 200ms;
+  transition-timing-function: ease-out;
 }
