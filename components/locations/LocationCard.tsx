@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'motion/react'
-import { Paper, Group, Text, Badge, ThemeIcon, Stack } from '@mantine/core'
+import { Paper, Group, Text, Badge, Stack } from '@mantine/core'
 import { Globe, Mountain, MapPin, Building2, Landmark, Home, DoorOpen, Sparkles } from 'lucide-react'
 import type { Location } from '@/lib/types/database'
 
@@ -80,7 +80,7 @@ export function LocationCard({ location, index = 0 }: LocationCardProps) {
             
             {location.atmosphere && (
               <Text size="xs" c="dimmed" className="italic">
-                "{location.atmosphere}"
+                &ldquo;{location.atmosphere}&rdquo;
               </Text>
             )}
           </Stack>

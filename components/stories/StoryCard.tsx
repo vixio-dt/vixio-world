@@ -102,7 +102,7 @@ export function StoryCard({ story, index = 0 }: StoryCardProps) {
 
             {story.logline && (
               <Text size="sm" c="dimmed" lineClamp={2} className="dark:text-slate-400 italic">
-                "{story.logline}"
+                &ldquo;{story.logline}&rdquo;
               </Text>
             )}
             
@@ -112,7 +112,7 @@ export function StoryCard({ story, index = 0 }: StoryCardProps) {
                   Lore Link
                 </Text>
                 <Text size="sm" className="text-cyan-800 dark:text-cyan-200 italic" lineClamp={2}>
-                  "{story.story_context}"
+                  &ldquo;{story.story_context}&rdquo;
                 </Text>
               </div>
             )}

@@ -13,6 +13,7 @@ interface WorldOnboardingProps {
   onWorldCreated: (world: World) => void
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function WorldOnboarding({ isOpen, onClose, onWorldCreated }: WorldOnboardingProps) {
   const [mode, setMode] = useState<'choose' | 'create'>('choose')
   const [worldName, setWorldName] = useState('')

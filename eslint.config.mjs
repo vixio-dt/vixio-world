@@ -13,6 +13,8 @@ const eslintConfig = [
       "dist/**",
       ".claude/**",
       "next-env.d.ts",
+      "dev-bot/**",
+      "product-plan/**",
     ],
   },
 ];

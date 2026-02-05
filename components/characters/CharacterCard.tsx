@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'motion/react'
-import { Badge, Paper, Text, Group, Stack, Avatar } from '@mantine/core'
+import { Badge, Paper, Text, Group, Stack } from '@mantine/core'
 import { Sparkles, Crown, Skull, User, Users } from 'lucide-react'
 import type { Character } from '@/lib/types/database'
 

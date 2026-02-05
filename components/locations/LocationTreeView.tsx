@@ -236,6 +236,7 @@ export function LocationTreeView({ locations }: LocationTreeViewProps) {
       transition={{ duration: 0.3 }}
     >
       <Tree
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         data={treeData as any}
         levelOffset={32}
         expandOnClick

@@ -1,6 +1,6 @@
 'use client'
 
-import { AppShell, Burger, Group, ScrollArea, NavLink, useMantineColorScheme, Box } from '@mantine/core'
+import { AppShell, Burger, Group, ScrollArea, NavLink, useMantineColorScheme } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -49,7 +49,7 @@ interface DashboardShellProps {
   worldId?: string | null
 }
 
-export function DashboardShell({ children, userEmail, worldId }: DashboardShellProps) {
+export function DashboardShell({ children, userEmail }: DashboardShellProps) {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure()
   const pathname = usePathname()
   const { colorScheme } = useMantineColorScheme()

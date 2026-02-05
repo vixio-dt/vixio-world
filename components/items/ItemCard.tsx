@@ -84,7 +84,7 @@ export function ItemCard({ item, index = 0 }: ItemCardProps) {
                   Lore Link
                 </Text>
                 <Text size="sm" className="text-amber-800 dark:text-amber-200 italic" lineClamp={2}>
-                  "{item.story_context}"
+                  &ldquo;{item.story_context}&rdquo;
                 </Text>
               </div>
             )}

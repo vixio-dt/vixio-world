@@ -208,7 +208,7 @@ export async function sendChatMessage(
   const supabase = await createClient()
 
   // Parse command
-  const { command, query } = parseCommand(content)
+  const { command } = parseCommand(content)
 
   // Build world context
   const context = await buildWorldContext(worldId)

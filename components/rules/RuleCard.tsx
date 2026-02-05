@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'motion/react'
-import { Paper, Group, Text, Badge, ThemeIcon, Stack } from '@mantine/core'
+import { Paper, Group, Text, Badge, Stack } from '@mantine/core'
 import { 
   Scale, 
   Atom, 
@@ -87,7 +87,7 @@ export function RuleCard({ rule, index = 0 }: RuleCardProps) {
             {rule.statement && (
               <Paper p="sm" radius="sm" className="bg-slate-50 dark:bg-slate-900 border-l-2 border-slate-300 dark:border-slate-600">
                 <Text size="sm" c="dimmed" lineClamp={2} className="italic">
-                  "{rule.statement}"
+                  &ldquo;{rule.statement}&rdquo;
                 </Text>
               </Paper>
             )}

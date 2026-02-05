@@ -84,7 +84,7 @@ export function OrganizationCard({ organization, index = 0 }: OrganizationCardPr
                   Lore Link
                 </Text>
                 <Text size="sm" className="text-purple-800 dark:text-purple-200 italic" lineClamp={2}>
-                  "{organization.story_context}"
+                  &ldquo;{organization.story_context}&rdquo;
                 </Text>
               </div>
             )}
