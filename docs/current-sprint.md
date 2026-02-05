@@ -1,7 +1,30 @@
 # Current Sprint
 
 **Status:** Phase 2+3 Implementation COMPLETE
-**Updated:** 2026-01-30
+**Updated:** 2026-02-05
+
+---
+
+## Recent Completion: Remote Headless Development (2026-02-05)
+
+### Remote Development Skill
+
+Added skill and scripts for controlling Cursor remotely from mobile devices using VS Code Remote Tunnels.
+
+| Component | Purpose |
+|-----------|---------|
+| `remote-headless-development` skill | Quick reference for remote dev workflow |
+| `keep-awake-windows.ps1` | Prevents Windows sleep while Cursor runs |
+| `mobile-quickstart.md` | PWA setup guide for iOS/Android |
+| `tunnel-setup-checklist.md` | One-time tunnel configuration |
+
+**Why this approach:** Uses existing Cursor subscription with full skill system access. No extra API costs. Full agent mode, MCP servers, and codebase indexing available remotely.
+
+**Files Created:**
+- `.claude/skills/remote-headless-development/SKILL.md`
+- `scripts/remote-dev/keep-awake-windows.ps1`
+- `scripts/remote-dev/mobile-quickstart.md`
+- `scripts/remote-dev/tunnel-setup-checklist.md`
 
 ---
 

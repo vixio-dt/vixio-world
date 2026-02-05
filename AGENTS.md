@@ -53,6 +53,8 @@ Skills are in `.claude/skills/`. Read the SKILL.md file when the situation match
 | `react-best-practices` | When writing React/Next.js components or optimizing performance |
 | `code-execution` | For bulk operations (10+ files) to save 90%+ tokens |
 | `code-auditor` | When auditing code quality, security, or finding technical debt |
+| `dev-bot-agent` | When processing tasks from the Slack dev-bot |
+| `remote-headless-development` | When controlling Cursor remotely from mobile or another machine |
 
 </skills_system>
 
