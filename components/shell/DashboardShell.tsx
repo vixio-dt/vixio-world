@@ -87,10 +87,10 @@ export function DashboardShell({ children, userEmail }: DashboardShellProps) {
               size="sm"
               aria-label="Toggle navigation"
             />
-            <Link href="/dashboard" className="flex items-center">
+            <Link href="/dashboard" className="flex items-center" aria-label="Vixio - Go to dashboard">
               <Image
                 src="/vixio-logo.svg"
-                alt="Vixio"
+                alt=""
                 width={100}
                 height={40}
                 className="h-8 w-auto dark:brightness-110"

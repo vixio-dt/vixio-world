@@ -45,10 +45,10 @@ export function Sidebar() {
     <aside className="w-64 h-screen bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col transition-colors">
       {/* Logo */}
       <div className="p-4 border-b border-slate-200 dark:border-slate-700">
-        <Link href="/dashboard" className="flex items-center justify-center">
+        <Link href="/dashboard" className="flex items-center justify-center" aria-label="Vixio - Go to dashboard">
           <Image
             src="/vixio-logo.svg"
-            alt="Vixio"
+            alt=""
             width={160}
             height={80}
             className="h-20 w-auto dark:brightness-110"
