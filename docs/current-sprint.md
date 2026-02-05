@@ -1,7 +1,39 @@
 # Current Sprint
 
-**Status:** UX Foundation Overhaul - Phase 5 Complete
+**Status:** UX Foundation Overhaul - Phase 5 Complete + Polish
 **Updated:** 2026-02-05
+
+---
+
+## Completed: Professional Polish (2026-02-05)
+
+### Accessibility & Performance Fixes (COMPLETE)
+
+Quick wins for professional polish addressing console warnings and a11y issues.
+
+**Image Optimization:**
+- ✅ Added `priority` prop to logo images for LCP optimization
+- ✅ Added `style={{ width: 'auto', height: 'auto' }}` to fix aspect ratio warnings
+- ✅ Fixed hydration mismatch from `useMantineColorScheme` in AppShell styles
+
+**Accessibility:**
+- ✅ Added `aria-label="Vixio - Go to dashboard"` to logo links for screen readers
+- ✅ Changed decorative images inside links to `alt=""` (linked image pattern)
+- ✅ All interactive elements now have proper accessible names
+
+**Console Warnings Fixed:**
+- ✅ Next.js Image LCP warning
+- ✅ Next.js Image aspect ratio warning
+- ✅ Mantine NavLink `&[data-active]` style property warning
+- ✅ Hydration mismatch for AppShell background colors
+
+**Files Updated:**
+- `components/shell/DashboardShell.tsx` - Removed useMantineColorScheme, simplified styles
+- `components/shell/Sidebar.tsx` - Logo link aria-label
+- `app/(auth)/layout.tsx` - Image priority and style props
+
+**Remaining (Known, Non-Critical):**
+- Minor Mantine internal ID hydration mismatch (useId hook SSR behavior) - does not affect functionality
 
 ---
 
