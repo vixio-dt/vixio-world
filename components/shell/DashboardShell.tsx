@@ -1,6 +1,6 @@
 'use client'
 
-import { AppShell, Burger, Group, ScrollArea, NavLink, useMantineColorScheme } from '@mantine/core'
+import { AppShell, Burger, Group, ScrollArea, NavLink } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -52,7 +52,6 @@ interface DashboardShellProps {
 export function DashboardShell({ children, userEmail }: DashboardShellProps) {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure()
   const pathname = usePathname()
-  const { colorScheme } = useMantineColorScheme()
 
   // Close mobile nav when navigating
   const handleNavClick = () => {
@@ -72,16 +71,7 @@ export function DashboardShell({ children, userEmail }: DashboardShellProps) {
       padding="md"
       styles={{
         main: {
-          backgroundColor: colorScheme === 'dark' ? 'var(--mantine-color-dark-8)' : 'var(--mantine-color-gray-0)',
           minHeight: '100vh',
-        },
-        header: {
-          backgroundColor: colorScheme === 'dark' ? 'var(--mantine-color-dark-7)' : 'white',
-          borderColor: colorScheme === 'dark' ? 'var(--mantine-color-dark-5)' : 'var(--mantine-color-gray-2)',
-        },
-        navbar: {
-          backgroundColor: colorScheme === 'dark' ? 'var(--mantine-color-dark-7)' : 'white',
-          borderColor: colorScheme === 'dark' ? 'var(--mantine-color-dark-5)' : 'var(--mantine-color-gray-2)',
         },
       }}
     >
@@ -104,6 +94,7 @@ export function DashboardShell({ children, userEmail }: DashboardShellProps) {
                 width={100}
                 height={40}
                 className="h-8 w-auto dark:brightness-110"
+                style={{ width: 'auto', height: 'auto' }}
                 priority
               />
             </Link>
@@ -153,19 +144,11 @@ export function DashboardShell({ children, userEmail }: DashboardShellProps) {
                 leftSection={<item.icon size={18} />}
                 active={isActive}
                 onClick={handleNavClick}
-                styles={(theme) => ({
+styles={(theme) => ({
                   root: {
                     borderRadius: theme.radius.lg,
                     marginBottom: 4,
                     fontWeight: 500,
-                    '&[dataActive]': {
-                      background: `linear-gradient(135deg, ${theme.colors.cyan[0]} 0%, ${theme.colors.teal[0]} 100%)`,
-                      color: theme.colors.cyan[7],
-                    },
-                    '&[dataActive][data-mantine-color-scheme="dark"]': {
-                      background: `linear-gradient(135deg, rgba(34, 211, 238, 0.15) 0%, rgba(45, 212, 191, 0.15) 100%)`,
-                      color: theme.colors.cyan[4],
-                    },
                   },
                 })}
               />

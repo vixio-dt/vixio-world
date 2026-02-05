@@ -52,6 +52,8 @@ export function Sidebar() {
             width={160}
             height={80}
             className="h-20 w-auto dark:brightness-110"
+            style={{ width: 'auto', height: 'auto' }}
+            priority
           />
         </Link>
       </div>
