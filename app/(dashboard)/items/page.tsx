@@ -25,8 +25,8 @@ export default async function ItemsPage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Items</h1>
-          <p className="text-slate-500 mt-1">Objects and artifacts in your world</p>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Items</h1>
+          <p className="text-slate-500 dark:text-slate-400 mt-1">Objects and artifacts in your world</p>
         </div>
         <Link href="/items/new">
           <Button>
@@ -47,9 +47,9 @@ export default async function ItemsPage() {
           }}
         />
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {items.map((item) => (
-            <ItemCard key={item.id} item={item} />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {items.map((item, index) => (
+            <ItemCard key={item.id} item={item} index={index} />
           ))}
         </div>
       )}

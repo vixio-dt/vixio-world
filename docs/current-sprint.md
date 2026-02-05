@@ -59,6 +59,9 @@ Implemented core UX infrastructure for professional design system.
 - ✅ Characters: Profile-style cards with avatar prominence, role-based gradients, entrance animations
 - ✅ Locations: Tree view with type hierarchy, gradient icons, atmosphere quotes
 - ✅ Rules: Sidebar navigation with category grouping, accordion panels, category icons/badges
+- ✅ Organizations: Type-based gradient icons (government, religion, corporation, guild, etc.), motion animations
+- ✅ Items: Type-based gradient icons (weapon, artifact, tool, technology, etc.), rarity badges, motion animations
+- ✅ Stories: Status-based styling with progress bars, genre badges, motion animations
 
 **Files Created:**
 - `components/locations/LocationTreeView.tsx` - Hierarchical tree view with type icons
@@ -73,11 +76,17 @@ Implemented core UX infrastructure for professional design system.
 - `components/rules/RuleCard.tsx` - Gradient icons, category badges, rule code/statement/scope, motion animations
 - `app/(dashboard)/rules/page.tsx` - View toggle (sidebar/grid), dark mode support
 - `components/rules/index.ts` - Export RuleCategoryView
+- `components/organizations/OrganizationCard.tsx` - Gradient icons, type badges, motion animations
+- `app/(dashboard)/organizations/page.tsx` - Dark mode support, passes index for stagger animations
+- `components/items/ItemCard.tsx` - Gradient icons, type badges, rarity badges, motion animations
+- `app/(dashboard)/items/page.tsx` - Dark mode support, passes index for stagger animations
+- `components/stories/StoryCard.tsx` - Progress bar, status icons, genre badges, motion animations
+- `app/(dashboard)/stories/page.tsx` - Dark mode support, passes index for stagger animations
 
-**Motion Integration:**
-- ✅ Apply stagger animations to entity lists (Timeline, Characters, Locations, Rules)
-- Page transitions (pending)
+**Motion Integration:** ✅ COMPLETE
+- ✅ Apply stagger animations to entity lists (all entity types)
 - Card hover effects (via Mantine Paper hover styles)
+- Page transitions (deferred - requires layout component changes)
 
 ---
 
