@@ -49,21 +49,26 @@ This checklist is MANDATORY before:
 └─────────────────────────────────────────────────────────────┘
 ```
 
-## MCP Quick Reference
+## MCP Quick Reference (Core - Always Available)
 
 | MCP | When to Call | Tool to Use |
 |-----|--------------|-------------|
 | **Context7** | Any library (Mantine, React, Motion) | `resolve-library-id` → `query-docs` |
 | **Sequential Thinking** | Complex decisions, debugging | `sequentialthinking` |
-| **Supabase** | Database queries, schema | Query tools |
 | **next-devtools** | Routes, server actions, errors | `nextjs_index` → `nextjs_call` |
-| **tailwindcss** | Styling, utilities | `search_tailwind_docs` |
+| **Playwright** | UI testing, verification | Browser automation |
 | **eslint** | Lint errors | `lint-files` |
-| **Playwright** | UI testing | Browser automation |
-| **Sentry** | Production errors | `search_issues` |
-| **GitHub** | PRs, issues, commits | PR/issue tools |
-| **AntVis Chart** | Data visualization | Chart generation |
 | **Memory** | Persist decisions | `create_entities` |
+| **Fetch** | Web content | `fetch` |
+
+### Optional MCPs (Enable in Cursor Settings When Needed)
+
+| MCP | Enable When |
+|-----|-------------|
+| **Supabase** | Database schema changes |
+| **Sentry** | Production error debugging |
+| **GitHub** | Complex PR workflows |
+| **AntVis Chart** | Chart/diagram generation |
 
 ## After Implementation
 

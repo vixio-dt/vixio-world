@@ -11,15 +11,24 @@ description: Query MCPs first, run pre-action checklist, then proceed with imple
 
 **DO THIS NOW - Call the relevant MCPs before anything else:**
 
+### Core MCPs (Always Available)
+
 | If your task involves... | CALL THIS MCP NOW |
 |--------------------------|-------------------|
 | Any library (React, Mantine, Motion, etc.) | **Context7** → `resolve-library-id` then `query-docs` |
 | Multiple approaches or complex decisions | **Sequential Thinking** → structure your reasoning |
-| Database queries or schema | **Supabase** → verify actual schema |
 | Next.js routes, server actions, errors | **next-devtools** → `nextjs_index` then `nextjs_call` |
-| Tailwind styling | **tailwindcss** → `get_tailwind_utilities` or `search_tailwind_docs` |
 | UI testing or verification | **Playwright** → browser automation |
 | Linting issues | **eslint** → `lint-files` |
+
+### Optional MCPs (Enable in Cursor Settings if Needed)
+
+| If your task involves... | Enable and call |
+|--------------------------|-----------------|
+| Database schema changes | **Supabase** |
+| Production error debugging | **Sentry** |
+| Complex GitHub workflows | **GitHub** |
+| Chart/diagram generation | **AntVis Chart** |
 
 **Minimum MCP set for ANY implementation:**
 - Context7 for libraries you'll use

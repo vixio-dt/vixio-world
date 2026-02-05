@@ -22,21 +22,29 @@ alwaysApply: true
 └─────────────────────────────────────────────────────────────┘
 ```
 
-## MCP Action Table
+## MCP Action Table (Core MCPs - Always Available)
 
 | Task Type | MCP to CALL | Specific Tool |
 |-----------|-------------|---------------|
 | Using ANY library | **Context7** | `resolve-library-id` → `query-docs` |
 | Complex decisions (2+ options) | **Sequential Thinking** | `sequentialthinking` |
-| Database work | **Supabase** | Query actual schema |
 | Next.js code | **next-devtools** | `nextjs_index` → `nextjs_call` |
-| Tailwind styling | **tailwindcss** | `search_tailwind_docs` or `get_tailwind_utilities` |
 | Fixing lint errors | **eslint** | `lint-files` |
 | UI verification | **Playwright** | Browser automation |
-| Production bugs | **Sentry** | `search_issues` or `get_issue_details` |
-| GitHub operations | **GitHub** | PR/issue tools |
-| Data visualization | **AntVis Chart** | Chart generation tools |
 | Persist decisions | **Memory** | `create_entities` / `search_nodes` |
+| Web content | **Fetch** | `fetch` |
+
+## Optional MCPs (Enable in Cursor Settings When Needed)
+
+These are disabled by default to stay under the 80-tool limit:
+
+| Task Type | MCP | Enable When |
+|-----------|-----|-------------|
+| Database work | **Supabase** | Schema changes, RLS policies |
+| Production bugs | **Sentry** | Debugging prod errors |
+| GitHub operations | **GitHub** | Complex PR workflows |
+| Data visualization | **AntVis Chart** | Generating charts for export |
+| Tailwind styling | **tailwindcss** | Heavy Tailwind work (fix error first) |
 
 ## Minimum MCP Set
 

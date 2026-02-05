@@ -12,9 +12,9 @@ alwaysApply: true
 1. **MCP-First (ALWAYS)**: Before ANY implementation, you MUST query relevant MCPs first:
    - **Context7** for any library (Mantine, React, Motion, etc.) - get current docs
    - **Sequential Thinking** for complex decisions (2+ approaches)
-   - **Supabase** for database work - verify actual schema
    - **next-devtools** for Next.js code - check runtime state
-   - **tailwindcss** for styling - get correct utilities
+   - **Playwright** for UI testing and verification
+   - **eslint** for linting issues
    - Show what you learned from MCPs before proceeding. This is NOT optional.
 
 2. **95% Confidence Rule**: Do NOT make changes until you have 95% confidence you understand what to build. Ask clarifying questions until you reach that confidence.
@@ -69,20 +69,29 @@ Skills are in `.claude/skills/`. Read the SKILL.md file when the situation match
 
 MCP servers provide REAL-TIME access to external systems. **Prefer them over static approaches.**
 
-| MCP Server | Use For | Instead Of |
-|------------|---------|------------|
-| **Context7** | Library docs (React, Mantine, any npm package) | Web search for API syntax |
-| **Sequential Thinking** | Complex multi-step reasoning | Ad-hoc problem solving |
-| **next-devtools** | Next.js runtime errors, routes, Server Actions | Guessing build issues |
-| **Supabase** | Live DB queries, auth, RLS policies | Guessing schema |
-| **tailwindcss** | Tailwind utilities, CSS-to-Tailwind | Guessing class names |
-| **eslint** | Linting diagnostics and fixes | Manual lint error fixing |
-| **Playwright** | E2E testing, screenshots | Manual browser testing |
-| **Sentry** | Error monitoring, crash reports | Guessing prod issues |
-| **GitHub** | PRs, issues, repo management | Manual git operations |
-| **AntVis Chart** | Data visualizations, charts, diagrams | Manual chart building |
-| **Memory** | Persist decisions across sessions | Repeating context |
-| **Fetch** | Web content retrieval | Assuming content |
+### Core MCPs (Always Enabled)
+
+| MCP Server | Tools | Use For |
+|------------|-------|---------|
+| **Context7** | 2 | Library docs (React, Mantine, Motion, any npm package) |
+| **Sequential Thinking** | 1 | Complex multi-step reasoning, debugging |
+| **next-devtools** | 7 | Next.js runtime errors, routes, Server Actions |
+| **Playwright** | 22 | E2E testing, screenshots, UI verification |
+| **eslint** | 1 | Linting diagnostics and fixes |
+| **Memory** | 9 | Persist decisions across sessions |
+| **Fetch** | 1 | Web content retrieval |
+
+### Optional MCPs (Enable When Needed)
+
+These are disabled by default to stay under the 80-tool limit. Enable in Cursor settings when needed:
+
+| MCP Server | Tools | Enable When |
+|------------|-------|-------------|
+| **Supabase** | ~10 | Database schema changes, RLS policies |
+| **Sentry** | 22 | Debugging production errors |
+| **GitHub** | 26 | Complex PR/issue workflows |
+| **AntVis Chart** | 27 | Generating charts for export |
+| **tailwindcss** | ~8 | Heavy Tailwind styling work |
 
 ### When to Use MCP First
 
@@ -90,13 +99,10 @@ MCP servers provide REAL-TIME access to external systems. **Prefer them over sta
 |-----------|------------|
 | "Implement X using Mantine/React/any library" | **Context7** (get docs first!) |
 | "Build a Next.js route or Server Action" | **next-devtools** |
-| "What's the schema for X table?" | **Supabase** |
 | "Fix this lint error" | **eslint** |
-| "Style this component with Tailwind" | **tailwindcss** |
 | "Test the login flow" | **Playwright** |
-| "What errors are happening in prod?" | **Sentry** |
-| "Remember this architectural decision" | **Memory** |
 | "Complex problem needs step-by-step thinking" | **Sequential Thinking** |
+| "Remember this architectural decision" | **Memory** |
 
 </mcp_servers>
 
