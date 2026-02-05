@@ -1,25 +1,25 @@
 import Link from 'next/link'
-import { Plus, Users } from 'lucide-react'
-import { createClient } from '@/lib/supabase/server'
+import { Plus, Users, Globe } from 'lucide-react'
+import { cookies } from 'next/headers'
+import { getCharacters } from '@/lib/actions/characters'
 import { Button, EmptyState } from '@/components/ui'
 import { CharacterCard } from '@/components/characters'
-import type { Character } from '@/lib/types/database'
 
 export default async function CharactersPage() {
-  const supabase = await createClient()
-  
-  // For now, get all characters (later: filter by selected world)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data: characters, error } = await (supabase as any)
-    .from('characters')
-    .select('*')
-    .order('created_at', { ascending: false })
+  const cookieStore = await cookies()
+  const worldId = cookieStore.get('current_world_id')?.value
 
-  if (error) {
-    console.error('Error fetching characters:', error)
+  if (!worldId) {
+    return (
+      <EmptyState
+        icon={Globe}
+        title="No world selected"
+        description="Please select or create a world to view characters."
+      />
+    )
   }
 
-  const characterList = (characters || []) as unknown as Character[]
+  const characters = await getCharacters(worldId)
 
   return (
     <div>
@@ -27,7 +27,7 @@ export default async function CharactersPage() {
         <div>
           <h1 className="text-3xl font-bold text-slate-900">Characters</h1>
           <p className="text-slate-600 mt-2">
-            {characterList.length} character{characterList.length !== 1 ? 's' : ''} in your world
+            {characters.length} character{characters.length !== 1 ? 's' : ''} in your world
           </p>
         </div>
         <Link href="/characters/new">
@@ -38,7 +38,7 @@ export default async function CharactersPage() {
         </Link>
       </div>
 
-      {characterList.length === 0 ? (
+      {characters.length === 0 ? (
         <EmptyState
           icon={Users}
           title="No characters yet"
@@ -50,7 +50,7 @@ export default async function CharactersPage() {
         />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {characterList.map((character) => (
+          {characters.map((character) => (
             <CharacterCard key={character.id} character={character} />
           ))}
         </div>

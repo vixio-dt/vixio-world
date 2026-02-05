@@ -5,6 +5,91 @@
 
 ---
 
+## Recent Completion: AI Chat (2026-02-05)
+
+### AI-Powered World Chat
+
+Added AI chat feature for querying and exploring your world using natural language.
+
+| Component | Purpose |
+|-----------|---------|
+| `/chat` route | Chat interface with message history |
+| `ChatMessage` | Message display with source citations |
+| `ChatInput` | Auto-resizing input with send on Enter |
+| `QuickActions` | One-click commands (/status, /gaps, etc.) |
+| `chat.ts` actions | Session management, AI queries |
+| `ai-context.ts` | Serializes world data for AI context |
+
+**Commands:**
+- Natural language queries - "Who knows about the artifact?"
+- `/check [statement]` - Check consistency against world rules
+- `/gaps` - Find underdeveloped areas
+- `/suggest story` - Get story ideas using your entities
+- `/connections [name]` - Explore relationships
+- `/status` - World statistics
+
+**Database:**
+- `chat_sessions` - One session per world
+- `chat_messages` - Message history with metadata
+
+**Files Created:**
+- `app/(dashboard)/chat/page.tsx`
+- `components/chat/ChatMessage.tsx`
+- `components/chat/ChatInput.tsx`
+- `components/chat/QuickActions.tsx`
+- `components/chat/index.ts`
+- `lib/actions/chat.ts`
+- `lib/utils/ai-context.ts`
+- `supabase/migrations/2026-02-05-chat.sql`
+
+**Run migration:** Execute `supabase/migrations/2026-02-05-chat.sql` in Supabase SQL Editor.
+
+---
+
+## Recent Completion: Template World & World Isolation Fixes (2026-02-05)
+
+### Template World ("Explore Demo World")
+
+Added option to create a pre-populated demo world during onboarding, giving new users immediate content to explore.
+
+| Component | Purpose |
+|-----------|---------|
+| `WorldOnboarding.tsx` | Added "Explore Demo World" button |
+| `seed-template.ts` | Server action that creates "Neon Shadows" world with sample entities |
+
+**Pre-populated Entities (Neon Shadows - Cyberpunk Noir):**
+- 4 Characters (Kira Tanaka, Marcus Chen, ECHO, Sister Mercy)
+- 4 Locations (Neon District, The Rust, Chrome Tower, The Sanctum)
+- 3 Organizations (Nexus Corp, The Disconnected, Church of Chrome Dawn)
+- 4 Rules (Memory Transfer, AI Legal Status, Augmentation Limits, The Grid)
+- 3 Items (Echo's Core, Kira's Badge, Neural Spike)
+- 2 Events (The Nexus Incident, First Contact with ECHO)
+- 1 Story (Ghost in the System)
+
+**Files Created:**
+- `lib/actions/seed-template.ts`
+
+### World Isolation Bug Fixes
+
+Fixed critical bug where entity pages showed data from ALL worlds instead of just the selected world.
+
+**Issues Fixed:**
+
+1. **Cookie Name Mismatch** - Entity pages were reading `selected_world_id` cookie but `world-context.ts` sets `current_world_id`.
+
+2. **Characters Not Filtered** - Characters page fetched all characters without world filter; now uses `getCharacters(worldId)`.
+
+**Files Updated (Cookie Fix):**
+- `app/(dashboard)/locations/page.tsx` + `new/page.tsx`
+- `app/(dashboard)/organizations/page.tsx` + `new/page.tsx`
+- `app/(dashboard)/timeline/page.tsx` + `new/page.tsx`
+- `app/(dashboard)/items/page.tsx` + `new/page.tsx`
+- `app/(dashboard)/rules/page.tsx` + `new/page.tsx`
+- `app/(dashboard)/stories/page.tsx` + `new/page.tsx`
+- `app/(dashboard)/characters/page.tsx` + `new/page.tsx`
+
+---
+
 ## Recent Completion: Remote Headless Development (2026-02-05)
 
 ### Remote Development Skill

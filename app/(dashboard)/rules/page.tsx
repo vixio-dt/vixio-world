@@ -7,7 +7,7 @@ import { cookies } from 'next/headers'
 
 export default async function RulesPage() {
   const cookieStore = await cookies()
-  const worldId = cookieStore.get('selected_world_id')?.value
+  const worldId = cookieStore.get('current_world_id')?.value
 
   if (!worldId) {
     return (

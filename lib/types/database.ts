@@ -359,6 +359,53 @@ export interface ItemOwner {
   ownership_type: 'current' | 'former' | 'creator' | null
 }
 
+// Chat types
+export type MessageRole = 'user' | 'assistant' | 'system'
+export type ChatCommand = 'query' | 'check' | 'suggest' | 'gaps' | 'connections' | 'status'
+
+export interface ChatSession {
+  id: string
+  world_id: string
+  created_at: string
+  updated_at: string
+}
+
+export interface ChatMessage {
+  id: string
+  session_id: string
+  role: MessageRole
+  content: string
+  command: ChatCommand | null
+  metadata: ChatMessageMetadata
+  created_at: string
+}
+
+export interface ChatMessageMetadata {
+  sources?: Array<{
+    type: EntityType
+    id: string
+    name: string
+  }>
+  consistencyResult?: {
+    statement: string
+    verdict: 'consistent' | 'warning' | 'conflict'
+    applicableRules: Array<{
+      ruleId: string
+      ruleCode: string
+      ruleName: string
+      relevance: string
+      conflict: boolean
+    }>
+    explanation: string
+  }
+  gaps?: Array<{
+    type: EntityType
+    description: string
+    severity: 'high' | 'medium' | 'low'
+    suggestion: string
+  }>
+}
+
 // Utility types
 export type Tables = Database['public']['Tables']
 export type TableName = keyof Tables

@@ -1,9 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import { Globe, FileText, Plus, Sparkles, X } from 'lucide-react'
+import { Globe, FileText, Plus, Sparkles, X, Rocket } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { setCurrentWorldId } from '@/lib/utils/world-context'
+import { createTemplateWorld } from '@/lib/actions/seed-template'
 import type { World } from '@/lib/types/database'
 
 interface WorldOnboardingProps {
@@ -17,8 +18,32 @@ export function WorldOnboarding({ isOpen, onClose, onWorldCreated }: WorldOnboar
   const [worldName, setWorldName] = useState('')
   const [loading, setLoading] = useState(false)
   const [importLoading, setImportLoading] = useState(false)
+  const [templateLoading, setTemplateLoading] = useState(false)
 
   if (!isOpen) return null
+
+  // Create a template world with sample data
+  async function handleTemplate() {
+    setTemplateLoading(true)
+    
+    try {
+      const result = await createTemplateWorld()
+      
+      if (!result.success || !result.worldId) {
+        alert(result.error || 'Failed to create template world')
+        setTemplateLoading(false)
+        return
+      }
+
+      setCurrentWorldId(result.worldId)
+      // Refresh to load the new world
+      window.location.reload()
+    } catch (err) {
+      console.error('Error:', err)
+      alert('An error occurred. Please try again.')
+      setTemplateLoading(false)
+    }
+  }
 
   // Create a world and navigate to import page
   async function handleImport() {
@@ -135,10 +160,35 @@ export function WorldOnboarding({ isOpen, onClose, onWorldCreated }: WorldOnboar
           {mode === 'choose' ? (
             <>
               <p className="text-slate-600 mb-6">
-                Get started by creating a new world or importing an existing one from your documents.
+                Get started by exploring a demo, importing your content, or creating from scratch.
               </p>
 
               <div className="grid gap-4">
+                {/* Template Option - Pre-populated demo world */}
+                <button
+                  type="button"
+                  onClick={handleTemplate}
+                  disabled={templateLoading}
+                  className="group flex items-start gap-4 p-4 bg-gradient-to-br from-violet-50 to-purple-50 border border-violet-200 rounded-xl hover:border-violet-300 hover:shadow-lg hover:shadow-violet-500/10 transition-all duration-200 text-left disabled:opacity-50 disabled:cursor-wait"
+                >
+                  <div className="p-3 bg-white rounded-xl shadow-sm group-hover:shadow transition-shadow">
+                    <Rocket className="w-6 h-6 text-violet-600" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-semibold text-slate-900">
+                        {templateLoading ? 'Creating...' : 'Explore Demo World'}
+                      </h3>
+                      <span className="px-2 py-0.5 bg-violet-200 text-violet-700 text-xs font-medium rounded-full">
+                        Recommended
+                      </span>
+                    </div>
+                    <p className="text-sm text-slate-600 mt-1">
+                      Start with &quot;Neon Shadows&quot; - a cyberpunk world with characters, locations, and more.
+                    </p>
+                  </div>
+                </button>
+
                 {/* Import Option - Creates a world then navigates to import */}
                 <button
                   type="button"
