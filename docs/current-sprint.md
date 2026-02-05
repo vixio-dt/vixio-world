@@ -1,11 +1,116 @@
 # Current Sprint
 
-**Status:** UX Foundation Overhaul In Progress
+**Status:** UX Foundation Overhaul - Phase 5 Complete
 **Updated:** 2026-02-05
 
 ---
 
-## In Progress: UX Foundation Overhaul (2026-02-05)
+## Completed: UX Foundation Overhaul (2026-02-05)
+
+### Phase 5: Mobile Responsiveness (COMPLETE)
+
+Migrated to Mantine AppShell for built-in mobile-responsive layout like Figma/Miro/Canva.
+
+**AppShell Migration:**
+- ✅ Created `DashboardShell` component using Mantine AppShell
+- ✅ Replaced custom Sidebar + Header with unified AppShell
+- ✅ Mobile sidebar collapses by default (breakpoint: 'md' = 768px)
+- ✅ Hamburger menu appears on mobile for navigation toggle
+- ✅ Navigation drawer slides in from left on tap
+- ✅ Auto-closes drawer when navigating to a route
+- ✅ Header adapts: icon-only actions on mobile, full labels on desktop
+
+**Mobile Experience:**
+- ✅ Full-width content area on mobile (sidebar hidden)
+- ✅ Hamburger (☰) button in top-left corner
+- ✅ X button to close navigation drawer
+- ✅ World switcher accessible in mobile drawer
+- ✅ All navigation links scrollable in drawer
+- ✅ Bottom nav (Import, AI Chat, Export) visible in drawer
+
+**Desktop Experience:**
+- ✅ Full sidebar visible (280px width)
+- ✅ No hamburger button (hiddenFrom="md")
+- ✅ Header shows user email and full action labels
+- ✅ Dashboard cards in responsive 3-column grid
+
+**Files Created:**
+- `components/shell/DashboardShell.tsx` - Mantine AppShell wrapper
+
+**Files Updated:**
+- `components/shell/index.ts` - Export DashboardShell
+- `app/(dashboard)/layout.tsx` - Use DashboardShell instead of Sidebar + Header
+
+**Testing:**
+- ✅ Verified mobile (375px) - hamburger visible, sidebar collapsed, drawer opens/closes
+- ✅ Verified desktop (1280px) - sidebar visible, no hamburger, full navigation
+
+---
+
+### Phase 4: Page Transitions & Loading States (COMPLETE)
+
+Added navigation progress bar and loading skeletons for professional page transition experience like Figma/Miro/Canva.
+
+**Navigation Progress:**
+- ✅ Installed `@mantine/nprogress` for progress bar
+- ✅ Added `NavigationProgress` component (cyan, 3px)
+- ✅ Created `RouterTransition` component to trigger progress on navigation
+- ✅ Imported nprogress styles in globals.css
+
+**Loading Skeletons:**
+- ✅ Updated `Skeleton.tsx` with dark mode support
+- ✅ Added `FormSkeleton` and `DashboardSkeleton` variants
+- ✅ Created `loading.tsx` files for all dashboard routes:
+  - Dashboard, Characters, Locations, Organizations
+  - Timeline, Items, Rules, Stories, Graph
+  - Import, Export
+
+**Files Created:**
+- `components/providers/RouterTransition.tsx`
+- `app/(dashboard)/*/loading.tsx` (11 files)
+
+**Files Updated:**
+- `app/globals.css` - Added @mantine/nprogress styles
+- `components/providers/MantineClientProvider.tsx` - Added NavigationProgress + RouterTransition
+- `components/ui/Skeleton.tsx` - Dark mode support, new skeleton variants
+
+**Known Issue:** Hydration mismatch on color scheme toggle (Sun/Moon icons differ between server and client render). This is a common SSR issue with color scheme detection, not critical.
+
+---
+
+### Phase 3: Professional Forms (COMPLETE)
+
+Upgraded all entity forms from custom UI components to Mantine components for consistency with the polished card designs.
+
+**Forms Upgraded:**
+- ✅ `CharacterForm` - Sectioned layout with Paper containers, Mantine TextInput/Textarea/Select
+- ✅ `LocationForm` - Atmosphere & Environment section, Features & History section
+- ✅ `OrganizationForm` - Purpose & Structure section, Beliefs & History section  
+- ✅ `ItemForm` - Description section, Origin & Significance section
+- ✅ `StoryForm` - Logline section, Genre & Tone section
+- ✅ `RuleForm` - Rule Statement section, Scope & Application section
+- ✅ `EventForm` - What Happened section, Causes & Consequences section
+
+**Design Improvements:**
+- Sectioned layout with Paper containers per category
+- Mantine TextInput/Textarea with autosize
+- Mantine Select with clearable option
+- Mantine Button with loading states
+- Mantine Alert for error messages
+- "Story Context" renamed to "The Lore Link" throughout
+- Full dark mode support via className overrides
+- Cyan accent color on submit buttons
+
+**Files Updated:**
+- `components/characters/CharacterForm.tsx`
+- `components/locations/LocationForm.tsx`
+- `components/organizations/OrganizationForm.tsx`
+- `components/items/ItemForm.tsx`
+- `components/stories/StoryForm.tsx`
+- `components/rules/RuleForm.tsx`
+- `components/timeline/EventForm.tsx`
+
+---
 
 ### Phase 1: Foundation (COMPLETE)
 

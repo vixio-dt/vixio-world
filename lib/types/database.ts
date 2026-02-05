@@ -126,6 +126,16 @@ export type Database = {
         Insert: Omit<EntityMention, 'id' | 'created_at'>
         Update: Partial<Omit<EntityMention, 'id'>>
       }
+      chat_sessions: {
+        Row: ChatSession
+        Insert: Omit<ChatSession, 'id' | 'created_at' | 'updated_at'>
+        Update: Partial<Omit<ChatSession, 'id'>>
+      }
+      chat_messages: {
+        Row: ChatMessage
+        Insert: Omit<ChatMessage, 'id' | 'created_at'>
+        Update: Partial<Omit<ChatMessage, 'id'>>
+      }
     }
   }
 }

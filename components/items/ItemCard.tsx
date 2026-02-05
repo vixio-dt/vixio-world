@@ -66,11 +66,6 @@ export function ItemCard({ item, index = 0 }: ItemCardProps) {
                   >
                     {config.label}
                   </Badge>
-                  {item.rarity && (
-                    <Badge variant="outline" color="gray" size="sm" className="capitalize">
-                      {item.rarity}
-                    </Badge>
-                  )}
                 </Group>
               </div>
             </Stack>
