@@ -246,43 +246,60 @@ See [markets/apac-regional.md](./markets/apac-regional.md) for APAC consideratio
 
 ## Core Features
 
-### Worldbuilder (MVP)
+### Worldbuilder (Complete)
 
-**1. Typed Entity System**
+**1. Typed Entity System** ✅
 Characters, locations, props, stories as the organizing unit.
 
-- Entity pages with type (Character, Location, Prop, Story, Rule)
+- Entity pages with type (Character, Location, Item, Story, Rule, Organization, Event)
 - Freeform content within each entity (text, images, 3D, files)
 - Explicit relationships between entities (@mentions, links)
-- Visual graph showing connections
+- Interactive force-directed relationship graph
+- Global search (Cmd+K) across all entities
 
-**2. 3D Model Viewer**
+**2. 3D Model Viewer** ✅
 Native support for AI-generated 3D assets.
 
-- Upload .glb/.gltf files (Three.js / model-viewer)
-- External embeds (Sketchfab, Tripo AI, Meshy share links)
+- External embeds (Sketchfab, Tripo AI share links)
 - Rotatable, zoomable preview in entity cards
+- Add Model button on entity detail pages
 - Future: Direct AI generation (Tripo/Meshy API)
 
 *Why this matters:* Users are already generating 3D with Tripo, Hunyuan, Meshy. If Worldbuilder can't display them, users will use other tools.
 
-**3. AI-Assisted Import**
+**3. AI-Assisted Import** ✅
 Paste your messy docs, AI helps organize.
 
 - Plain text / markdown paste
 - AI suggests entity extraction (user confirms)
-- "Just Chat" OR "Extract & Organize" modes
+- Preview and select entities before creation
 - Cross-reference with existing world
 
 *Positioning note:* Import is a **wedge** (gets users in), not a **moat** (keeps them). The real moat is the Worldbuilder → Studio integration.
 
-**4. Story Context (The Lore Link)**
+**4. AI World Chat** ✅
+Natural language interface for exploring your world.
+
+- Query your world: "Who knows about the artifact?"
+- `/check [statement]` - Check consistency against world rules
+- `/gaps` - Find underdeveloped areas
+- `/suggest story` - Get story ideas using your entities
+- `/connections [name]` - Explore relationships
+- `/status` - World statistics
+
+**5. Story Context (The Lore Link)** ✅
 Every asset carries its narrative purpose.
 
 - Why does this character exist?
 - What scene does this prop appear in?
 - What's the mood/tone?
 - Who needs to know about this?
+
+**6. Export** ✅
+Get your world data out.
+
+- JSON export for backups and migrations
+- Markdown "World Bible" for sharing
 
 ### Studio (v1.5+)
 
@@ -324,13 +341,13 @@ Teams without per-seat friction.
 
 | Layer | Technology |
 |-------|------------|
-| Framework | Next.js 15 (App Router) |
+| Framework | Next.js 16 (App Router, Turbopack) |
 | Language | TypeScript |
 | Styling | Tailwind CSS v4 |
 | Database | Supabase (PostgreSQL) |
 | Auth | Supabase Auth |
-| AI | OpenAI / Anthropic APIs |
-| 3D Viewer | model-viewer / Three.js |
+| AI | OpenRouter (Deepseek V3.2) |
+| 3D Viewer | Sketchfab / Tripo AI embeds |
 | Deployment | Vercel |
 
 ---

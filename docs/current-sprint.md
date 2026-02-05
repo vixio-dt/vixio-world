@@ -449,41 +449,36 @@ A significant strategic evolution based on market analysis and product positioni
 
 ---
 
-## Next Phase: Worldbuilder Core (Phase 2)
+## Next Phase: Studio MVP (Phase 4)
 
-**Goal:** Typed entity system with 3D support and AI-assisted import.
+**Goal:** Asset lifecycle management for production teams.
 
 ### Planned Features
 
-**1. Entity System**
-- Entity types: Character, Location, Prop, Story, Rule
-- Entity pages with freeform content (text, images, files)
-- Relationship system (@mentions, explicit links)
-- Basic visual graph showing connections
+**1. Status Pipeline**
+- Customizable workflow stages per entity type
+- Default: Concept → Approved → In Production → Complete
+- VP mode: Concept → Modeling → Texturing → Rigging → In-Engine
+- Visual kanban board view
 
-**2. 3D Model Viewer**
-- Upload .glb/.gltf files (model-viewer web component)
-- External embed support (Sketchfab, Tripo AI, Meshy share links)
-- Rotatable, zoomable preview in entity cards
-- File storage setup (Supabase Storage)
+**2. Production Metadata**
+- Assigned to (person/department)
+- Due date
+- Version history
+- Technical specs field (for VP: poly count, texture res, etc.)
+- Dependencies (blocks/blocked by)
 
-**3. AI-Assisted Import**
-- Plain text / markdown paste
-- AI suggests entity extraction (user confirms)
-- "Just Chat" OR "Extract & Organize" modes
-- Cross-reference with existing world entities
+**3. The Lore Link Integration**
+- Story context from Worldbuilder visible in Studio
+- Two views of same data (creative vs production)
+- Changes sync bidirectionally
 
-**4. Story Context (Lore Link Foundation)**
-- Each entity has a "Story Context" field
-- Free-form text describing narrative purpose
-- Related entities automatically linked
+### Before Starting Phase 4
 
-### Before Starting Phase 2
-
-- [x] Deploy MVP to Vercel (validate production works)
-- [x] Design entity system data model (content_blocks + story_context + entity_mentions)
-- [x] Research model-viewer implementation (Sketchfab + Tripo embeds)
-- [x] Plan AI integration (OpenRouter + Deepseek V3.2)
+- [ ] Deploy to Vercel (validate production works)
+- [ ] User testing feedback on Worldbuilder features
+- [ ] Design status pipeline data model
+- [ ] Research kanban board implementation
 
 ---
 
@@ -496,6 +491,7 @@ When ready:
 2. Add environment variables:
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `OPENROUTER_API_KEY`
 3. Deploy
 
 ---
@@ -503,17 +499,16 @@ When ready:
 ## Context for New Sessions
 
 ### What's Done
-- Next.js 16 app with auth + Characters CRUD (upgraded from 15)
-- **Next.js 16 upgrade complete** (Turbopack default, proxy.ts convention, ESLint flat config)
-- **Strategic pivot to Worldbuilder + Studio architecture**
-- **Lore Link identified as core differentiator**
-- **3D viewer added to MVP scope**
-- **Virtual Production added as production style**
-- All product docs updated with new positioning
+- **Phase 1 (Foundation):** Auth + Characters CRUD ✅
+- **Phase 2 (Worldbuilder Core):** All entity types, 3D embeds, AI import, AI chat ✅
+- **Phase 3 (Worldbuilder Polish):** Graph visualization, export, global search, UX polish ✅
+- **Template World:** Pre-populated "Neon Shadows" demo world for new users
+- **World Isolation:** All entity pages correctly filter by selected world
 
 ### What's Next
 - Deploy to Vercel
-- Start Phase 2: Worldbuilder Core (entity system, 3D viewer, import)
+- User testing and feedback
+- Start Phase 4: Studio MVP (status pipeline, production metadata)
 
 ### Key Files
 - `AGENTS.md` - Project rules for AI assistants
@@ -523,6 +518,7 @@ When ready:
 - `product-plan/roadmap.md` - Feature priorities and decision log
 - `product-plan/pricing.md` - Pricing model
 - `supabase/schema.sql` - Database schema
+- `supabase/migrations/2026-02-05-chat.sql` - AI Chat tables
 
 ### Tech Stack
 
@@ -533,13 +529,16 @@ When ready:
 | Styling | Tailwind CSS v4 |
 | Database | Supabase (PostgreSQL) |
 | Auth | Supabase Auth |
-| 3D Viewer | model-viewer / Three.js |
+| AI | OpenRouter (Deepseek V3.2) |
+| 3D Viewer | Sketchfab / Tripo AI embeds |
 | Deployment | Vercel |
 
 ### Key Strategic Concepts
 
 **The Lore Link:** Every asset carries its story context - why it exists, what scene it appears in, what mood/tone it should convey. This is what differentiates from ShotGrid (tracks files, not meaning) and World Anvil (tracks story, not production).
 
-**Soft Structure:** Typed entities (Character, Location, Prop) with freeform content inside. Provides enough structure for production consolidation while preserving creative freedom.
+**Soft Structure:** Typed entities (Character, Location, Item, Organization, Story, Rule, Event) with freeform content inside. Provides enough structure for production consolidation while preserving creative freedom.
 
 **VP-Aware:** Virtual Production inverts the traditional workflow - post-production decisions happen during pre-production. Vixio Studio will support this workflow natively.
+
+**AI Integration:** OpenRouter with Deepseek V3.2 powers both entity extraction (import) and world chat queries.

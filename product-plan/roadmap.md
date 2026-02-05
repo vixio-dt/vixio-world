@@ -38,59 +38,73 @@ Phase 6+:  Integration & Expansion
 
 ---
 
-## Phase 2: Worldbuilder Core (In Progress)
+## Phase 2: Worldbuilder Core ✅ Complete
 
 **Goal:** Typed entity system with 3D support and AI-assisted import.
 
 ### Entity System
-- [ ] Entity types: Character, Location, Prop, Story, Rule
-- [ ] Entity pages with freeform content (text, images, files)
-- [ ] Relationship system (@mentions, explicit links)
-- [ ] Basic visual graph showing connections
+- [x] Entity types: Character, Location, Item, Organization, Story, Rule, Event
+- [x] Entity pages with freeform content (text, images, files)
+- [x] Relationship system (@mentions, explicit links)
+- [x] Interactive force-directed graph showing connections
 
 ### 3D Model Viewer
-- [ ] Upload .glb/.gltf files (model-viewer web component)
-- [ ] External embed support (Sketchfab, Tripo AI, Meshy share links)
-- [ ] Rotatable, zoomable preview in entity cards
-- [ ] File storage setup (Supabase Storage)
+- [x] External embed support (Sketchfab, Tripo AI share links)
+- [x] Rotatable, zoomable preview in entity cards
+- [ ] Upload .glb/.gltf files (model-viewer web component) - deferred to v1.5
+- [ ] File storage setup (Supabase Storage) - deferred to v1.5
 
 *Why 3D in MVP:* Users are already generating 3D with Tripo, Hunyuan, Meshy. Worldbuilder must support this from day one.
 
 ### AI-Assisted Import
-- [ ] Plain text / markdown paste
-- [ ] AI suggests entity extraction (user confirms)
-- [ ] "Just Chat" OR "Extract & Organize" modes
-- [ ] Cross-reference with existing world entities
+- [x] Plain text / markdown paste
+- [x] AI suggests entity extraction (user confirms)
+- [x] Preview and select entities before creation
+- [x] Cross-reference with existing world entities
+
+### AI World Chat
+- [x] Natural language queries about world
+- [x] Special commands (/status, /gaps, /connections, /check, /suggest)
+- [x] Session persistence per world
+- [x] Template world for new users ("Explore Demo World")
 
 ### Story Context (Lore Link Foundation)
-- [ ] Each entity has a "Story Context" field
-- [ ] Free-form text describing narrative purpose
-- [ ] Related entities automatically linked
-- [ ] Scene/story association
+- [x] Each entity has a "Story Context" field
+- [x] Free-form text describing narrative purpose
+- [x] Related entities automatically linked via @mentions
+- [ ] Scene/story association - deferred to Studio
+
+**Status:** Complete. See [docs/current-sprint.md](../docs/current-sprint.md).
 
 ---
 
-## Phase 3: Worldbuilder Polish
+## Phase 3: Worldbuilder Polish ✅ Complete
 
 **Goal:** Complete creative workspace with visualization and export basics.
 
 ### Visual Asset Graph
-- [ ] Interactive relationship map
-- [ ] Filter by entity type, tags
-- [ ] Timeline view for story events
-- [ ] Zoom/pan navigation
+- [x] Interactive force-directed relationship map
+- [x] Filter by entity type
+- [x] Search to highlight entities
+- [x] Zoom/pan navigation
+- [ ] Timeline view for story events - deferred to v1.5
 
 ### Export Basics
-- [ ] World Bible PDF (formatted)
-- [ ] Character/Location briefs
-- [ ] Markdown export
-- [ ] JSON data export
+- [x] Markdown export (World Bible document)
+- [x] JSON data export
+- [ ] World Bible PDF (formatted) - deferred to v1.5
+- [ ] Character/Location briefs - deferred to v1.5
 
 ### UX Polish
-- [ ] Keyboard shortcuts
-- [ ] Drag-and-drop entity reordering
-- [ ] Search across all entities
-- [ ] Bulk operations
+- [x] Keyboard shortcuts (Cmd+K search, Ctrl+G graph, Ctrl+E export)
+- [x] Search across all entities (Command Palette)
+- [x] Breadcrumbs navigation
+- [x] Toast notifications
+- [x] Loading skeletons
+- [ ] Drag-and-drop entity reordering - deferred
+- [ ] Bulk operations - deferred
+
+**Status:** Complete. See [docs/current-sprint.md](../docs/current-sprint.md).
 
 ---
 
