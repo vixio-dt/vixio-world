@@ -54,14 +54,15 @@ Implemented core UX infrastructure for professional design system.
 - `components/timeline/EventCard.tsx` - Dark mode support, type-based icons
 - `components/timeline/index.ts` - Export TimelineView
 
-**Category Differentiation:**
+**Category Differentiation:** ✅ COMPLETE
 - Each entity type gets distinctive visual treatment
 - ✅ Characters: Profile-style cards with avatar prominence, role-based gradients, entrance animations
 - ✅ Locations: Tree view with type hierarchy, gradient icons, atmosphere quotes
-- Rules: Sidebar navigation pattern (pending)
+- ✅ Rules: Sidebar navigation with category grouping, accordion panels, category icons/badges
 
 **Files Created:**
 - `components/locations/LocationTreeView.tsx` - Hierarchical tree view with type icons
+- `components/rules/RuleCategoryView.tsx` - Sidebar navigation with category grouping
 
 **Files Updated:**
 - `components/characters/CharacterCard.tsx` - Profile-style card with avatar, role badges, motion animations
@@ -69,11 +70,14 @@ Implemented core UX infrastructure for professional design system.
 - `components/locations/LocationCard.tsx` - Gradient icons, type badges, atmosphere quotes, motion animations
 - `app/(dashboard)/locations/page.tsx` - View toggle (tree/grid), dark mode support
 - `components/locations/index.ts` - Export LocationTreeView
+- `components/rules/RuleCard.tsx` - Gradient icons, category badges, rule code/statement/scope, motion animations
+- `app/(dashboard)/rules/page.tsx` - View toggle (sidebar/grid), dark mode support
+- `components/rules/index.ts` - Export RuleCategoryView
 
 **Motion Integration:**
-- ✅ Apply stagger animations to entity lists (Timeline, Characters, Locations)
-- Page transitions
-- Card hover effects
+- ✅ Apply stagger animations to entity lists (Timeline, Characters, Locations, Rules)
+- Page transitions (pending)
+- Card hover effects (via Mantine Paper hover styles)
 
 ---
 
