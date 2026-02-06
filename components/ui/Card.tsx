@@ -1,14 +1,17 @@
-import { cn } from '@/lib/utils'
+'use client'
+
+import { Paper, Box, Title, Text } from '@mantine/core'
 
 type CardProps = React.HTMLAttributes<HTMLDivElement>
 
 export function Card({ className, ...props }: CardProps) {
   return (
-    <div
-      className={cn(
-        'bg-white rounded-xl border border-slate-200 shadow-sm',
-        className
-      )}
+    <Paper
+      withBorder
+      shadow="xs"
+      radius="md"
+      p={0}
+      className={className}
       {...props}
     />
   )
@@ -16,8 +19,11 @@ export function Card({ className, ...props }: CardProps) {
 
 export function CardHeader({ className, ...props }: CardProps) {
   return (
-    <div
-      className={cn('px-6 py-4 border-b border-slate-200', className)}
+    <Box
+      px="lg"
+      py="md"
+      style={{ borderBottom: '1px solid var(--mantine-color-gray-2)' }}
+      className={className}
       {...props}
     />
   )
@@ -25,8 +31,11 @@ export function CardHeader({ className, ...props }: CardProps) {
 
 export function CardTitle({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
   return (
-    <h3
-      className={cn('text-lg font-semibold text-slate-900', className)}
+    <Title
+      order={3}
+      size="lg"
+      fw={600}
+      className={className}
       {...props}
     />
   )
@@ -34,8 +43,10 @@ export function CardTitle({ className, ...props }: React.HTMLAttributes<HTMLHead
 
 export function CardDescription({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
   return (
-    <p
-      className={cn('text-sm text-slate-600 mt-1', className)}
+    <Text
+      size="sm"
+      c="dimmed"
+      className={className}
       {...props}
     />
   )
@@ -43,14 +54,23 @@ export function CardDescription({ className, ...props }: React.HTMLAttributes<HT
 
 export function CardContent({ className, ...props }: CardProps) {
   return (
-    <div className={cn('px-6 py-4', className)} {...props} />
+    <Box
+      px="lg"
+      py="md"
+      className={className}
+      {...props}
+    />
   )
 }
 
 export function CardFooter({ className, ...props }: CardProps) {
   return (
-    <div
-      className={cn('px-6 py-4 border-t border-slate-200 bg-slate-50 rounded-b-xl', className)}
+    <Box
+      px="lg"
+      py="md"
+      bg="gray.0"
+      style={{ borderTop: '1px solid var(--mantine-color-gray-2)' }}
+      className={className}
       {...props}
     />
   )

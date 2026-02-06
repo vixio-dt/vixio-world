@@ -1,5 +1,8 @@
+'use client'
+
+import { Stack, Text, ThemeIcon, Button } from '@mantine/core'
 import { type LucideIcon } from 'lucide-react'
-import { Button } from './Button'
+import Link from 'next/link'
 
 interface EmptyStateProps {
   icon: LucideIcon
@@ -14,21 +17,27 @@ interface EmptyStateProps {
 
 export function EmptyState({ icon: Icon, title, description, action }: EmptyStateProps) {
   return (
-    <div className="flex flex-col items-center justify-center py-12 px-4 text-center">
-      <div className="p-4 bg-slate-100 rounded-full mb-4">
-        <Icon className="w-8 h-8 text-slate-400" />
-      </div>
-      <h3 className="text-lg font-semibold text-slate-900 mb-2">{title}</h3>
-      <p className="text-sm text-slate-600 max-w-sm mb-6">{description}</p>
+    <Stack align="center" justify="center" py="xl" px="md" gap="md">
+      <ThemeIcon size={64} radius="xl" variant="light" color="gray">
+        <Icon size={28} />
+      </ThemeIcon>
+
+      <Stack align="center" gap={4}>
+        <Text fw={600} size="lg">{title}</Text>
+        <Text size="sm" c="dimmed" maw={360} ta="center">{description}</Text>
+      </Stack>
+
       {action && (
         action.href ? (
-          <a href={action.href}>
-            <Button>{action.label}</Button>
-          </a>
+          <Button component={Link} href={action.href}>
+            {action.label}
+          </Button>
         ) : (
-          <Button onClick={action.onClick}>{action.label}</Button>
+          <Button onClick={action.onClick}>
+            {action.label}
+          </Button>
         )
       )}
-    </div>
+    </Stack>
   )
 }
