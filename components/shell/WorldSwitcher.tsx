@@ -38,8 +38,8 @@ export function WorldSwitcher() {
   }
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     loadWorlds()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   function selectWorld(world: World) {
@@ -54,7 +54,6 @@ export function WorldSwitcher() {
   // Show onboarding when no worlds exist
   useEffect(() => {
     if (!loading && worlds.length === 0) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setShowOnboarding(true)
     }
   }, [loading, worlds.length])

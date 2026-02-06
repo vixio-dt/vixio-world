@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { ColorSchemeScript, mantineHtmlProps } from '@mantine/core'
+import { ColorSchemeScript } from '@mantine/core'
 import { MantineClientProvider } from '@/components/providers/MantineClientProvider'
 import './globals.css'
 
@@ -14,11 +14,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" {...mantineHtmlProps}>
+    <html lang="en" suppressHydrationWarning>
       <head>
-        <ColorSchemeScript defaultColorScheme="auto" />
+        <ColorSchemeScript defaultColorScheme="light" />
       </head>
-      <body className="min-h-screen bg-white dark:bg-slate-900 antialiased transition-colors">
+      <body className="min-h-screen bg-white antialiased">
         <MantineClientProvider>
           {children}
         </MantineClientProvider>

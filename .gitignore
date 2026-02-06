@@ -36,6 +36,3 @@ Thumbs.db
 
 # Vercel
 .vercel
-
-# Test artifacts
-.playwright-mcp/

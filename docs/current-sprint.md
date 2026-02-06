@@ -1,242 +1,7 @@
 # Current Sprint
 
-**Status:** UX Foundation Overhaul - Phase 5 Complete + Polish
+**Status:** Phase 2+3 Implementation COMPLETE
 **Updated:** 2026-02-05
-
----
-
-## Completed: Professional Polish (2026-02-05)
-
-### Accessibility & Performance Fixes (COMPLETE)
-
-Quick wins for professional polish addressing console warnings and a11y issues.
-
-**Image Optimization:**
-- ✅ Added `priority` prop to logo images for LCP optimization
-- ✅ Added `style={{ width: 'auto', height: 'auto' }}` to fix aspect ratio warnings
-- ✅ Fixed hydration mismatch from `useMantineColorScheme` in AppShell styles
-
-**Accessibility:**
-- ✅ Added `aria-label="Vixio - Go to dashboard"` to logo links for screen readers
-- ✅ Changed decorative images inside links to `alt=""` (linked image pattern)
-- ✅ All interactive elements now have proper accessible names
-
-**Console Warnings Fixed:**
-- ✅ Next.js Image LCP warning
-- ✅ Next.js Image aspect ratio warning
-- ✅ Mantine NavLink `&[data-active]` style property warning
-- ✅ Hydration mismatch for AppShell background colors
-
-**Files Updated:**
-- `components/shell/DashboardShell.tsx` - Removed useMantineColorScheme, simplified styles
-- `components/shell/Sidebar.tsx` - Logo link aria-label
-- `app/(auth)/layout.tsx` - Image priority and style props
-
-**Remaining (Known, Non-Critical):**
-- Minor Mantine internal ID hydration mismatch (useId hook SSR behavior) - does not affect functionality
-
----
-
-## Completed: UX Foundation Overhaul (2026-02-05)
-
-### Phase 5: Mobile Responsiveness (COMPLETE)
-
-Migrated to Mantine AppShell for built-in mobile-responsive layout like Figma/Miro/Canva.
-
-**AppShell Migration:**
-- ✅ Created `DashboardShell` component using Mantine AppShell
-- ✅ Replaced custom Sidebar + Header with unified AppShell
-- ✅ Mobile sidebar collapses by default (breakpoint: 'md' = 768px)
-- ✅ Hamburger menu appears on mobile for navigation toggle
-- ✅ Navigation drawer slides in from left on tap
-- ✅ Auto-closes drawer when navigating to a route
-- ✅ Header adapts: icon-only actions on mobile, full labels on desktop
-
-**Mobile Experience:**
-- ✅ Full-width content area on mobile (sidebar hidden)
-- ✅ Hamburger (☰) button in top-left corner
-- ✅ X button to close navigation drawer
-- ✅ World switcher accessible in mobile drawer
-- ✅ All navigation links scrollable in drawer
-- ✅ Bottom nav (Import, AI Chat, Export) visible in drawer
-
-**Desktop Experience:**
-- ✅ Full sidebar visible (280px width)
-- ✅ No hamburger button (hiddenFrom="md")
-- ✅ Header shows user email and full action labels
-- ✅ Dashboard cards in responsive 3-column grid
-
-**Files Created:**
-- `components/shell/DashboardShell.tsx` - Mantine AppShell wrapper
-
-**Files Updated:**
-- `components/shell/index.ts` - Export DashboardShell
-- `app/(dashboard)/layout.tsx` - Use DashboardShell instead of Sidebar + Header
-
-**Testing:**
-- ✅ Verified mobile (375px) - hamburger visible, sidebar collapsed, drawer opens/closes
-- ✅ Verified desktop (1280px) - sidebar visible, no hamburger, full navigation
-
----
-
-### Phase 4: Page Transitions & Loading States (COMPLETE)
-
-Added navigation progress bar and loading skeletons for professional page transition experience like Figma/Miro/Canva.
-
-**Navigation Progress:**
-- ✅ Installed `@mantine/nprogress` for progress bar
-- ✅ Added `NavigationProgress` component (cyan, 3px)
-- ✅ Created `RouterTransition` component to trigger progress on navigation
-- ✅ Imported nprogress styles in globals.css
-
-**Loading Skeletons:**
-- ✅ Updated `Skeleton.tsx` with dark mode support
-- ✅ Added `FormSkeleton` and `DashboardSkeleton` variants
-- ✅ Created `loading.tsx` files for all dashboard routes:
-  - Dashboard, Characters, Locations, Organizations
-  - Timeline, Items, Rules, Stories, Graph
-  - Import, Export
-
-**Files Created:**
-- `components/providers/RouterTransition.tsx`
-- `app/(dashboard)/*/loading.tsx` (11 files)
-
-**Files Updated:**
-- `app/globals.css` - Added @mantine/nprogress styles
-- `components/providers/MantineClientProvider.tsx` - Added NavigationProgress + RouterTransition
-- `components/ui/Skeleton.tsx` - Dark mode support, new skeleton variants
-
-**Known Issue:** Hydration mismatch on color scheme toggle (Sun/Moon icons differ between server and client render). This is a common SSR issue with color scheme detection, not critical.
-
----
-
-### Phase 3: Professional Forms (COMPLETE)
-
-Upgraded all entity forms from custom UI components to Mantine components for consistency with the polished card designs.
-
-**Forms Upgraded:**
-- ✅ `CharacterForm` - Sectioned layout with Paper containers, Mantine TextInput/Textarea/Select
-- ✅ `LocationForm` - Atmosphere & Environment section, Features & History section
-- ✅ `OrganizationForm` - Purpose & Structure section, Beliefs & History section  
-- ✅ `ItemForm` - Description section, Origin & Significance section
-- ✅ `StoryForm` - Logline section, Genre & Tone section
-- ✅ `RuleForm` - Rule Statement section, Scope & Application section
-- ✅ `EventForm` - What Happened section, Causes & Consequences section
-
-**Design Improvements:**
-- Sectioned layout with Paper containers per category
-- Mantine TextInput/Textarea with autosize
-- Mantine Select with clearable option
-- Mantine Button with loading states
-- Mantine Alert for error messages
-- "Story Context" renamed to "The Lore Link" throughout
-- Full dark mode support via className overrides
-- Cyan accent color on submit buttons
-
-**Files Updated:**
-- `components/characters/CharacterForm.tsx`
-- `components/locations/LocationForm.tsx`
-- `components/organizations/OrganizationForm.tsx`
-- `components/items/ItemForm.tsx`
-- `components/stories/StoryForm.tsx`
-- `components/rules/RuleForm.tsx`
-- `components/timeline/EventForm.tsx`
-
----
-
-### Phase 1: Foundation (COMPLETE)
-
-Implemented core UX infrastructure for professional design system.
-
-| Component | Purpose |
-|-----------|---------|
-| `lib/theme/mantine-theme.ts` | Centralized Mantine theme with brand colors, virtual colors, shadows |
-| `ColorSchemeToggle` | Header toggle for light/dark mode |
-| `lib/animations/index.ts` | Motion variants (fadeIn, slideUp, staggerContainer, etc.) |
-| `globals.css` | Cleaned up, dark scrollbars, Tailwind v4 dark mode config |
-
-**Dependencies Added:**
-- `motion` - Animation library (React)
-- `@tabler/icons-react` - Icon library for Mantine
-
-**Files Created:**
-- `lib/theme/mantine-theme.ts`
-- `lib/animations/index.ts`
-- `components/shell/ColorSchemeToggle.tsx`
-
-**Files Updated:**
-- `components/providers/MantineClientProvider.tsx` - Uses new theme, auto color scheme
-- `app/layout.tsx` - ColorSchemeScript with auto mode
-- `components/shell/Header.tsx` - Dark mode classes, toggle button
-- `components/shell/Sidebar.tsx` - Dark mode classes
-
-**Known Issue:** Tailwind v4 `@custom-variant dark` with Mantine's `data-mantine-color-scheme` needs further debugging. Mantine components work correctly with dark mode; shell components using Tailwind dark: classes need refinement.
-
-### Phase 2: COMPLETE ✅
-
-**Timeline Visualization:** ✅ COMPLETE
-- Replaced grid layout with proper Mantine Timeline component
-- Vertical timeline with date/period grouping
-- Events grouped by year/period with sticky headers
-- Type-based visual differentiation (icons + colors for historical/plot_point/scheduled/recurring)
-- View toggle between Timeline and Grid modes
-- Motion stagger animations on timeline items
-- Dark mode support throughout
-
-**Files Created:**
-- `components/timeline/TimelineView.tsx` - Main timeline visualization component
-
-**Files Updated:**
-- `app/(dashboard)/timeline/page.tsx` - Added view toggle (timeline/grid)
-- `components/timeline/EventCard.tsx` - Dark mode support, type-based icons
-- `components/timeline/index.ts` - Export TimelineView
-
-**Category Differentiation:** ✅ COMPLETE
-- Each entity type gets distinctive visual treatment
-- ✅ Characters: Profile-style cards with avatar prominence, role-based gradients, entrance animations
-- ✅ Locations: Tree view with type hierarchy, gradient icons, atmosphere quotes
-- ✅ Rules: Sidebar navigation with category grouping, accordion panels, category icons/badges
-- ✅ Organizations: Type-based gradient icons (government, religion, corporation, guild, etc.), motion animations
-- ✅ Items: Type-based gradient icons (weapon, artifact, tool, technology, etc.), rarity badges, motion animations
-- ✅ Stories: Status-based styling with progress bars, genre badges, motion animations
-
-**Files Created:**
-- `components/locations/LocationTreeView.tsx` - Hierarchical tree view with type icons
-- `components/rules/RuleCategoryView.tsx` - Sidebar navigation with category grouping
-
-**Files Updated:**
-- `components/characters/CharacterCard.tsx` - Profile-style card with avatar, role badges, motion animations
-- `app/(dashboard)/characters/page.tsx` - Dark mode text, passes index for stagger animations
-- `components/locations/LocationCard.tsx` - Gradient icons, type badges, atmosphere quotes, motion animations
-- `app/(dashboard)/locations/page.tsx` - View toggle (tree/grid), dark mode support
-- `components/locations/index.ts` - Export LocationTreeView
-- `components/rules/RuleCard.tsx` - Gradient icons, category badges, rule code/statement/scope, motion animations
-- `app/(dashboard)/rules/page.tsx` - View toggle (sidebar/grid), dark mode support
-- `components/rules/index.ts` - Export RuleCategoryView
-- `components/organizations/OrganizationCard.tsx` - Gradient icons, type badges, motion animations
-- `app/(dashboard)/organizations/page.tsx` - Dark mode support, passes index for stagger animations
-- `components/items/ItemCard.tsx` - Gradient icons, type badges, rarity badges, motion animations
-- `app/(dashboard)/items/page.tsx` - Dark mode support, passes index for stagger animations
-- `components/stories/StoryCard.tsx` - Progress bar, status icons, genre badges, motion animations
-- `app/(dashboard)/stories/page.tsx` - Dark mode support, passes index for stagger animations
-
-**Motion Integration:** ✅ COMPLETE
-- ✅ Apply stagger animations to entity lists (all entity types)
-- Card hover effects (via Mantine Paper hover styles)
-- Page transitions (deferred - requires layout component changes)
-
-**Dashboard Upgrade:** ✅ COMPLETE
-- Gradient icons matching each entity type (Characters=blue, Locations=teal, etc.)
-- Color-coded count badges
-- Motion stagger animations
-- Dark mode support
-- Mantine Paper components for professional card styling
-
-**Files Created:**
-- `app/(dashboard)/dashboard/DashboardCards.tsx` - Client component with entity cards
-
-**Files Updated:**
-- `app/(dashboard)/dashboard/page.tsx` - Refactored to pass counts to client component
 
 ---
 
@@ -684,36 +449,41 @@ A significant strategic evolution based on market analysis and product positioni
 
 ---
 
-## Next Phase: Studio MVP (Phase 4)
+## Next Phase: Worldbuilder Core (Phase 2)
 
-**Goal:** Asset lifecycle management for production teams.
+**Goal:** Typed entity system with 3D support and AI-assisted import.
 
 ### Planned Features
 
-**1. Status Pipeline**
-- Customizable workflow stages per entity type
-- Default: Concept → Approved → In Production → Complete
-- VP mode: Concept → Modeling → Texturing → Rigging → In-Engine
-- Visual kanban board view
+**1. Entity System**
+- Entity types: Character, Location, Prop, Story, Rule
+- Entity pages with freeform content (text, images, files)
+- Relationship system (@mentions, explicit links)
+- Basic visual graph showing connections
 
-**2. Production Metadata**
-- Assigned to (person/department)
-- Due date
-- Version history
-- Technical specs field (for VP: poly count, texture res, etc.)
-- Dependencies (blocks/blocked by)
+**2. 3D Model Viewer**
+- Upload .glb/.gltf files (model-viewer web component)
+- External embed support (Sketchfab, Tripo AI, Meshy share links)
+- Rotatable, zoomable preview in entity cards
+- File storage setup (Supabase Storage)
 
-**3. The Lore Link Integration**
-- Story context from Worldbuilder visible in Studio
-- Two views of same data (creative vs production)
-- Changes sync bidirectionally
+**3. AI-Assisted Import**
+- Plain text / markdown paste
+- AI suggests entity extraction (user confirms)
+- "Just Chat" OR "Extract & Organize" modes
+- Cross-reference with existing world entities
 
-### Before Starting Phase 4
+**4. Story Context (Lore Link Foundation)**
+- Each entity has a "Story Context" field
+- Free-form text describing narrative purpose
+- Related entities automatically linked
 
-- [ ] Deploy to Vercel (validate production works)
-- [ ] User testing feedback on Worldbuilder features
-- [ ] Design status pipeline data model
-- [ ] Research kanban board implementation
+### Before Starting Phase 2
+
+- [x] Deploy MVP to Vercel (validate production works)
+- [x] Design entity system data model (content_blocks + story_context + entity_mentions)
+- [x] Research model-viewer implementation (Sketchfab + Tripo embeds)
+- [x] Plan AI integration (OpenRouter + Deepseek V3.2)
 
 ---
 
@@ -726,7 +496,6 @@ When ready:
 2. Add environment variables:
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-   - `OPENROUTER_API_KEY`
 3. Deploy
 
 ---
@@ -734,16 +503,17 @@ When ready:
 ## Context for New Sessions
 
 ### What's Done
-- **Phase 1 (Foundation):** Auth + Characters CRUD ✅
-- **Phase 2 (Worldbuilder Core):** All entity types, 3D embeds, AI import, AI chat ✅
-- **Phase 3 (Worldbuilder Polish):** Graph visualization, export, global search, UX polish ✅
-- **Template World:** Pre-populated "Neon Shadows" demo world for new users
-- **World Isolation:** All entity pages correctly filter by selected world
+- Next.js 16 app with auth + Characters CRUD (upgraded from 15)
+- **Next.js 16 upgrade complete** (Turbopack default, proxy.ts convention, ESLint flat config)
+- **Strategic pivot to Worldbuilder + Studio architecture**
+- **Lore Link identified as core differentiator**
+- **3D viewer added to MVP scope**
+- **Virtual Production added as production style**
+- All product docs updated with new positioning
 
 ### What's Next
 - Deploy to Vercel
-- User testing and feedback
-- Start Phase 4: Studio MVP (status pipeline, production metadata)
+- Start Phase 2: Worldbuilder Core (entity system, 3D viewer, import)
 
 ### Key Files
 - `AGENTS.md` - Project rules for AI assistants
@@ -753,7 +523,6 @@ When ready:
 - `product-plan/roadmap.md` - Feature priorities and decision log
 - `product-plan/pricing.md` - Pricing model
 - `supabase/schema.sql` - Database schema
-- `supabase/migrations/2026-02-05-chat.sql` - AI Chat tables
 
 ### Tech Stack
 
@@ -761,20 +530,16 @@ When ready:
 |-------|------------|
 | Framework | Next.js 16 (App Router, Turbopack) |
 | Language | TypeScript |
-| Styling | Tailwind CSS v4 + Mantine UI |
-| Animation | Motion (motion/react) |
+| Styling | Tailwind CSS v4 |
 | Database | Supabase (PostgreSQL) |
 | Auth | Supabase Auth |
-| AI | OpenRouter (Deepseek V3.2) |
-| 3D Viewer | Sketchfab / Tripo AI embeds |
+| 3D Viewer | model-viewer / Three.js |
 | Deployment | Vercel |
 
 ### Key Strategic Concepts
 
 **The Lore Link:** Every asset carries its story context - why it exists, what scene it appears in, what mood/tone it should convey. This is what differentiates from ShotGrid (tracks files, not meaning) and World Anvil (tracks story, not production).
 
-**Soft Structure:** Typed entities (Character, Location, Item, Organization, Story, Rule, Event) with freeform content inside. Provides enough structure for production consolidation while preserving creative freedom.
+**Soft Structure:** Typed entities (Character, Location, Prop) with freeform content inside. Provides enough structure for production consolidation while preserving creative freedom.
 
 **VP-Aware:** Virtual Production inverts the traditional workflow - post-production decisions happen during pre-production. Vixio Studio will support this workflow natively.
-
-**AI Integration:** OpenRouter with Deepseek V3.2 powers both entity extraction (import) and world chat queries.

@@ -42,24 +42,22 @@ export function Sidebar() {
   const pathname = usePathname()
 
   return (
-    <aside className="w-64 h-screen bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col transition-colors">
+    <aside className="w-64 h-screen bg-white border-r border-slate-200 flex flex-col">
       {/* Logo */}
-      <div className="p-4 border-b border-slate-200 dark:border-slate-700">
-        <Link href="/dashboard" className="flex items-center justify-center" aria-label="Vixio - Go to dashboard">
+      <div className="p-4 border-b border-slate-200">
+        <Link href="/dashboard" className="flex items-center justify-center">
           <Image
             src="/vixio-logo.svg"
-            alt=""
+            alt="Vixio"
             width={160}
             height={80}
-            className="h-20 w-auto dark:brightness-110"
-            style={{ width: 'auto', height: 'auto' }}
-            priority
+            className="h-20 w-auto"
           />
         </Link>
       </div>
 
       {/* World Switcher */}
-      <div className="p-4 border-b border-slate-200 dark:border-slate-700">
+      <div className="p-4 border-b border-slate-200">
         <WorldSwitcher />
       </div>
 
@@ -74,8 +72,8 @@ export function Sidebar() {
               className={cn(
                 'flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200',
                 isActive
-                  ? 'bg-gradient-to-r from-cyan-50 to-teal-50 dark:from-cyan-900/50 dark:to-teal-900/50 text-cyan-600 dark:text-cyan-400 shadow-sm'
-                  : 'text-slate-600 dark:text-slate-300 hover:bg-cyan-50/50 dark:hover:bg-cyan-900/30 hover:text-cyan-700 dark:hover:text-cyan-300'
+                  ? 'bg-gradient-to-r from-cyan-50 to-teal-50 text-cyan-600 shadow-sm'
+                  : 'text-slate-600 hover:bg-cyan-50/50 hover:text-cyan-700'
               )}
             >
               <item.icon className="w-5 h-5" />
@@ -86,7 +84,7 @@ export function Sidebar() {
       </nav>
 
       {/* Bottom Navigation */}
-      <div className="p-4 border-t border-slate-200 dark:border-slate-700 space-y-1">
+      <div className="p-4 border-t border-slate-200 space-y-1">
         {bottomNavItems.map((item) => {
           const isActive = pathname === item.href
           return (
@@ -96,8 +94,8 @@ export function Sidebar() {
               className={cn(
                 'flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200',
                 isActive
-                  ? 'bg-gradient-to-r from-cyan-50 to-teal-50 dark:from-cyan-900/50 dark:to-teal-900/50 text-cyan-600 dark:text-cyan-400 shadow-sm'
-                  : 'text-slate-600 dark:text-slate-300 hover:bg-cyan-50/50 dark:hover:bg-cyan-900/30 hover:text-cyan-700 dark:hover:text-cyan-300'
+                  ? 'bg-gradient-to-r from-cyan-50 to-teal-50 text-cyan-600 shadow-sm'
+                  : 'text-slate-600 hover:bg-cyan-50/50 hover:text-cyan-700'
               )}
             >
               <item.icon className="w-5 h-5" />

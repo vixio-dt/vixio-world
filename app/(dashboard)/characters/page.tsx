@@ -25,8 +25,8 @@ export default async function CharactersPage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100">Characters</h1>
-          <p className="text-slate-600 dark:text-slate-400 mt-2">
+          <h1 className="text-3xl font-bold text-slate-900">Characters</h1>
+          <p className="text-slate-600 mt-2">
             {characters.length} character{characters.length !== 1 ? 's' : ''} in your world
           </p>
         </div>
@@ -49,9 +49,9 @@ export default async function CharactersPage() {
           }}
         />
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          {characters.map((character, index) => (
-            <CharacterCard key={character.id} character={character} index={index} />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {characters.map((character) => (
+            <CharacterCard key={character.id} character={character} />
           ))}
         </div>
       )}

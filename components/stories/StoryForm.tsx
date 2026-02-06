@@ -1,21 +1,7 @@
 'use client'
 
 import { useState, useCallback } from 'react'
-import { 
-  TextInput, 
-  Textarea, 
-  Select, 
-  Button, 
-  Stack, 
-  Grid, 
-  Alert,
-  Paper,
-  Title,
-  Text,
-  Group,
-  Divider
-} from '@mantine/core'
-import { AlertCircle } from 'lucide-react'
+import { Button, Input, Textarea, Select } from '@/components/ui'
 import { ContentBlocksEditor } from '@/components/content-blocks'
 import type { Story, ContentBlock } from '@/lib/types/database'
 
@@ -27,7 +13,6 @@ interface StoryFormProps {
 }
 
 const statusOptions = [
-  { value: '', label: 'Select status...' },
   { value: 'concept', label: 'Concept' },
   { value: 'outline', label: 'Outline' },
   { value: 'draft', label: 'Draft' },
@@ -40,7 +25,6 @@ export function StoryForm({ story, worldId, action, submitLabel }: StoryFormProp
   const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>(
     story?.content_blocks || []
   )
-  const [status, setStatus] = useState(story?.status || '')
 
   const handleContentBlocksChange = useCallback((blocks: ContentBlock[]) => {
     setContentBlocks(blocks)
@@ -51,7 +35,6 @@ export function StoryForm({ story, worldId, action, submitLabel }: StoryFormProp
     setError(null)
     
     formData.set('content_blocks', JSON.stringify(contentBlocks))
-    formData.set('status', status)
     
     const result = await action(formData)
     
@@ -62,171 +45,92 @@ export function StoryForm({ story, worldId, action, submitLabel }: StoryFormProp
   }
 
   return (
-    <form action={handleSubmit}>
+    <form action={handleSubmit} className="space-y-6">
       <input type="hidden" name="world_id" value={worldId} />
       
-      <Stack gap="lg">
-        {error && (
-          <Alert 
-            icon={<AlertCircle size={16} />} 
-            title="Error" 
-            color="red"
-            variant="light"
-          >
-            {error}
-          </Alert>
-        )}
+      {error && (
+        <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+          {error}
+        </div>
+      )}
 
-        {/* Basic Info Section */}
-        <Paper p="lg" radius="md" withBorder className="dark:bg-slate-800 dark:border-slate-700">
-          <Title order={4} mb="md" className="text-slate-900 dark:text-slate-100">
-            Basic Information
-          </Title>
-          
-          <Grid>
-            <Grid.Col span={{ base: 12, md: 6 }}>
-              <TextInput
-                name="title"
-                label="Title"
-                required
-                withAsterisk
-                defaultValue={story?.title}
-                placeholder="Story title"
-                size="md"
-              />
-            </Grid.Col>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Input
+          id="title"
+          name="title"
+          label="Title"
+          required
+          defaultValue={story?.title}
+          placeholder="Story title"
+        />
 
-            <Grid.Col span={{ base: 12, md: 6 }}>
-              <Select
-                label="Status"
-                data={statusOptions}
-                value={status}
-                onChange={(value) => setStatus(value || '')}
-                placeholder="Select status"
-                size="md"
-                clearable
-              />
-            </Grid.Col>
-          </Grid>
-        </Paper>
+        <Select
+          id="status"
+          name="status"
+          label="Status"
+          options={statusOptions}
+          defaultValue={story?.status || ''}
+        />
+      </div>
 
-        {/* Logline Section */}
-        <Paper p="lg" radius="md" withBorder className="dark:bg-slate-800 dark:border-slate-700">
-          <Title order={4} mb="xs" className="text-slate-900 dark:text-slate-100">
-            Logline
-          </Title>
-          <Text size="sm" c="dimmed" mb="md">
-            A compelling one-sentence summary of your story
-          </Text>
-          
-          <Textarea
-            name="logline"
-            defaultValue={story?.logline || ''}
-            placeholder="A one-sentence summary of your story..."
-            minRows={2}
-            autosize
-            maxRows={4}
-            size="md"
-          />
-        </Paper>
+      <Textarea
+        id="logline"
+        name="logline"
+        label="Logline"
+        defaultValue={story?.logline || ''}
+        placeholder="A one-sentence summary of your story..."
+      />
 
-        {/* Genre & Tone Section */}
-        <Paper p="lg" radius="md" withBorder className="dark:bg-slate-800 dark:border-slate-700">
-          <Title order={4} mb="md" className="text-slate-900 dark:text-slate-100">
-            Genre & Tone
-          </Title>
-          
-          <Grid>
-            <Grid.Col span={{ base: 12, md: 6 }}>
-              <TextInput
-                name="genre"
-                label="Genre"
-                defaultValue={story?.genre || ''}
-                placeholder="e.g., Fantasy, Sci-Fi, Drama"
-                size="md"
-              />
-            </Grid.Col>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Input
+          id="genre"
+          name="genre"
+          label="Genre"
+          defaultValue={story?.genre || ''}
+          placeholder="e.g., Fantasy, Sci-Fi, Drama"
+        />
 
-            <Grid.Col span={{ base: 12, md: 6 }}>
-              <TextInput
-                name="tone"
-                label="Tone"
-                defaultValue={story?.tone || ''}
-                placeholder="e.g., Dark, Comedic, Epic"
-                size="md"
-              />
-            </Grid.Col>
-          </Grid>
-        </Paper>
+        <Input
+          id="tone"
+          name="tone"
+          label="Tone"
+          defaultValue={story?.tone || ''}
+          placeholder="e.g., Dark, Comedic, Epic"
+        />
+      </div>
 
-        {/* Theme Section */}
-        <Paper p="lg" radius="md" withBorder className="dark:bg-slate-800 dark:border-slate-700">
-          <Title order={4} mb="md" className="text-slate-900 dark:text-slate-100">
-            Theme
-          </Title>
-          
-          <Textarea
-            name="theme"
-            label="Theme"
-            defaultValue={story?.theme || ''}
-            placeholder="Central themes and messages..."
-            minRows={3}
-            autosize
-            maxRows={6}
-            size="md"
-          />
-        </Paper>
+      <Textarea
+        id="theme"
+        name="theme"
+        label="Theme"
+        defaultValue={story?.theme || ''}
+        placeholder="Central themes and messages..."
+      />
 
-        {/* Story Context Section */}
-        <Paper p="lg" radius="md" withBorder className="dark:bg-slate-800 dark:border-slate-700">
-          <Title order={4} mb="xs" className="text-slate-900 dark:text-slate-100">
-            Story Context
-          </Title>
-          <Text size="sm" c="dimmed" mb="md">
-            The Lore Link - How does this story fit into your world?
-          </Text>
-          
-          <Textarea
-            name="story_context"
-            defaultValue={story?.story_context || ''}
-            placeholder="How does this story fit into your world?"
-            minRows={4}
-            autosize
-            maxRows={8}
-            size="md"
-          />
-        </Paper>
+      <Textarea
+        id="story_context"
+        name="story_context"
+        label="Story Context"
+        defaultValue={story?.story_context || ''}
+        placeholder="How does this story fit into your world?"
+      />
 
-        {/* Content Blocks Section */}
-        <Paper p="lg" radius="md" withBorder className="dark:bg-slate-800 dark:border-slate-700">
-          <ContentBlocksEditor
-            initialBlocks={story?.content_blocks || []}
-            onChange={handleContentBlocksChange}
-            worldId={worldId}
-          />
-        </Paper>
+      <div className="border-t border-slate-200 pt-6">
+        <ContentBlocksEditor
+          initialBlocks={story?.content_blocks || []}
+          onChange={handleContentBlocksChange}
+          worldId={worldId}
+        />
+      </div>
 
-        {/* Actions */}
-        <Divider />
-        
-        <Group justify="flex-end" gap="md">
-          <Button 
-            variant="default" 
-            onClick={() => window.history.back()}
-            size="md"
-          >
-            Cancel
-          </Button>
-          <Button 
-            type="submit" 
-            loading={loading}
-            size="md"
-            color="cyan"
-          >
-            {submitLabel}
-          </Button>
-        </Group>
-      </Stack>
+      <div className="flex justify-end gap-4">
+        <Button type="button" variant="outline" onClick={() => window.history.back()}>
+          Cancel
+        </Button>
+        <Button type="submit" disabled={loading}>
+          {loading ? 'Saving...' : submitLabel}
+        </Button>
+      </div>
     </form>
   )
 }

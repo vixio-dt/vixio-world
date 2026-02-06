@@ -44,7 +44,6 @@ export default function ChatPage() {
   useEffect(() => {
     const currentWorldId = getCurrentWorldId()
     if (!currentWorldId) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setError('Please select a world first')
       setLoading(false)
       return

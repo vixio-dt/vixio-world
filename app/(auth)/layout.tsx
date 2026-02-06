@@ -16,8 +16,6 @@ export default function AuthLayout({
             width={240}
             height={80}
             className="mx-auto mb-8"
-            style={{ width: 'auto', height: 'auto' }}
-            priority
           />
           <p className="text-xl text-white/90">
             Visual asset-driven creative platform for worldbuilding and production

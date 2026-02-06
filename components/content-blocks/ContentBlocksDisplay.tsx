@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui';
 import { ModelEmbed } from '@/components/models';
 import type { ContentBlock } from '@/lib/types/database';
-import { FileText, Image as ImageIcon, Box } from 'lucide-react';
+import { FileText, Image, Box } from 'lucide-react';
 
 // Entity type to URL path mapping
 const entityPaths: Record<string, string> = {
@@ -106,10 +106,9 @@ function ContentBlockItem({ block }: { block: ContentBlock }) {
         <Card>
           <CardContent className="py-4">
             <div className="flex items-start gap-2 mb-2">
-              <ImageIcon className="w-4 h-4 text-slate-400 flex-shrink-0" />
+              <Image className="w-4 h-4 text-slate-400 flex-shrink-0" />
               <span className="text-sm text-slate-500">Image</span>
             </div>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={block.content}
               alt="Content media"

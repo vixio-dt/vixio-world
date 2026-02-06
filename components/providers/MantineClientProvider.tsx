@@ -1,16 +1,17 @@
 'use client'
 
-import { MantineProvider } from '@mantine/core'
+import { MantineProvider, createTheme } from '@mantine/core'
 import { Notifications } from '@mantine/notifications'
-import { NavigationProgress } from '@mantine/nprogress'
-import { RouterTransition } from './RouterTransition'
-import { theme } from '@/lib/theme/mantine-theme'
+
+const theme = createTheme({
+  primaryColor: 'cyan',
+  fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+  defaultRadius: 'md',
+})
 
 export function MantineClientProvider({ children }: { children: React.ReactNode }) {
   return (
-    <MantineProvider theme={theme} defaultColorScheme="auto">
-      <NavigationProgress color="cyan" size={3} />
-      <RouterTransition />
+    <MantineProvider theme={theme} defaultColorScheme="light">
       <Notifications position="bottom-right" />
       {children}
     </MantineProvider>

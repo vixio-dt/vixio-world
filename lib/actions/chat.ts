@@ -13,8 +13,7 @@ export async function getOrCreateChatSession(worldId: string): Promise<ChatSessi
   const supabase = await createClient()
 
   // Try to get existing session
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data: existing } = await (supabase as any)
+  const { data: existing } = await supabase
     .from('chat_sessions')
     .select('*')
     .eq('world_id', worldId)
@@ -25,8 +24,7 @@ export async function getOrCreateChatSession(worldId: string): Promise<ChatSessi
   }
 
   // Create new session
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data: created, error } = await (supabase as any)
+  const { data: created, error } = await supabase
     .from('chat_sessions')
     .insert({ world_id: worldId })
     .select()
@@ -46,8 +44,7 @@ export async function getOrCreateChatSession(worldId: string): Promise<ChatSessi
 export async function getChatMessages(sessionId: string): Promise<ChatMessage[]> {
   const supabase = await createClient()
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data, error } = await (supabase as any)
+  const { data, error } = await supabase
     .from('chat_messages')
     .select('*')
     .eq('session_id', sessionId)
@@ -67,8 +64,7 @@ export async function getChatMessages(sessionId: string): Promise<ChatMessage[]>
 export async function clearChatHistory(sessionId: string): Promise<boolean> {
   const supabase = await createClient()
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { error } = await (supabase as any)
+  const { error } = await supabase
     .from('chat_messages')
     .delete()
     .eq('session_id', sessionId)
@@ -208,7 +204,7 @@ export async function sendChatMessage(
   const supabase = await createClient()
 
   // Parse command
-  const { command } = parseCommand(content)
+  const { command, query } = parseCommand(content)
 
   // Build world context
   const context = await buildWorldContext(worldId)
@@ -221,8 +217,7 @@ export async function sendChatMessage(
     const stats = getWorldStats(context)
     
     // Save user message
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: userMsg, error: userError } = await (supabase as any)
+    const { data: userMsg, error: userError } = await supabase
       .from('chat_messages')
       .insert({
         session_id: sessionId,
@@ -248,8 +243,7 @@ export async function sendChatMessage(
 - ${stats.items} items
 - ${stats.events} events`
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: aiMsg, error: aiError } = await (supabase as any)
+    const { data: aiMsg, error: aiError } = await supabase
       .from('chat_messages')
       .insert({
         session_id: sessionId,
@@ -270,8 +264,7 @@ export async function sendChatMessage(
   }
 
   // Save user message
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data: userMsg, error: userError } = await (supabase as any)
+  const { data: userMsg, error: userError } = await supabase
     .from('chat_messages')
     .insert({
       session_id: sessionId,
@@ -292,8 +285,7 @@ export async function sendChatMessage(
   const systemPrompt = buildSystemPrompt(command || 'query', worldContextPrompt)
 
   // Get recent messages for context (last 10)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data: recentMessages } = await (supabase as any)
+  const { data: recentMessages } = await supabase
     .from('chat_messages')
     .select('role, content')
     .eq('session_id', sessionId)
@@ -302,7 +294,7 @@ export async function sendChatMessage(
 
   const conversationHistory = (recentMessages || [])
     .reverse()
-    .map((m: { role: string; content: string }) => ({
+    .map(m => ({
       role: m.role as 'user' | 'assistant',
       content: m.content,
     }))
@@ -325,8 +317,7 @@ export async function sendChatMessage(
     const sources = extractSources(aiContent, context)
 
     // Save AI response
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: aiMsg, error: aiError } = await (supabase as any)
+    const { data: aiMsg, error: aiError } = await supabase
       .from('chat_messages')
       .insert({
         session_id: sessionId,
@@ -348,8 +339,7 @@ export async function sendChatMessage(
     console.error('AI error:', err)
     
     // Save error message
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: aiMsg } = await (supabase as any)
+    const { data: aiMsg } = await supabase
       .from('chat_messages')
       .insert({
         session_id: sessionId,

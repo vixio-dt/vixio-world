@@ -7,18 +7,14 @@ interface SkeletonProps {
 export function Skeleton({ className }: SkeletonProps) {
   return (
     <div
-      className={cn(
-        'animate-pulse rounded',
-        'bg-slate-200 dark:bg-slate-700',
-        className
-      )}
+      className={cn('animate-pulse bg-slate-200 rounded', className)}
     />
   )
 }
 
 export function CardSkeleton() {
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4">
+    <div className="bg-white rounded-xl border border-slate-200 p-4">
       <div className="flex items-start gap-4">
         <Skeleton className="w-12 h-12 rounded-lg" />
         <div className="flex-1 space-y-2">
@@ -61,70 +57,6 @@ export function DetailSkeleton() {
       <div className="space-y-2">
         <Skeleton className="h-4 w-24" />
         <Skeleton className="h-32 w-full" />
-      </div>
-    </div>
-  )
-}
-
-export function FormSkeleton() {
-  return (
-    <div className="space-y-6">
-      {/* Header skeleton */}
-      <div className="space-y-2">
-        <Skeleton className="h-8 w-48" />
-        <Skeleton className="h-4 w-64" />
-      </div>
-      
-      {/* Form sections */}
-      {Array.from({ length: 3 }).map((_, i) => (
-        <div key={i} className="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-6 space-y-4">
-          <Skeleton className="h-5 w-32" />
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Skeleton className="h-4 w-16" />
-              <Skeleton className="h-10 w-full" />
-            </div>
-            <div className="space-y-2">
-              <Skeleton className="h-4 w-20" />
-              <Skeleton className="h-10 w-full" />
-            </div>
-          </div>
-        </div>
-      ))}
-      
-      {/* Action buttons */}
-      <div className="flex justify-end gap-3">
-        <Skeleton className="h-10 w-24" />
-        <Skeleton className="h-10 w-32" />
-      </div>
-    </div>
-  )
-}
-
-export function DashboardSkeleton() {
-  return (
-    <div className="space-y-8">
-      {/* Welcome section */}
-      <div className="space-y-2">
-        <Skeleton className="h-10 w-80" />
-        <Skeleton className="h-5 w-96" />
-      </div>
-      
-      {/* Cards grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {Array.from({ length: 6 }).map((_, i) => (
-          <div key={i} className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 space-y-4">
-            <div className="flex items-center gap-3">
-              <Skeleton className="w-12 h-12 rounded-lg" />
-              <div className="space-y-2 flex-1">
-                <Skeleton className="h-5 w-24" />
-                <Skeleton className="h-4 w-16" />
-              </div>
-            </div>
-            <Skeleton className="h-4 w-full" />
-            <Skeleton className="h-4 w-3/4" />
-          </div>
-        ))}
       </div>
     </div>
   )
