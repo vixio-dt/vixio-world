@@ -25,8 +25,8 @@ export default async function CharactersPage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">Characters</h1>
-          <p className="text-slate-600 mt-2">
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100">Characters</h1>
+          <p className="text-slate-600 dark:text-slate-400 mt-2">
             {characters.length} character{characters.length !== 1 ? 's' : ''} in your world
           </p>
         </div>

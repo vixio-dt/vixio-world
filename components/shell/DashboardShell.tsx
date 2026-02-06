@@ -2,6 +2,7 @@
 
 import { AppShell, Burger, Group, ScrollArea, NavLink, Text, ActionIcon, Tooltip } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
+import { useMantineColorScheme, useComputedColorScheme } from '@mantine/core'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Image from 'next/image'
@@ -19,7 +20,9 @@ import {
   Network,
   Upload,
   User,
-  LogOut
+  LogOut,
+  Sun,
+  Moon
 } from 'lucide-react'
 import { logout } from '@/lib/actions/auth'
 import { WorldSwitcher } from './WorldSwitcher'
@@ -50,6 +53,8 @@ interface DashboardShellProps {
 export function DashboardShell({ children, userEmail }: DashboardShellProps) {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure()
   const pathname = usePathname()
+  const { setColorScheme } = useMantineColorScheme()
+  const computedColorScheme = useComputedColorScheme('light')
 
   const handleNavClick = () => {
     if (mobileOpened) toggleMobile()
@@ -95,6 +100,18 @@ export function DashboardShell({ children, userEmail }: DashboardShellProps) {
                 <Text size="sm" c="dimmed" visibleFrom="lg">{userEmail}</Text>
               </Group>
             )}
+
+            <Tooltip label={computedColorScheme === 'light' ? 'Dark mode' : 'Light mode'}>
+              <ActionIcon
+                variant="subtle"
+                color="gray"
+                size="lg"
+                onClick={() => setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')}
+                aria-label="Toggle color scheme"
+              >
+                {computedColorScheme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+              </ActionIcon>
+            </Tooltip>
             
             <form action={logout}>
               <Tooltip label="Logout">

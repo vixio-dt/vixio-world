@@ -25,8 +25,8 @@ export default async function RulesPage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Rules</h1>
-          <p className="text-slate-500 mt-1">Laws and systems of your world</p>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Rules</h1>
+          <p className="text-slate-500 dark:text-slate-400 mt-1">Laws and systems of your world</p>
         </div>
         <Link href="/rules/new">
           <Button>

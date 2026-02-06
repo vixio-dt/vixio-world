@@ -29,12 +29,12 @@ export function LocationCard({ location }: LocationCardProps) {
               <MapPin className="w-5 h-5 text-emerald-600" />
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="font-semibold text-slate-900 truncate">{location.name}</h3>
+              <h3 className="font-semibold text-slate-900 dark:text-slate-100 truncate">{location.name}</h3>
               {location.type && (
-                <span className="text-sm text-slate-500">{typeLabels[location.type] || location.type}</span>
+                <span className="text-sm text-slate-500 dark:text-slate-400">{typeLabels[location.type] || location.type}</span>
               )}
               {location.description && (
-                <p className="mt-2 text-sm text-slate-600 line-clamp-2">{location.description}</p>
+                <p className="mt-2 text-sm text-slate-600 dark:text-slate-400 line-clamp-2">{location.description}</p>
               )}
             </div>
           </div>

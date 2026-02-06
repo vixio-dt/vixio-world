@@ -25,8 +25,8 @@ export default async function TimelinePage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Timeline</h1>
-          <p className="text-slate-500 mt-1">Events and history of your world</p>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Timeline</h1>
+          <p className="text-slate-500 dark:text-slate-400 mt-1">Events and history of your world</p>
         </div>
         <Link href="/timeline/new">
           <Button>

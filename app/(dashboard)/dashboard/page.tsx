@@ -10,6 +10,7 @@ import {
   BookOpen,
   ArrowRight
 } from 'lucide-react'
+import { Title, Text, Paper, ThemeIcon, Group, Stack } from '@mantine/core'
 
 const entityTypes = [
   { 
@@ -78,38 +79,54 @@ export default async function DashboardPage() {
 
   return (
     <div>
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-900">Dashboard</h1>
-        <p className="text-slate-600 mt-2">Welcome to your world</p>
-      </div>
+      <Stack gap="md" mb="xl">
+        <Title order={1}>Dashboard</Title>
+        <Text c="dimmed">Welcome to your world</Text>
+      </Stack>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {entityTypes.map((entity) => (
-          <Link
-            key={entity.href}
-            href={entity.href}
-            className="group bg-white rounded-xl border border-slate-200 p-6 hover:border-cyan-300 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-200"
-          >
-            <div className="flex items-start justify-between mb-4">
-              <div className="p-3 bg-gradient-to-br from-cyan-50 to-teal-50 rounded-xl group-hover:from-cyan-100 group-hover:to-teal-100 transition-colors">
-                <entity.icon className="w-6 h-6 text-cyan-600" />
-              </div>
-              <span className="text-2xl font-bold text-slate-900">
-                {counts[entity.table]}
-              </span>
-            </div>
-            <h3 className="text-lg font-semibold text-slate-900 mb-1">
-              {entity.label}
-            </h3>
-            <p className="text-sm text-slate-600 mb-4">
-              {entity.description}
-            </p>
-            <div className="flex items-center text-sm text-cyan-600 font-medium group-hover:gap-2 transition-all">
-              <span>View all</span>
-              <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-            </div>
-          </Link>
-        ))}
+        {entityTypes.map((entity) => {
+          const IconComponent = entity.icon
+          return (
+            <Link
+              key={entity.href}
+              href={entity.href}
+              style={{ textDecoration: 'none', color: 'inherit' }}
+            >
+              <Paper
+                withBorder
+                shadow="xs"
+                radius="md"
+                p="lg"
+                className="group hover:border-cyan-300 hover:shadow-lg transition-all duration-200"
+              >
+                <Group justify="space-between" mb="md">
+                  <ThemeIcon variant="light" color="cyan" size="xl" radius="md">
+                    <IconComponent size={24} />
+                  </ThemeIcon>
+                  <Text fw={700} size="xl">
+                    {counts[entity.table]}
+                  </Text>
+                </Group>
+                <Text fw={600} size="lg" mb="xs">
+                  {entity.label}
+                </Text>
+                <Text size="sm" c="dimmed" mb="md">
+                  {entity.description}
+                </Text>
+                <Group gap="xs" className="group-hover:gap-2 transition-all">
+                  <Text size="sm" c="cyan">
+                    View all
+                  </Text>
+                  <ArrowRight 
+                    size={16} 
+                    className="opacity-0 group-hover:opacity-100 transition-opacity" 
+                  />
+                </Group>
+              </Paper>
+            </Link>
+          )
+        })}
       </div>
     </div>
   )

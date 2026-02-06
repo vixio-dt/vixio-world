@@ -25,8 +25,8 @@ export default async function ItemsPage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Items</h1>
-          <p className="text-slate-500 mt-1">Objects and artifacts in your world</p>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Items</h1>
+          <p className="text-slate-500 dark:text-slate-400 mt-1">Objects and artifacts in your world</p>
         </div>
         <Link href="/items/new">
           <Button>
