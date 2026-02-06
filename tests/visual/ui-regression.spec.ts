@@ -35,31 +35,48 @@ for (const page of pages) {
   })
 }
 
-// Specific test: verify no dark backgrounds on Mantine components
-test('no dark mode leak on form page', async ({ page }) => {
+// Specific test: verify no dark backgrounds even when OS prefers dark
+test('no dark mode leak on form page (light OS)', async ({ page }) => {
   await page.goto('/characters/new')
   await page.waitForLoadState('networkidle')
   
-  // Check that Paper (Card) background is white/light
   const paper = page.locator('.mantine-Paper-root').first()
   const bgColor = await paper.evaluate((el) => {
     return window.getComputedStyle(el).backgroundColor
   })
   
-  // rgb(255, 255, 255) = white, or close to white
   expect(bgColor).toMatch(/rgb\(2[45]\d, 2[45]\d, 2[45]\d\)|rgb\(255, 255, 255\)/)
 })
 
-// Specific test: verify form inputs are light
-test('form inputs have light background', async ({ page }) => {
+// CRITICAL: Test with dark OS preference to catch the exact bug users hit
+test('no dark mode leak on form page (dark OS)', async ({ browser }) => {
+  const context = await browser.newContext({ colorScheme: 'dark' })
+  const page = await context.newPage()
+  
   await page.goto('/characters/new')
   await page.waitForLoadState('networkidle')
   
-  const input = page.locator('.mantine-TextInput-input').first()
-  const bgColor = await input.evaluate((el) => {
+  const paper = page.locator('.mantine-Paper-root').first()
+  const bgColor = await paper.evaluate((el) => {
     return window.getComputedStyle(el).backgroundColor
   })
   
-  // Should be white or near-white
+  // Even with dark OS preference, Paper must be white (forceColorScheme="light")
   expect(bgColor).toMatch(/rgb\(2[45]\d, 2[45]\d, 2[45]\d\)|rgb\(255, 255, 255\)/)
+  await context.close()
+})
+
+// Test dashboard cards are light with dark OS preference
+test('dashboard cards light with dark OS', async ({ browser }) => {
+  const context = await browser.newContext({ colorScheme: 'dark' })
+  const page = await context.newPage()
+  
+  await page.goto('/dashboard')
+  await page.waitForLoadState('networkidle')
+  
+  await expect(page).toHaveScreenshot('dashboard-dark-os.png', {
+    maxDiffPixelRatio: 0.01,
+    fullPage: false,
+  })
+  await context.close()
 })
