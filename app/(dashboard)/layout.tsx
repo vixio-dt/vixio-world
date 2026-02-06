@@ -1,7 +1,6 @@
-import { cookies } from 'next/headers'
 import { createClient } from '@/lib/supabase/server'
-import { Sidebar } from '@/components/shell'
-import { Header } from '@/components/shell'
+import { cookies } from 'next/headers'
+import { DashboardShell } from '@/components/shell'
 import { CommandPalette } from '@/components/search'
 import { ToastProvider } from './toast-provider'
 
@@ -18,16 +17,10 @@ export default async function DashboardLayout({
 
   return (
     <ToastProvider>
-      <div className="flex h-screen bg-slate-50">
-        <Sidebar />
-        <div className="flex-1 flex flex-col overflow-hidden">
-          <Header userEmail={user?.email} />
-          <main className="flex-1 overflow-y-auto p-6">
-            {children}
-          </main>
-        </div>
-        <CommandPalette worldId={worldId} />
-      </div>
+      <DashboardShell userEmail={user?.email}>
+        {children}
+      </DashboardShell>
+      <CommandPalette worldId={worldId} />
     </ToastProvider>
   )
 }
