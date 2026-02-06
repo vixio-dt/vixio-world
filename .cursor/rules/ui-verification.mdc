@@ -1,0 +1,51 @@
+# UI Verification After Changes
+
+**After ANY change to UI components, CSS, styling, or layout, you MUST verify visually before committing.**
+
+## When This Applies
+
+This is MANDATORY after editing:
+- Any file in `components/ui/`
+- Any file in `components/shell/`
+- `app/globals.css` or any CSS file
+- `lib/theme/mantine-theme.ts`
+- `components/providers/MantineClientProvider.tsx`
+- Any component that renders visible UI (cards, forms, pages)
+
+## Verification Steps
+
+1. **Start Playwright browser** (NOT the Cursor IDE browser - it has dark mode that gives false results)
+2. **Screenshot these 3 pages:**
+   - `/dashboard` - Tests dashboard cards, sidebar, header
+   - `/characters` - Tests entity list cards, buttons
+   - `/characters/new` - Tests form inputs, Card wrapper, buttons
+3. **Check each screenshot for:**
+   - All backgrounds are white/light (no dark mode leak)
+   - All text is dark on light background (readable)
+   - Buttons are solid cyan (no gradients)
+   - Input fields have visible borders
+   - Cards have subtle borders and shadows
+4. **Show screenshots to user** before committing
+
+## Quick Reference
+
+```
+# Playwright verification commands:
+browser_navigate → http://localhost:3000/dashboard
+browser_take_screenshot → verify-dashboard.png
+
+browser_navigate → http://localhost:3000/characters  
+browser_take_screenshot → verify-characters.png
+
+browser_navigate → http://localhost:3000/characters/new
+browser_take_screenshot → verify-form.png
+```
+
+## CSS Rules (Never Break These)
+
+1. **Tailwind** is ONLY for layout: `flex`, `grid`, `gap`, `p-`, `m-`, `w-`, `h-`, `max-w-`, `overflow-`
+2. **Tailwind** is NEVER for colors, backgrounds, borders, or shadows on Mantine components
+3. **Mantine** handles ALL colors via its theme system
+4. **Never use** `@import "tailwindcss"` - use selective imports without preflight
+5. **Never add** `* { transition }` or global style overrides
+6. **Never use** `dark:` Tailwind classes (Mantine handles dark mode)

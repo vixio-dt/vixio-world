@@ -1,12 +1,10 @@
-@import "tailwindcss";
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
 @import "@mantine/core/styles.css";
 @import "@mantine/spotlight/styles.css";
 @import "@mantine/notifications/styles.css";
-
-/* Force light color scheme to prevent OS dark mode from leaking into form controls */
-html {
-  color-scheme: light;
-}
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
