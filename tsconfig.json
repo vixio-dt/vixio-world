@@ -38,6 +38,7 @@
   "exclude": [
     "node_modules",
     "product-plan",
-    "tests"
+    "tests",
+    "dev-bot"
   ]
 }
