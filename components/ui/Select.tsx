@@ -1,16 +1,16 @@
 'use client'
 
-import { forwardRef, type SelectHTMLAttributes } from 'react'
-import { NativeSelect } from '@mantine/core'
+import { forwardRef } from 'react'
+import { NativeSelect, type ElementProps, type NativeSelectProps } from '@mantine/core'
 
-export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
-  label?: string
-  error?: string
+export interface SelectProps
+  extends Omit<NativeSelectProps, 'data'>,
+    ElementProps<'select', keyof NativeSelectProps | 'data'> {
   options: { value: string; label: string }[]
 }
 
 const Select = forwardRef<HTMLSelectElement, SelectProps>(
-  ({ className, label, error, id, options, value, onChange, name, required, disabled, ...props }, ref) => {
+  ({ options, ...props }, ref) => {
     // Add blank first option "Select..." with value ""
     const data = [
       { value: '', label: 'Select...' },
@@ -20,16 +20,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
     return (
       <NativeSelect
         ref={ref}
-        id={id}
-        label={label}
-        error={error}
         data={data}
-        value={value}
-        onChange={onChange}
-        name={name}
-        required={required}
-        disabled={disabled}
-        className={className}
         {...props}
       />
     )
