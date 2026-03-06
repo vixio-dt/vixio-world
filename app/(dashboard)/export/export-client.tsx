@@ -134,7 +134,7 @@ export function ExportClient({ worldId, worldName }: ExportClientProps) {
               <div className="flex-1">
                 <h3 className="font-medium text-slate-900">JSON Export</h3>
                 <p className="text-sm text-slate-600 mt-1">
-                  Raw data format. Great for backups, migrations, or API integrations.
+                  Raw project data for backups, migrations, or downstream automation.
                 </p>
                 <Button
                   className="mt-4"
@@ -161,9 +161,9 @@ export function ExportClient({ worldId, worldName }: ExportClientProps) {
                 <FileText className="w-6 h-6 text-purple-600" />
               </div>
               <div className="flex-1">
-                <h3 className="font-medium text-slate-900">World Bible (Markdown)</h3>
+                <h3 className="font-medium text-slate-900">Project Bible (Markdown)</h3>
                 <p className="text-sm text-slate-600 mt-1">
-                  Formatted document with all entities. Import to Notion, Obsidian, or share with collaborators.
+                  Formatted canon and asset document for sharing, review, or import into docs tools.
                 </p>
                 <Button
                   className="mt-4"

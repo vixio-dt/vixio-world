@@ -24,13 +24,13 @@ export default async function ExportPage() {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-slate-900">Export</h1>
+        <h1 className="text-2xl font-bold text-slate-900">Exports</h1>
         <p className="text-slate-600">
-          Export your world data in various formats.
+          Package your project context into reusable documents and handoff formats.
         </p>
       </div>
 
-      <ExportClient worldId={worldId} worldName={worldData?.name || 'World'} />
+      <ExportClient worldId={worldId} worldName={worldData?.name || 'Project'} />
     </div>
   )
 }

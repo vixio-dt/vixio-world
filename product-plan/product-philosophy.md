@@ -1,120 +1,114 @@
 # Product Philosophy
 
-## Core Principle: Visual Asset-Driven
+## Core Principle
 
-> **Assets are not attachments. Assets are the organizing metaphor.**
+**Boards first, canon second, forms last.**
 
-Unlike text-first tools (World Anvil, Campfire) or script-first tools (Clapperbie, StudioBinder), Vixio organizes around **visual assets** - characters, locations, props.
+Vixio Studio should feel like a creative workspace for preproduction, not like an encyclopedia or a production database pretending to be creative software.
 
-Everything flows from assets:
-- Text describes assets
-- Relationships connect assets
-- Timelines show asset appearances
-- Production docs export from assets
-- Storyboards use assets as elements
+## Philosophy Shifts
 
----
+### 1. Project-First, Not World-First
 
-## Soft vs Hard Worldbuilding
+The creator begins with a project and a goal:
 
-### The Core Insight
+- define the concept
+- break down the script
+- visualize scenes
+- prepare for storyboard or handoff
 
-Worldbuilding exists on a spectrum:
+Worldbuilding exists only insofar as it helps those outcomes.
 
-| Soft Worldbuilding | Hard Worldbuilding |
-|-------------------|-------------------|
-| Evocative, serves the story | Internally consistent, explained |
-| Doesn't need complete explanation | Everything tracked and validated |
-| Studio Ghibli, fairy tales | Tolkien's languages, Sanderson's magic systems |
-| Creativity-first | Consistency-first |
+### 2. Visualization Over Documentation
 
-**Key realization**: Forcing "hard" worldbuilding as the default blocks creative flow.
+The product should privilege things that help users see progress:
 
-## Vixio's Approach
+- stage boards
+- visible branches and versions
+- scene and shot structure
+- connected references and assets
 
-The AI serves the creator's intent, not the other way around.
+Documentation matters, but only when it serves the workflow.
 
-### Soft Mode (Default)
-- Accepts what you say
-- Builds on ideas creatively
-- No forced structure
-- "Cool, a 5000 year old elf. What's their story?"
+### 3. AI As Coordinator, Not Dictator
 
-### Hard Mode (Optional)
-- Proactively flags inconsistencies
-- Tracks relationships automatically
-- Validates against established rules
-- "You mentioned elves live 3000 years in chapter 2, but this elf is 5000 years old"
+AI should help with:
+
+- organization
+- continuity
+- summarization
+- next-step guidance
+- selective generation
+
+AI should not override authorship or auto-advance the project without approval.
+
+### 4. Structured Enough To Be Useful
+
+We still want soft structure, but applied to the new workflow:
+
+- projects have stages
+- boards hold blocks
+- blocks contain elements
+- approved outputs become canon
+- assets stay reusable across boards
+
+The goal is not rigid data entry. The goal is enough structure to keep the workflow coherent.
 
 ## Design Implications
 
-### No Enforced Rules
-- The tool is a **reference**, not a constraint
-- AI **helps find** inconsistencies when asked
-- User decides their worldbuilding style
+### Equal Entry Paths
 
-### No Modes Needed (Simplification)
-After further reflection: explicit "modes" may be unnecessary complexity.
+Brief-first and script-first must both feel native. Neither should appear as a secondary workaround.
 
-If AI has ingested content, it can:
-- Answer questions anytime (chat)
-- Extract entities when asked ("show me all characters")
-- Check consistency when asked ("any contradictions?")
+### Canon Is Supportive
 
-The soft/hard distinction becomes a **setting** for AI behavior, not separate modes:
+Canon exists to preserve references, constraints, and approved context that matter downstream. It should not dominate onboarding or navigation.
 
-| Setting | AI Default Behavior |
-|---------|-------------------|
-| Soft | Creative companion, accepts input |
-| Hard | Proactive consistency flagging |
+### Stage Context Matters
 
-User can toggle this, or even ask for hard-mode behavior in a soft-mode session.
+The system should adapt to the active stage:
 
-## Import Philosophy
+- ideation favors divergence
+- scripting favors convergence
+- design favors reuse and consistency
+- storyboard favors sequencing and clarity
 
-### What Happens After Import?
+### Traceability Beats More Output
 
-**Hybrid approach** (user choice):
+The product should prefer:
 
-```
-┌─────────────────────────────────────────────┐
-│  IMPORT COMPLETE                             │
-│                                              │
-│  ✓ AI has read your content                 │
-│                                              │
-│  I noticed:                                  │
-│  • 5 possible characters                    │
-│  • 3 locations mentioned                    │
-│  • 2 factions/groups                        │
-│                                              │
-│  [ Extract & Organize ]  [ Just Chat ]      │
-└─────────────────────────────────────────────┘
-```
+- versioned blocks over overwritten chat
+- visible branches over hidden prompt history
+- approved canon over loose generations
 
-- **"Just Chat"** - Content stays as-is, AI references it conversationally
-- **"Extract & Organize"** - AI creates structured entity views
+## Interaction Philosophy
 
-User can always switch between approaches later.
+### Human-Led Refinement
 
-## Why This Matters
+Users should be able to refine:
 
-Traditional tools force structure:
-```
-Structured input → Parser → Database fields
-```
+- a whole block
+- a single scene
+- one character direction
+- one visual reference
+- one shot or beat
 
-AI-native approach:
-```
-Messy document → AI reads it → Understands context
-```
+Fine-grained control is more valuable than large batches of undifferentiated output.
 
-You don't need perfect parsing. The AI can read a Google Doc dump and understand "this is a character, this is a location, these are related."
+### Imports Are Intake, Not Identity
 
-## Differentiation Summary
+Import remains important, but only as a way to seed the workflow.
 
-| Existing Tools | Vixio Worldbuilder |
-|---------------|-------------------|
-| Database with forms | AI conversation with context |
-| One approach (structured) | Soft/hard toggle |
-| You organize everything | AI helps find what matters |
-| Rigid import formats | Import YOUR format (markdown, docs, plain text) |
+The hero moment is not `AI extracted entities`.
+
+The hero moment is:
+
+> "I can now see my project across stages, understand what exists, and know what to do next."
+
+## What We Optimize For
+
+1. Clarity over feature count
+2. Continuity over isolated generation
+3. Human agency over automation theater
+4. Visual workflow over encyclopedia depth
+5. Workflow completion over disconnected clever features

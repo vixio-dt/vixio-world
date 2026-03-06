@@ -2,119 +2,91 @@
 
 ## Overview
 
-The Vixio Worldbuilder shell provides a collapsible sidebar navigation pattern optimized for a complex worldbuilding tool with 10 sections. It includes a world switcher for multi-world support, grouped navigation items, a user menu with Supabase auth, and a floating World Chat button for AI assistance.
+The Studio shell should orient the user around **workflow**, not entity type.
+
+This is the visible product-level proof of the pivot. Even before the full data model changes, the shell should tell users they are inside a preproduction workspace.
 
 ## Navigation Structure
 
-### Primary Navigation (Sidebar)
+### Primary Navigation
 
-- **World Switcher** (top) - Dropdown to switch between user's worlds
-- **Dashboard** - World overview and stats
+- **Project Switcher** - select the active project
+- **Overview** - project health, next steps, workflow summary
+- **Boards** - stage-aware workspace
+- **Canon** - approved context and references
+- **Assets** - reusable characters, locations, props, and relationships
 
-**World Elements Group:**
-- Characters - People, creatures, entities
-- Locations - Places and environments
-- Organizations - Factions and groups
-- Timeline - Events, history, and node-based graph view for time loops/paradoxes
-- Items - Props and artifacts
-- Rules - World laws and constraints
+### Utility Navigation
 
-**Storytelling Group:**
-- Stories - Narratives with scenes and shots
-- Export - Production outputs
+- **Agent Chat** - conversational coordination and project Q&A
+- **Exports** - deliverables and handoff outputs
 
-**Footer:**
-- Settings (optional)
-- User Menu - Avatar, name, sign out (Supabase auth)
+### Secondary / Supporting Routes
 
-### World Chat (Floating)
+The detailed CRUD routes remain available, but they are supporting surfaces behind the top-level IA:
 
-- Floating action button in bottom-right corner
-- Opens slide-up chat panel when clicked
-- Persists across all sections
-- Can be minimized back to button
+- `/characters`
+- `/locations`
+- `/organizations`
+- `/timeline`
+- `/items`
+- `/rules`
+- `/stories`
+- `/graph`
+- `/import`
 
 ## Layout Pattern
 
-**Collapsible Sidebar Navigation:**
+| Region | Purpose |
+|--------|---------|
+| Header | Project identity, theme toggle, auth controls |
+| Sidebar | Workflow-first navigation |
+| Main content | Active Studio surface |
 
-| State | Width | Behavior |
-|-------|-------|----------|
-| Expanded | 256px | Full labels + icons |
-| Collapsed | 64px | Icons only with tooltips |
-| Mobile | Hidden | Hamburger opens slide-out drawer |
+## UX Goals
 
-## Responsive Behavior
+### 1. Immediate Orientation
 
-- **Desktop (>1024px):** Sidebar visible, user can toggle collapsed/expanded
-- **Tablet (768-1024px):** Sidebar collapsed by default, expandable
-- **Mobile (<768px):** Sidebar hidden, hamburger menu in header, opens as sheet overlay
+The shell should make it obvious that the user is working on a project with stages, not browsing a wiki.
 
-## Design Tokens
+### 2. Short Path To Action
 
-### Colors (from colors.json)
-- **Primary (sky):** Active nav items, World Chat button, focus rings
-- **Secondary (cream):** Hover states, subtle highlights, badges
-- **Neutral (slate):** Text colors, borders
-- **Background:** White (light mode), slate-900 (dark mode)
+From the shell, users should be able to quickly:
 
-### Typography (from typography.json)
-- **Space Grotesk:** Nav item labels, section headers
-- **Inter:** Body text, descriptions, buttons
-- **JetBrains Mono:** IDs, technical content
+- start from a brief
+- start from a script breakdown
+- open boards
+- jump into canon or assets
+- export current work
 
-## Component Structure
+### 3. Preserve Current Implementation Value
 
-```
-AppShell
-+-- Sidebar
-|   +-- WorldSwitcher
-|   +-- NavGroup (World Elements)
-|   |   +-- NavItem (x6)
-|   +-- NavGroup (Storytelling)
-|   |   +-- NavItem (x2)
-|   +-- UserMenu
-+-- MobileNav (hamburger + sheet)
-+-- MainContent (children)
-+-- WorldChatButton (floating)
-```
+The shell should not throw away the existing routes. It should reframe them.
 
 ## Interaction Details
 
-### Sidebar Toggle
-- Toggle button at bottom of sidebar
-- Keyboard shortcut: Cmd/Ctrl + B
-- State persisted in localStorage
+### Project Switcher
 
-### World Switcher
-- Dropdown showing all user's worlds
-- Current world highlighted
-- "Create New World" option at bottom
-- Shows world icon/avatar if available
+Current implementation continues to use the existing `world` records, but the shell should label them as projects.
 
-### World Chat Button
-- Fixed position: bottom-right, 24px from edges
-- Primary (sky) background color
-- Pulse animation when AI has suggestions
-- Opens chat panel (400px wide, 60vh height)
+Required behaviors:
 
-### Navigation Items
-- Active state: sky-500 background, white text
-- Hover state: slate-100 background (light), slate-800 (dark)
-- Icons from lucide-react
-- Tooltips shown when sidebar collapsed
+- current project visible at all times
+- dropdown list of projects
+- create new project entry
+- onboarding modal for project brief, script breakdown, reference intake, and demo project
 
-## Accessibility
+### Active Route Styling
 
-- Full keyboard navigation
-- ARIA labels on all interactive elements
-- Focus visible indicators
-- Screen reader announcements for state changes
-- Reduced motion support
+Active states should follow the workflow-first IA. Supporting CRUD routes do not need first-class nav placement unless they are later promoted.
 
-## Dark Mode
+### Command Palette
 
-- Sidebar: slate-900 background
-- Nav items: slate-50 text
-- Active items: sky-500 background
-- Borders: slate-700
+Search should be framed as searching `canon and assets`, not generic entities.
+
+## Future Shell Enhancements
+
+- board stage progress indicator
+- quick actions in header
+- project health summary chip
+- pinned stage context when on board pages

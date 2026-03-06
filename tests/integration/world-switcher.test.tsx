@@ -78,7 +78,7 @@ describe('WorldSwitcher Component', () => {
     fireEvent.click(button)
     
     await waitFor(() => {
-      expect(screen.getByText('Create new world')).toBeInTheDocument()
+      expect(screen.getByText('Create new project')).toBeInTheDocument()
     })
   })
 })

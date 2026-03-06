@@ -1,3 +1,176 @@
+# Competitive Analysis
+
+## The New Competitive Frame
+
+The main competition is no longer `worldbuilding software`.
+
+The real competition is the fragmented stack creators assemble to get through preproduction:
+
+- chat tools for thinking
+- writing tools for scripts
+- image tools for references
+- folder structures for assets
+- slide decks for pitching
+- spreadsheets or generic boards for coordination
+
+Vixio Studio should compete by reducing that fragmentation with a **stage-aware, traceable visual workflow**.
+
+## Main Competitor Categories
+
+### 1. Generic AI Toolchains
+
+Examples:
+
+- ChatGPT / Claude / Gemini
+- Midjourney / Flux / Runway
+- ad hoc prompt-and-folder workflows
+
+#### What They Do Well
+
+- fast output generation
+- high flexibility
+- no setup barrier
+
+#### Where They Fail
+
+- no persistent multi-stage workflow
+- weak traceability
+- poor version lineage
+- important decisions buried in chat history
+- no canonical project memory
+
+#### Vixio Opportunity
+
+Turn isolated outputs into a project system with boards, canon, assets, and exportable structure.
+
+### 2. Script-First Production Tools
+
+Examples:
+
+- StudioBinder
+- Celtx
+- Final Draft ecosystem
+- Boords and storyboard-adjacent production tools
+
+#### What They Do Well
+
+- script formatting
+- breakdown and scheduling conventions
+- collaboration around mature productions
+
+#### Where They Fail
+
+- assume the script is already stable
+- weak support for concept-first development
+- limited visual coordination before production admin begins
+- creative exploration is not the core workflow
+
+#### Vixio Opportunity
+
+Own the space between `messy idea` and `production-admin-ready package`.
+
+### 3. Worldbuilding / Knowledge Tools
+
+Examples:
+
+- World Anvil
+- Campfire
+- Obsidian
+- Notion used as a story wiki
+
+#### What They Do Well
+
+- continuity storage
+- reference organization
+- flexible long-form documentation
+
+#### Where They Fail
+
+- the product identity is documentation
+- weak visual workflow support
+- poor transition from canon to scenes, boards, and exports
+- heavier structure often feels like homework
+
+#### Vixio Opportunity
+
+Keep canon available, but make it serve preproduction instead of becoming the whole product.
+
+### 4. Enterprise Pipeline Tools
+
+Examples:
+
+- ShotGrid
+- Ftrack
+- Kitsu
+
+#### What They Do Well
+
+- status tracking
+- production pipeline rigor
+- version handling for large teams
+
+#### Where They Fail
+
+- built for specialist pipeline contexts
+- high setup and training burden
+- weak fit for solo creators and small teams
+- no strong concept-to-storyboard creative workflow
+
+#### Vixio Opportunity
+
+Offer a creator-friendly coordination model before teams need full pipeline management.
+
+## The Actual Market Gap
+
+The gap is:
+
+> A human-centered preproduction workspace that coordinates idea development, script breakdown, design references, and storyboard planning with visible continuity across stages.
+
+This gap is stronger than a `better worldbuilding tool` thesis because it maps to how many creators actually work:
+
+- they do not all need Tolkien-scale lore systems
+- they do need help turning ideas into something visual and organized
+
+## Why The AnimAgents Pattern Matters
+
+The paper validates three things the market is missing:
+
+1. **Continuity and traceability across stages**
+2. **Structured visualizations aligned with creative practice**
+3. **AI assistance that preserves agency instead of replacing it**
+
+That gives Vixio a stronger direction than competing on standalone AI generation or encyclopedia depth.
+
+## Positioning Summary
+
+| Category | What Users Get | What They Still Need |
+|----------|----------------|----------------------|
+| Generic AI stack | Generation | Workflow clarity |
+| Script-first tools | Admin structure | Early-stage visual development |
+| Worldbuilding tools | Documentation | Preproduction momentum |
+| Enterprise pipeline tools | Operational rigor | Accessible creative coordination |
+| **Vixio Studio** | **Stage-aware coordination** | **Still building export depth** |
+
+## Strategic Takeaways
+
+### Do Not Lead With
+
+- worldbuilding depth
+- import alone
+- AI generation alone
+- enterprise production claims
+
+### Lead With
+
+- brief-first or script-first onboarding
+- boards as the hero interface
+- canon and assets as support layers
+- visible continuity across stages
+- export as the natural outcome of the workflow
+
+## Recommended Positioning Line
+
+> Vixio Studio is the AI-assisted preproduction workspace that helps creators move from brief or script into visualized, traceable boards and handoff-ready outputs.
 # Competitive Analysis: Worldbuilding & Production Platforms
 
 ## Core Differentiator

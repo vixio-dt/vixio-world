@@ -1,160 +1,87 @@
-# Feature Design: Import
+# Feature Design: Project Intake
 
 ## Overview
 
-Import is the **central feature** that differentiates Vixio from form-based tools. Users bring existing content; AI understands it.
+Import is no longer the product identity. It is the intake layer that seeds the workflow.
 
-## Import Types
+Vixio Studio supports three intake paths:
 
-### Macro Import (World Bible)
-For importing complete or partial world bibles.
+1. **Project brief**
+2. **Script breakdown**
+3. **Reference intake**
 
-**Input**: Plain text, markdown, or pasted content
-**Scope**: Entire world or large sections
-**Example**: "Here's my 50-page world bible document"
+## Goal
 
-### Micro Import (Single Element)
-For adding individual pieces to existing world.
+Turn existing material into usable project context for boards, canon, and assets.
 
-**Input**: Character backstory, location description, event details
-**Scope**: Single entity or small related group
-**Example**: "Here's Aria's full character history"
+## Intake Paths
 
-## Import Flow
+### 1. Project Brief
 
-### Step 1: Input
-```
-┌─────────────────────────────────────────────┐
-│  IMPORT                                      │
-│  ─────────────────                           │
-│  [ Paste your content here...             ] │
-│  [                                         ] │
-│  [                                         ] │
-│                                              │
-│  Import type:                                │
-│  ○ World Bible (macro)                      │
-│  ○ Character/Element (micro)                │
-│                                              │
-│  [ Import ]                                  │
-└─────────────────────────────────────────────┘
-```
+Use when the creator has:
 
-### Step 2: AI Processing
-- AI reads full content
-- Identifies potential entities (characters, locations, etc.)
-- Notes relationships and connections
-- Flags any obvious inconsistencies (for hard mode users)
+- a concept
+- a logline
+- tone, audience, or goals
+- pitch-oriented notes
 
-### Step 3: User Choice
-```
-┌─────────────────────────────────────────────┐
-│  IMPORT COMPLETE                             │
-│                                              │
-│  ✓ AI has read your content                 │
-│                                              │
-│  I noticed:                                  │
-│  • 5 possible characters                    │
-│  • 3 locations mentioned                    │
-│  • 2 factions/groups                        │
-│  • Several timeline events                  │
-│                                              │
-│  What would you like to do?                 │
-│                                              │
-│  [ Extract & Organize ]  [ Just Chat ]      │
-│                                              │
-│  "Extract" creates structured entries        │
-│  "Just Chat" keeps it free-form             │
-└─────────────────────────────────────────────┘
-```
+Expected output:
 
-## Two Paths After Import
+- project summary
+- planning board seed
+- initial canon notes
+- suggested next steps
 
-### Path A: "Just Chat" (Soft Worldbuilding)
+### 2. Script Breakdown
 
-- Content stays as raw/original text
-- AI has full context for conversations
-- No structured entities created
-- User can ask anything about the world
-- Can always extract later
+Use when the creator has:
 
-**Best for:**
-- Early exploration
-- Users who hate forms
-- Soft worldbuilders
-- Quick imports
+- screenplay pages
+- a treatment
+- a scene draft
+- structured narrative copy
 
-### Path B: "Extract & Organize" (Structured)
+Expected output:
 
-- AI creates entity cards/entries
-- Relationships mapped
-- Browsable views available
-- Node visualization possible
-- Can still chat freely
+- stories / sequences
+- scene candidates
+- beats and entities
+- storyboard-relevant signals
 
-**Best for:**
-- Large, complex worlds
-- Visual thinkers
-- Users who want to browse
-- Hard worldbuilders
+### 3. Reference Intake
 
-## Format Support
+Use when the creator has:
 
-### Phase 1 (MVP)
-- Plain text (paste)
-- Markdown files
+- notes
+- lookbook text
+- worldbuilding material
+- decks or supporting docs
 
-### Phase 2
-- PDF extraction
-- Word documents (.docx)
-- Google Docs (paste)
+Expected output:
 
-### Future Consideration
-- World Anvil export import
-- Campfire export import
-- Obsidian vault import
-- Notion export import
+- canon references
+- asset hints
+- visual direction notes
+- constraints and supporting context
 
-## AI Parsing Approach
+## Product Principle
 
-Traditional tools:
-```
-Structured input → Rigid parser → Database fields
-```
+The user should feel that intake immediately improves the workspace.
 
-Vixio approach:
-```
-Messy document → LLM comprehension → Contextual understanding
-```
+The ideal reaction is not:
 
-**Key insight**: We don't need perfect parsing. The AI understands context, not just structure.
+> "It extracted entities."
 
-Example: A paragraph mentioning "Queen Aria rules Ironhold with her council of five" creates understanding of:
-- Character: Aria (role: Queen)
-- Location: Ironhold (type: kingdom/city)
-- Relationship: Aria rules Ironhold
-- Group: Council (size: 5, relationship to Aria)
+The ideal reaction is:
 
-No forms required.
+> "It gave me a clearer project and I can move into the next stage."
 
-## Incremental Import
+## First Implementation Scope
 
-Users can import multiple times:
-1. Import world bible (macro)
-2. Later, import a new character's backstory (micro)
-3. AI integrates new content with existing world context
-4. Flags potential conflicts if in hard mode
+The first slice can remain entity-oriented under the hood, but it should be framed as project intake and route users toward:
 
-## Edge Cases
+- boards
+- canon
+- assets
 
-### Conflicting Information
-- Soft mode: Accept both, let user resolve later
-- Hard mode: Flag immediately, ask for clarification
-
-### Duplicate Entities
-- AI detects possible duplicates ("Is this Aria the same as the Queen mentioned earlier?")
-- User confirms or clarifies
-
-### Very Large Imports
-- Process in chunks if needed
-- Provide progress feedback
-- Allow partial extraction
+rather than toward worldbuilding as the main destination.

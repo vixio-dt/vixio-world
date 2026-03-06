@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
 import { Textarea } from '@/components/ui/Textarea';
 import { Card } from '@/components/ui/Card';
@@ -15,6 +15,7 @@ interface ImportClientProps {
 
 export function ImportClient({ worldId, worldName }: ImportClientProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -26,6 +27,56 @@ export function ImportClient({ worldId, worldName }: ImportClientProps) {
     items: number[];
     events: number[];
   }>({ characters: [], locations: [], organizations: [], items: [], events: [] });
+
+  const entry = searchParams.get('entry');
+
+  const entryConfig = (() => {
+    switch (entry) {
+      case 'script-breakdown':
+        return {
+          title: 'Script Breakdown Intake',
+          description:
+            'Paste a screenplay, treatment, or scene draft. AI will extract reusable story context for your boards and canon.',
+          placeholder: `Paste your screenplay, treatment, or scene draft here...
+
+Example:
+INT. THRONE ROOM - DAY
+
+Aria enters the throne room. The crowd falls silent as Kael watches from the far gallery. The Sunblade hangs behind the empty throne, glowing faintly.
+
+Use this flow when you want to go from script -> scenes -> boards -> export.`,
+          actionLabel: 'Extract Story Signals',
+        };
+      case 'references':
+        return {
+          title: 'Reference Intake',
+          description:
+            'Paste notes, lookbooks, deck copy, or worldbuilding material. AI will turn supporting references into canon and asset inputs.',
+          placeholder: `Paste your notes, deck copy, lookbook captions, or supporting references here...
+
+Example:
+Visual tone: moody retro-futurist city with humid night markets, reflective concrete, and neon cyan highlights.
+Target audience: adults 18-35.
+Key references: Wong Kar-wai pacing, Arcane color contrast, Children of Men camera urgency.
+
+Use this flow when you already have support material and need to organize it into production context.`,
+          actionLabel: 'Extract Reference Signals',
+        };
+      default:
+        return {
+          title: 'Project Intake',
+          description:
+            'Paste a brief, script excerpt, or supporting notes below. AI will extract entities for your active project.',
+          placeholder: `Paste your content here...
+
+Example:
+Queen Aria rules Ironhold from the Crystal Palace. Her trusted advisor, Kael the Grey, has served the throne for thirty years. The city is protected by the Silver Guard, an elite military order founded after the Great War.
+
+The Sunblade, an ancient weapon forged by the first king, hangs in the throne room. It's said to glow when danger approaches the realm.`,
+          actionLabel: 'Extract Project Context',
+        };
+    }
+  })();
 
   const handleExtract = async () => {
     if (!content.trim()) {
@@ -294,14 +345,13 @@ export function ImportClient({ worldId, worldName }: ImportClientProps) {
     <div className="mx-auto max-w-4xl">
       <div className="mb-6">
         <Button variant="secondary" onClick={() => router.push('/dashboard')}>
-          ← Back to Dashboard
+          ← Back to Overview
         </Button>
       </div>
 
-      <h1 className="mb-2 text-2xl font-bold text-slate-900">Import Content</h1>
+      <h1 className="mb-2 text-2xl font-bold text-slate-900">{entryConfig.title}</h1>
       <p className="mb-6 text-slate-600">
-        Paste your world bible, character notes, or story content below.
-        AI will extract entities for <strong>{worldName}</strong>.
+        {entryConfig.description} AI will extract entities for <strong>{worldName}</strong>.
       </p>
 
       {error && (
@@ -313,18 +363,13 @@ export function ImportClient({ worldId, worldName }: ImportClientProps) {
       <Textarea
         value={content}
         onChange={(e) => setContent(e.target.value)}
-        placeholder={`Paste your content here...
-
-Example:
-Queen Aria rules Ironhold from the Crystal Palace. Her trusted advisor, Kael the Grey, has served the throne for thirty years. The city is protected by the Silver Guard, an elite military order founded after the Great War.
-
-The Sunblade, an ancient weapon forged by the first king, hangs in the throne room. It's said to glow when danger approaches the realm.`}
+        placeholder={entryConfig.placeholder}
         className="mb-4 min-h-[300px]"
       />
 
       <div className="flex items-center gap-4">
         <Button onClick={handleExtract} disabled={loading || !content.trim()}>
-          {loading ? 'Extracting...' : 'Extract Entities'}
+          {loading ? 'Extracting...' : entryConfig.actionLabel}
         </Button>
         {loading && (
           <span className="text-sm text-slate-500">

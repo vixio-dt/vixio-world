@@ -44,7 +44,8 @@ export default function ChatPage() {
   useEffect(() => {
     const currentWorldId = getCurrentWorldId()
     if (!currentWorldId) {
-      setError('Please select a world first')
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setError('Please select a project first')
       setLoading(false)
       return
     }
@@ -138,8 +139,8 @@ export default function ChatPage() {
     return (
       <div className="h-[calc(100vh-8rem)] flex flex-col items-center justify-center text-center">
         <AlertCircle className="w-12 h-12 text-amber-500 mb-4" />
-        <h2 className="text-xl font-semibold text-slate-900 mb-2">No World Selected</h2>
-        <p className="text-slate-600">Please select a world from the sidebar to start chatting.</p>
+        <h2 className="text-xl font-semibold text-slate-900 mb-2">No Project Selected</h2>
+        <p className="text-slate-600">Please select a project from the sidebar to start chatting.</p>
       </div>
     )
   }
@@ -153,8 +154,8 @@ export default function ChatPage() {
             <Bot className="w-5 h-5 text-white" />
           </div>
           <div>
-            <h1 className="text-lg font-semibold text-slate-900">AI Chat</h1>
-            <p className="text-xs text-slate-500">Ask questions about your world</p>
+            <h1 className="text-lg font-semibold text-slate-900">Agent Chat</h1>
+            <p className="text-xs text-slate-500">Ask questions about your project, canon, and asset context</p>
           </div>
         </div>
         {messages.length > 0 && (
@@ -173,10 +174,10 @@ export default function ChatPage() {
               <Bot className="w-12 h-12 text-violet-600" />
             </div>
             <h2 className="text-xl font-semibold text-slate-900 mb-2">
-              Ask me anything about your world
+              Ask me anything about your project
             </h2>
             <p className="text-slate-600 max-w-md mb-6">
-              I can answer questions, check consistency, suggest stories, and find gaps in your worldbuilding.
+              I can answer questions, check consistency, suggest story directions, and surface gaps across canon and assets.
             </p>
             <div className="text-left text-sm text-slate-500 space-y-1">
               <p><code className="bg-slate-100 px-1.5 py-0.5 rounded">/check [statement]</code> - Check consistency</p>

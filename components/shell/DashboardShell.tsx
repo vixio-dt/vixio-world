@@ -2,48 +2,13 @@
 
 import { AppShell, Burger, Group, ScrollArea, NavLink, Text, ActionIcon, Tooltip } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import { useMantineColorScheme, useComputedColorScheme } from '@mantine/core'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Image from 'next/image'
-import { 
-  LayoutDashboard, 
-  Users, 
-  MapPin, 
-  Building2, 
-  Calendar, 
-  Package, 
-  Scale, 
-  BookOpen,
-  MessageSquare,
-  Download,
-  Network,
-  Upload,
-  User,
-  LogOut,
-  Sun,
-  Moon
-} from 'lucide-react'
+import { User, LogOut } from 'lucide-react'
 import { logout } from '@/lib/actions/auth'
 import { WorldSwitcher } from './WorldSwitcher'
-
-const navItems = [
-  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/characters', label: 'Characters', icon: Users },
-  { href: '/locations', label: 'Locations', icon: MapPin },
-  { href: '/organizations', label: 'Organizations', icon: Building2 },
-  { href: '/timeline', label: 'Timeline', icon: Calendar },
-  { href: '/items', label: 'Items', icon: Package },
-  { href: '/rules', label: 'Rules', icon: Scale },
-  { href: '/stories', label: 'Stories', icon: BookOpen },
-  { href: '/graph', label: 'Graph', icon: Network },
-]
-
-const bottomNavItems = [
-  { href: '/import', label: 'Import', icon: Upload },
-  { href: '/chat', label: 'AI Chat', icon: MessageSquare },
-  { href: '/export', label: 'Export', icon: Download },
-]
+import { primaryNavItems, utilityNavItems } from './navigation'
 
 interface DashboardShellProps {
   children: React.ReactNode
@@ -53,8 +18,6 @@ interface DashboardShellProps {
 export function DashboardShell({ children, userEmail }: DashboardShellProps) {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure()
   const pathname = usePathname()
-  const { setColorScheme } = useMantineColorScheme()
-  const computedColorScheme = useComputedColorScheme('light')
 
   const handleNavClick = () => {
     if (mobileOpened) toggleMobile()
@@ -100,18 +63,6 @@ export function DashboardShell({ children, userEmail }: DashboardShellProps) {
                 <Text size="sm" c="dimmed" visibleFrom="lg">{userEmail}</Text>
               </Group>
             )}
-
-            <Tooltip label={computedColorScheme === 'light' ? 'Dark mode' : 'Light mode'}>
-              <ActionIcon
-                variant="subtle"
-                color="gray"
-                size="lg"
-                onClick={() => setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')}
-                aria-label="Toggle color scheme"
-              >
-                {computedColorScheme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
-              </ActionIcon>
-            </Tooltip>
             
             <form action={logout}>
               <Tooltip label="Logout">
@@ -137,7 +88,10 @@ export function DashboardShell({ children, userEmail }: DashboardShellProps) {
         </AppShell.Section>
 
         <AppShell.Section grow component={ScrollArea} p="md">
-          {navItems.map((item) => {
+          <Text size="xs" fw={700} tt="uppercase" c="dimmed" mb="xs">
+            Studio
+          </Text>
+          {primaryNavItems.map((item) => {
             const isActive = pathname === item.href || pathname.startsWith(item.href + '/')
             return (
               <NavLink
@@ -160,7 +114,10 @@ export function DashboardShell({ children, userEmail }: DashboardShellProps) {
         </AppShell.Section>
 
         <AppShell.Section p="md">
-          {bottomNavItems.map((item) => {
+          <Text size="xs" fw={700} tt="uppercase" c="dimmed" mb="xs">
+            Tools
+          </Text>
+          {utilityNavItems.map((item) => {
             const isActive = pathname === item.href
             return (
               <NavLink

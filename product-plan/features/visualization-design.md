@@ -1,188 +1,78 @@
-# Feature Design: Node-Based Visualization
+# Feature Design: Stage Boards
 
 ## Overview
 
-Visual representation of world elements and their relationships. Uses node-based diagrams for both **relationship maps** and **timelines**.
+Visualization is not a supporting graph feature anymore. It is the main product surface.
 
-## Two Visualization Types
+The core visualization model is a set of **stage-aware boards**:
 
-### 1. Relationship Maps
-Shows connections between entities (characters, locations, organizations, etc.)
+- Planning
+- Ideation
+- Scripting / Breakdown
+- Design
+- Storyboard
 
-```
-        ┌─────────┐
-        │  Aria   │
-        │ (Queen) │
-        └────┬────┘
-             │ rules
-             ▼
-        ┌─────────┐         ┌─────────┐
-        │Ironhold │────────▶│ Kael    │
-        │(Capital)│ guards  │(Ranger) │
-        └────┬────┘         └────┬────┘
-             │                   │
-             │ enemy of          │ loves
-             ▼                   ▼
-        ┌─────────┐         ┌─────────┐
-        │The Veil │         │  Mira   │
-        │(Forest) │         │(Scholar)│
-        └─────────┘         └─────────┘
-```
+## Why Boards
 
-### 2. Timeline Visualization
-Shows events in temporal sequence with causal connections.
+Boards solve the main problems that flat chat and generic docs do not:
 
-```
-──┬────────────┬────────────┬────────────┬────────────┬──
-  │            │            │            │            │
-  ▼            ▼            ▼            ▼            ▼
-┌─────┐    ┌─────┐     ┌─────┐     ┌─────┐     ┌─────┐
-│Birth│───▶│Exile│────▶│ War │────▶│Peace│────▶│Death│
-│Aria │    │Kael │     │Begin│     │Treaty│    │King │
-└─────┘    └─────┘     └──┬──┘     └─────┘     └─────┘
-                          │
-                          │ causes
-                          ▼
-                     ┌─────────┐
-                     │Ironhold │
-                     │ Falls   │
-                     └─────────┘
-```
+- they keep outputs visible
+- they preserve alternatives
+- they make stage progression understandable
+- they provide a shared memory for users and AI
 
-## Core Interactions
+## Board Building Blocks
 
-### Viewing
-- Pan and zoom across the graph
-- Click node to see entity details
-- Hover for quick preview
-- Filter by entity type (show only characters, etc.)
+### Board
 
-### Editing
-- Drag nodes to reorganize
-- Draw connections between nodes
-- Edit relationship labels
-- Create new nodes directly on canvas
+A stage-specific workspace.
 
-### AI-Assisted
-- "Show me all relationships for Aria"
-- "Generate timeline from my world bible"
-- "What's missing in this relationship map?"
-- "Find characters who haven't been connected to anything"
+### Block
 
-## Generation Modes
+A meaningful output unit on a board.
 
-### From Existing Entities
-If user chose "Extract & Organize" during import:
-- Entities already exist as structured data
-- AI maps relationships based on entity data
-- Initial layout generated automatically
+Examples:
 
-### From Raw Content
-If user stayed in "Just Chat" mode:
-- AI generates visualization on demand
-- "Show me a relationship map" triggers extraction
-- Can be temporary (just for viewing) or saved
+- story concepts
+- scene lists
+- character directions
+- style references
+- shot sequences
 
-### Manual Creation
-- Start with blank canvas
-- Add nodes manually
-- Draw relationships
-- AI can suggest completions
+### Element
 
-## Node Types
+A selectable unit inside a block.
 
-### Entity Nodes
-```
-┌─────────────┐
-│ [icon]      │
-│  Name       │
-│  (type)     │
-│  brief desc │
-└─────────────┘
-```
+Examples:
 
-Icons by type:
-- 👤 Character
-- 📍 Location
-- 🏛️ Organization
-- 📅 Event
-- 🔮 Item
-- 📜 Rule
+- a single beat
+- one design option
+- one shot
+- one reference callout
 
-### Relationship Edges
-- Labeled connections ("rules", "loves", "enemy of")
-- Directional or bidirectional
-- Strength/importance (line thickness)
-- Type (family, political, romantic, etc.)
+### Lineage
 
-## Timeline-Specific Features
+Every refinement should preserve ancestry so users can see:
 
-### Time Axis
-- Zoomable (years → months → days)
-- Supports fuzzy dates ("early reign", "before the war")
-- Multiple parallel tracks (different storylines)
+- what changed
+- what branch was explored
+- what got approved
 
-### Causality
-- Show cause/effect relationships between events
-- "This led to that"
-- AI can suggest missing causal links
+## First UX Model
 
-### Filters
-- Show events for specific character
-- Show events in specific location
-- Show events of specific type (battles, births, etc.)
+The first implementation does not need a full infinite canvas. It does need:
 
-## Technical Considerations
+- stage-aware surface separation
+- visible workflow structure
+- cards or panels that feel like boards
+- continuity across stages
 
-### Libraries to Consider
-- React Flow (recommended for React)
-- D3.js (more control, more complexity)
-- Cytoscape.js (good for large graphs)
-- vis.js (simpler, good enough for MVP)
+## Agent Relationship
 
-### Performance
-- Lazy loading for large graphs
-- Clustering for dense areas
-- Level-of-detail (show less detail when zoomed out)
+Boards should become the UI surface where the `Core Agent` coordinates work and where specialized actions can publish results.
 
-### Persistence
-- Save node positions
-- Save zoom/pan state
-- Export as image (PNG, SVG)
+That is more important than maximizing graph complexity.
 
-## User Stories
+## Relationship To Graph View
 
-1. **As a writer**, I want to see all my characters and their relationships so I can spot missing connections.
-
-2. **As a soft worldbuilder**, I want to generate a quick visualization without creating structured entities first.
-
-3. **As a visual thinker**, I want to build my world by drawing nodes and connections, not filling forms.
-
-4. **As a hard worldbuilder**, I want to see my timeline and check for inconsistencies in event ordering.
-
-5. **As a storyteller**, I want to trace a character's journey through locations over time.
-
-## MVP Scope
-
-### Phase 1 (Basic)
-- Simple relationship map
-- Manual node creation
-- Basic edge drawing
-- Click to view entity
-
-### Phase 2 (AI-Assisted)
-- Generate from imported content
-- AI suggests relationships
-- Auto-layout improvements
-
-### Phase 3 (Timeline)
-- Temporal axis
-- Event nodes
-- Causality edges
-- Zoom on time
-
-### Phase 4 (Polish)
-- Export to image
-- Multiple views per world
-- Filtering and search
-- Mobile touch support
+Relationship maps still matter, but they now sit under `Assets` as a supporting visualization. They are not the primary explanation of the product.

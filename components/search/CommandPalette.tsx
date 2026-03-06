@@ -72,9 +72,7 @@ export function CommandPalette({ worldId }: CommandPaletteProps) {
       inputRef.current?.focus()
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setQuery('')
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setResults([])
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSelectedIndex(0)
     }
   }, [isOpen])
@@ -147,7 +145,7 @@ export function CommandPalette({ worldId }: CommandPaletteProps) {
             <input
               ref={inputRef}
               type="text"
-              placeholder="Search entities..."
+              placeholder="Search canon, assets, and stories..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={handleKeyDown}
@@ -165,7 +163,7 @@ export function CommandPalette({ worldId }: CommandPaletteProps) {
           <div className="max-h-80 overflow-y-auto">
             {!worldId ? (
               <p className="px-4 py-8 text-center text-slate-500">
-                Select a world to search
+                Select a project to search
               </p>
             ) : loading ? (
               <p className="px-4 py-8 text-center text-slate-500">Searching...</p>
@@ -208,7 +206,7 @@ export function CommandPalette({ worldId }: CommandPaletteProps) {
               </ul>
             ) : (
               <div className="px-4 py-8 text-center text-slate-500">
-                <p>Type to search entities</p>
+                <p>Type to search canon and assets</p>
                 <p className="text-xs mt-2">
                   Press <kbd className="px-1.5 py-0.5 bg-slate-100 rounded text-slate-600">↑</kbd>{' '}
                   <kbd className="px-1.5 py-0.5 bg-slate-100 rounded text-slate-600">↓</kbd> to navigate,{' '}

@@ -1,48 +1,38 @@
-# Export Section Specification
+# Exports Section Specification
 
 ## Overview
 
-Generates production-ready output packages for Unreal Engine pipeline and other tools.
+Exports should be positioned as the final stage of the Studio workflow, not a detached utility page.
 
-## Export Types
+## Core Jobs
 
-### World Summary
-- Complete world overview in PDF/Markdown
-- All categories summarized
-- For onboarding collaborators
+1. Package current project context for review or handoff
+2. Convert coordinated preproduction work into reusable formats
+3. Let creators leave the workspace with something concrete
 
-### Character Sheets
-- MetaHuman-ready character specs
-- Visual references, voice notes, movement notes
-- Per-character or batch export
+## First Export Types
 
-### Location Briefs
-- Environment design specs
-- Lighting, sound, asset requirements
-- For art and technical teams
+- JSON export
+- Markdown / project bible export
 
-### Asset Lists
-- Compiled list of all props/items needed
-- Categorized by location or scene
-- For production planning
+## Next Export Types
 
-### Screenplay
-- Story/scene/shot breakdown
-- Industry-standard formatting
-- Dialogue and action
+- scene breakdown packages
+- shot-oriented exports
+- storyboard-ready packages
+- screenplay-oriented exports
 
-### Storyboard Prompts
-- AI image generation prompts per shot
-- Batch export for storyboard creation
-- With camera and mood notes
+## UX Goals
 
-### Full JSON Export
-- Complete world data
-- For backup or import to other tools
+- Explain what each export is for
+- Make it obvious which parts of the project are being exported
+- Tie export language back to boards, canon, and assets
+- Avoid treating export as a generic file download area
 
-## Components
+## First Implementation Scope
 
-- ExportSelector: Choose export type and options
-- ExportPreview: Preview content before download
-- ExportHistory: Record of past exports
-- FormatSelector: Choose output format (PDF, MD, JSON)
+The current export surface can remain technically simple, but its copy and framing should align with the new Studio model:
+
+- `Project Bible` instead of `World Bible`
+- `project data` instead of `world data`
+- handoff-oriented descriptions instead of archive-oriented descriptions

@@ -1,7 +1,40 @@
 # Current Sprint
 
-**Status:** Phase 2+3 Implementation COMPLETE
-**Updated:** 2026-02-05
+**Status:** Studio Pivot Reset IN PROGRESS
+**Updated:** 2026-03-06
+
+---
+
+## Current Priority: Studio Pivot Reset (2026-03-06)
+
+### What Changed
+
+Vixio is being reframed from a worldbuilder-first product into a **project-first, visualization-first preproduction workspace**.
+
+### What This Sprint Is Doing
+
+- Rewriting product strategy and feature docs around the Studio pivot
+- Updating the app shell to use workflow-first navigation
+- Reframing onboarding around `project brief`, `script breakdown`, and `reference intake`
+- Adding `Overview`, `Boards`, `Canon`, and `Assets` surfaces on top of the current data model
+- Treating the current `worlds` model as a transitional implementation of `projects`
+
+### Why
+
+The key insight from the AnimAgents direction is that creators mostly need help with:
+
+- stage coordination
+- visualizing work in progress
+- preserving continuity across outputs
+- getting from concept or script into storyboard-ready planning
+
+They do **not** primarily need deeper worldbuilding software as the product identity.
+
+### Immediate Next Steps
+
+- Define board lineage and project-first data model evolution
+- Turn intake into a true brief/script kickoff flow
+- Expand export depth around scene and shot deliverables
 
 ---
 

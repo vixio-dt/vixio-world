@@ -38,8 +38,8 @@ export function WorldSwitcher() {
   }
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     loadWorlds()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   function selectWorld(world: World) {
@@ -54,6 +54,7 @@ export function WorldSwitcher() {
   // Show onboarding when no worlds exist
   useEffect(() => {
     if (!loading && worlds.length === 0) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setShowOnboarding(true)
     }
   }, [loading, worlds.length])
@@ -79,7 +80,7 @@ export function WorldSwitcher() {
           className="w-full px-3 py-2 bg-gradient-to-r from-cyan-400 to-teal-400 text-white rounded-xl text-sm font-medium hover:from-cyan-500 hover:to-teal-500 transition-all duration-200 flex items-center justify-center gap-2"
         >
           <Plus className="w-4 h-4" />
-          Get Started
+          Start a Project
         </button>
         <WorldOnboarding
           isOpen={showOnboarding}
@@ -98,7 +99,7 @@ export function WorldSwitcher() {
       >
         <div className="flex items-center gap-2 truncate">
           <Globe className="w-4 h-4 text-slate-500 flex-shrink-0" />
-          <span className="truncate">{currentWorld?.name || 'Select world'}</span>
+          <span className="truncate">{currentWorld?.name || 'Select project'}</span>
         </div>
         <ChevronDown className={`w-4 h-4 text-slate-500 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
@@ -125,7 +126,7 @@ export function WorldSwitcher() {
               className="w-full flex items-center gap-2 px-3 py-2 text-sm text-cyan-600 hover:bg-cyan-50 transition-colors"
             >
               <Plus className="w-4 h-4" />
-              Create new world
+              Create new project
             </button>
           </div>
         </div>
