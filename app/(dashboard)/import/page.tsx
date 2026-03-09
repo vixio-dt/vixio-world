@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
@@ -24,5 +25,9 @@ export default async function ImportPage() {
     redirect('/dashboard')
   }
 
-  return <ImportClient worldId={world.id} worldName={world.name} />
+  return (
+    <Suspense fallback={null}>
+      <ImportClient worldId={world.id} worldName={world.name} />
+    </Suspense>
+  )
 }

@@ -40,14 +40,21 @@ export async function updateSession(request: NextRequest) {
   // supabase.auth.getUser(). A simple mistake could make it very hard to debug
   // issues with users being randomly logged out.
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  let user = null
+  try {
+    const { data } = await supabase.auth.getUser()
+    user = data.user
+  } catch {
+    // Supabase unreachable - treat as unauthenticated so the app still renders
+  }
 
   // Protected routes - redirect to login if not authenticated
   const isAuthRoute = request.nextUrl.pathname.startsWith('/login') || 
                       request.nextUrl.pathname.startsWith('/signup')
   const isProtectedRoute = request.nextUrl.pathname.startsWith('/dashboard') ||
+                           request.nextUrl.pathname.startsWith('/boards') ||
+                           request.nextUrl.pathname.startsWith('/canon') ||
+                           request.nextUrl.pathname.startsWith('/assets') ||
                            request.nextUrl.pathname.startsWith('/characters') ||
                            request.nextUrl.pathname.startsWith('/locations') ||
                            request.nextUrl.pathname.startsWith('/organizations') ||
@@ -55,7 +62,9 @@ export async function updateSession(request: NextRequest) {
                            request.nextUrl.pathname.startsWith('/items') ||
                            request.nextUrl.pathname.startsWith('/rules') ||
                            request.nextUrl.pathname.startsWith('/stories') ||
+                           request.nextUrl.pathname.startsWith('/graph') ||
                            request.nextUrl.pathname.startsWith('/chat') ||
+                           request.nextUrl.pathname.startsWith('/import') ||
                            request.nextUrl.pathname.startsWith('/export')
 
   if (!user && isProtectedRoute) {
