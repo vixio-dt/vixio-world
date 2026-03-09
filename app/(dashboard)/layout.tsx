@@ -9,15 +9,21 @@ export default async function DashboardLayout({
 }: {
   children: React.ReactNode
 }) {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  let userEmail: string | undefined
+  try {
+    const supabase = await createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    userEmail = user?.email
+  } catch {
+    // Supabase unreachable – render shell without user email
+  }
   
   const cookieStore = await cookies()
   const worldId = cookieStore.get('current_world_id')?.value || null
 
   return (
     <ToastProvider>
-      <DashboardShell userEmail={user?.email}>
+      <DashboardShell userEmail={userEmail}>
         {children}
       </DashboardShell>
       <CommandPalette worldId={worldId} />
